@@ -2,7 +2,7 @@
 
 # Project ARA: Reborn
 
-**A collection of independent mods for _ARA: History Untold_ — pick only the ones you want.**
+**A collection of independent mods for _ARA: History Untold_**
 
 ![Game build](https://img.shields.io/badge/ARA%3A%20History%20Untold-2.1.0.542-8a5a2b)
 ![Platform](https://img.shields.io/badge/platform-Windows%20%C2%B7%20Steam-1f6feb)
@@ -10,7 +10,8 @@
 
 </div>
 
-Project ARA: Reborn brings quality-of-life fixes, a stability fix for end-of-turn freezes, player-built railroads and two brand-new playable nations to ARA: History Untold. Every mod ships as its own zip with a one-click installer and uninstaller. Use one, several or all of them, in any order.
+Project ARA: Reborn brings quality-of-life fixes, a stability fix for end-of-turn freezes, player-built railroads and brand-new playable nations and leaders to ARA: History Untold. 
+Every mod ships as its own zip with a one-click installer and uninstaller. Use one, several or all of them together, in any order, make your own History Untold!
 
 ## The mods
 
