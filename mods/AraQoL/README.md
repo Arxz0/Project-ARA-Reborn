@@ -1,18 +1,27 @@
 # AraQoL 2.0
 
-Correções de câmera e interface para ARA: History Untold 2.1.0.542. Parte do **Project ARA: Reborn**; funciona sozinho.
+Camera and interface fixes for ARA: History Untold 2.1.0.542. Part of **Project ARA: Reborn**; works on its own.
 
-## O que faz
-- **Câmera:** o teto de altura deixa de depender da área explorada (multiplicador da região 2,0 → 100). A Visão Estratégica fica alcançável desde o começo. `[Camera] ZoomMaximo=0` volta ao original.
-- **Bandeiras do mapa** (recursos, rendimentos, melhorias, forças): opção desligada = escondidas em qualquer zoom; ligada = sempre visíveis.
-- **Clique nas unidades:** folga extra no clique dos bonecos 3D (`[Clique] RaioExtraUnidades`, padrão 40, relido a cada 2 s).
-- **Aprimorar Tudo:** botão no painel de aprimoramento do exército (escolhe o melhor aprimoramento de cada unidade; você confirma o custo) e botão no painel Militar (manda aprimorar todos os exércitos que podem). Texto no idioma do jogo.
+## Features
+- **Higher camera ceiling.** The maximum camera height no longer depends on how much of the map you have explored (the region multiplier goes from 2.0 to 100). Strategic View is reachable from the start.
+- **Map banners that obey their toggle.** Resources, yields, improvements and forces: when a toggle is off, those banners stay hidden at every zoom level; when it is on, they are always shown.
+- **Easier unit clicking.** An extra click radius around the 3D unit models.
+- **Upgrade All.** Two new buttons:
+  - in the army upgrade panel: picks the best unlocked upgrade for every unit, and you still confirm the cost as usual;
+  - in the Military panel: orders every army that can upgrade right now to do it.
 
-A correção de CPU/prioridade que existia no AraQoL 1.9 virou o mod separado **ARA CPU Fix**.
+  Button labels follow the game language.
 
-## Instalar
-Feche o jogo e rode `INSTALAR.bat`. Substitui `bin\swresample-4.dll` (a original fica como `swresample-4_orig.dll`). Log: `bin\AraQoL.log`; opções: `bin\AraQoL.ini`.
-Remover: `DESINSTALAR.bat`.
+The CPU/priority fix that used to live in AraQoL 1.9 is now the separate **ARA CPU Fix** mod.
 
-## English
-Camera ceiling no longer limited by explored area, map banner visibility follows the toggle, larger click radius on units, and "Upgrade All" buttons (army upgrade panel and Military panel). Replaces `swresample-4.dll`; settings in `bin\AraQoL.ini`.
+## Settings (`bin\AraQoL.ini`)
+| Key | Default | Meaning |
+|---|---|---|
+| `[Camera] ZoomMaximo` | `1` | `1` = higher camera ceiling, `0` = original ceiling |
+| `[Clique] RaioExtraUnidades` | `40` | extra click radius around units (re-read every 2 s) |
+| `[UpgradeAll] TextoPainel` / `TextoMilitar` | `auto` | button labels (`auto` = game language) |
+| `[UpgradeAll] PularExercitosEmMarcha` | `1` | skip armies that are currently marching |
+
+## Install
+Close the game and run `INSTALL.bat`. It replaces `bin\swresample-4.dll`; the original is kept as `swresample-4_orig.dll`. The log is written to `bin\AraQoL.log`.
+To remove the mod, run `UNINSTALL.bat`.

@@ -1,20 +1,20 @@
-// ARA CPU Fix 1.0 (Project ARA: Reborn) - evita que o PC congele na passagem de turno de ARA: History Untold 2.1.0.542.
-// Carregado como proxy de avutil-58.dll (o original fica como avutil-58_orig.dll). Separado do AraQoL 1.9c.
+// ARA CPU Fix 1.0 (Project ARA: Reborn) - stops the whole-PC freeze during end-of-turn processing in ARA: History Untold 2.1.0.542.
+// Loaded as a proxy of avutil-58.dll (the original is kept as avutil-58_orig.dll and every export is forwarded to it).
 //
-// O problema (medido em 15/10/2026 num i7-11700KF, 16 processadores logicos): o jogo cria 1 thread de trabalho por
-// processador logico menos 1, prende cada uma num processador (SetThreadAffinityMask/SetThreadIdealProcessor), elas
-// ficam girando quando nao ha trabalho, com prioridade atual 16, e o processo sobe para ACIMA DO NORMAL quando a janela
-// tem foco. Na passagem de turno todos os processadores ficam ocupados acima do Windows e o PC inteiro congela.
+// The problem (measured on 15 Oct 2026 on an i7-11700KF, 16 logical processors): the game creates one worker thread per
+// logical processor minus one, pins each worker to a processor (SetThreadAffinityMask/SetThreadIdealProcessor), the workers
+// busy-spin when idle with a current priority of 16, and the process is raised to ABOVE_NORMAL while the window has focus.
+// During turn processing every processor is busy above Windows itself and the whole system can lock up.
 //
-// A correcao (so na memoria, nenhum arquivo do jogo muda):
-//  1. CPU: reserva os primeiros N processadores logicos para o Windows. Afinidade do processo sem eles; as chamadas
-//     do jogo SetThreadAffinityMask/SetThreadIdealProcessor ficam limitadas aos permitidos; GetSystemInfo e
-//     GetLogicalProcessorInformation contam so os permitidos (o jogo cria menos threads); SetProcessPriorityBoost
-//     sempre desliga o boost dinamico. So a tabela de importacoes do executavel e trocada.
-//     ARA_CpuFix.ini [CPU] ProcessadoresLivres = auto (16+ logicos: 4; 12+: 2; 6+: 1; menos: 0) ou um numero; 0 desliga.
-//  2. Prioridade: com foco o jogo fica em NORMAL em vez de ACIMA DO NORMAL (0xbf5790 chama SetPriorityClass com 0x8000;
-//     o imediato em 0xbf57c2 vira 0x20). [Prioridade] LimitarEmNormal = 1 (0 = comportamento original).
-// Vale ao abrir o jogo. Log em bin\ARA_CpuFix.log.
+// The fix (in memory only, no game file is changed):
+//  1. CPU: reserves the first N logical processors for Windows. The process affinity excludes them; the game's calls to
+//     SetThreadAffinityMask/SetThreadIdealProcessor are limited to the allowed set; GetSystemInfo and
+//     GetLogicalProcessorInformation only report the allowed processors (the game creates fewer workers);
+//     SetProcessPriorityBoost always disables the dynamic boost. Only the executable's import table is redirected.
+//     ARA_CpuFix.ini [CPU] ReservedProcessors = auto (16+ logical: 4; 12+: 2; 6+: 1; fewer: 0), a number, or 0 to disable.
+//  2. Priority: while focused the game stays at NORMAL instead of ABOVE_NORMAL (0xbf5790 calls SetPriorityClass with 0x8000;
+//     the immediate at 0xbf57c2 becomes 0x20). [Priority] CapAtNormal = 1 (0 = original behaviour).
+// Applied at game start. Log: bin\ARA_CpuFix.log.
 #include <windows.h>
 #include <stdio.h>
 #include <stdarg.h>
@@ -44,6 +44,10 @@ static int same_build(void) {
     IMAGE_NT_HEADERS64 *nt = (IMAGE_NT_HEADERS64 *)(g_base + ((IMAGE_DOS_HEADER *)g_base)->e_lfanew);
     return nt->FileHeader.TimeDateStamp == EXPECTED_TIMESTAMP && nt->OptionalHeader.SizeOfImage == EXPECTED_SIZEOFIMAGE;
 }
+static void ini_get(const char *sec, const char *key, const char *def, char *v, DWORD n) {
+    GetPrivateProfileStringA(sec, key, "", v, n, g_inipath);
+    if (!v[0]) { WritePrivateProfileStringA(sec, key, def, g_inipath); strcpy(v, def); }
+}
 
 // ---- CPU ----
 static ULONG_PTR g_cpu_allowed;
@@ -58,7 +62,7 @@ static volatile LONG g_cpu_logs;
 static DWORD_PTR WINAPI h_SetThreadAffinityMask(HANDLE t, DWORD_PTR m) {
     DWORD_PTR m2 = m & g_cpu_allowed;
     if (!m2) m2 = g_cpu_allowed;
-    if (m2 != m && InterlockedIncrement(&g_cpu_logs) <= 40) qlog("CPU: jogo pediu afinidade %llx -> %llx.", (unsigned long long)m, (unsigned long long)m2);
+    if (m2 != m && InterlockedIncrement(&g_cpu_logs) <= 40) qlog("CPU: game asked for affinity %llx -> %llx.", (unsigned long long)m, (unsigned long long)m2);
     return o_SetThreadAffinityMask(t, m2);
 }
 static DWORD WINAPI h_SetThreadIdealProcessor(HANDLE t, DWORD n) {
@@ -79,7 +83,7 @@ static BOOL WINAPI h_GetLogicalProcessorInformation(PSYSTEM_LOGICAL_PROCESSOR_IN
 }
 static BOOL WINAPI h_SetProcessPriorityBoost(HANDLE p, BOOL disable) { (void)disable; return o_SetProcessPriorityBoost(p, TRUE); }
 
-// troca uma entrada da tabela de importacoes do executavel (por nome); devolve o endereco original ou NULL
+// swaps one entry of the executable's import table (by name); returns the original address or NULL
 static void *iat_swap(const char *dll, const char *fn, void *nw) {
     IMAGE_NT_HEADERS64 *nt = (IMAGE_NT_HEADERS64 *)(g_base + ((IMAGE_DOS_HEADER *)g_base)->e_lfanew);
     IMAGE_DATA_DIRECTORY *dd = &nt->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_IMPORT];
@@ -91,7 +95,7 @@ static void *iat_swap(const char *dll, const char *fn, void *nw) {
         for (; o->u1.AddressOfData; o++, f++) {
             if (IMAGE_SNAP_BY_ORDINAL64(o->u1.Ordinal)) continue;
             if (strcmp((char *)((IMAGE_IMPORT_BY_NAME *)(g_base + o->u1.AddressOfData))->Name, fn)) continue;
-            void *old = (void *)f->u1.Function; DWORD pr; HMODULE hm;   // so troca importacao ja resolvida
+            void *old = (void *)f->u1.Function; DWORD pr; HMODULE hm;   // only swap an import that is already resolved
             if (!old || !GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS | GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, (LPCSTR)old, &hm)
                 || (unsigned char *)hm == g_base) return NULL;
             if (!VirtualProtect(&f->u1.Function, 8, PAGE_READWRITE, &pr)) return NULL;
@@ -103,20 +107,18 @@ static void *iat_swap(const char *dll, const char *fn, void *nw) {
     return NULL;
 }
 static void cpu_install(void) {
-    char v[16];
-    GetPrivateProfileStringA("CPU", "ProcessadoresLivres", "", v, sizeof v, g_inipath);
-    if (!v[0]) { WritePrivateProfileStringA("CPU", "ProcessadoresLivres", "auto", g_inipath); strcpy(v, "auto"); }
+    char v[16]; ini_get("CPU", "ReservedProcessors", "auto", v, sizeof v);
     DWORD_PTR pm = 0, sm = 0;
-    if (!GetProcessAffinityMask(GetCurrentProcess(), &pm, &sm)) { qlog("CPU: nao consegui ler a afinidade; nada alterado."); return; }
+    if (!GetProcessAffinityMask(GetCurrentProcess(), &pm, &sm)) { qlog("CPU: could not read the process affinity; nothing changed."); return; }
     int total = 0; for (int i = 0; i < 64; i++) if (pm >> i & 1) total++;
-    int livres = _stricmp(v, "auto") ? atoi(v) : total >= 16 ? 4 : total >= 12 ? 2 : total >= 6 ? 1 : 0;
-    if (livres <= 0) { qlog("CPU: nada reservado (ProcessadoresLivres=%s, %d processadores logicos).", v, total); return; }
-    if (total - livres < 2) { qlog("CPU: so %d processadores; nada alterado.", total); return; }
-    ULONG_PTR allowed = 0; int skip = livres;
+    int reserve = _stricmp(v, "auto") ? atoi(v) : total >= 16 ? 4 : total >= 12 ? 2 : total >= 6 ? 1 : 0;
+    if (reserve <= 0) { qlog("CPU: nothing reserved (ReservedProcessors=%s, %d logical processors).", v, total); return; }
+    if (total - reserve < 2) { qlog("CPU: only %d logical processors; nothing changed.", total); return; }
+    ULONG_PTR allowed = 0; int skip = reserve;
     for (int i = 0; i < 64; i++) if (pm >> i & 1) { if (skip > 0) skip--; else allowed |= (ULONG_PTR)1 << i; }
     g_cpu_allowed = allowed; g_cpu_n = 0;
     for (int i = 0; i < 64; i++) if (allowed >> i & 1) g_cpu_list[g_cpu_n++] = i;
-    if (!SetProcessAffinityMask(GetCurrentProcess(), allowed)) { qlog("CPU: SetProcessAffinityMask falhou (%lu); nada alterado.", GetLastError()); return; }
+    if (!SetProcessAffinityMask(GetCurrentProcess(), allowed)) { qlog("CPU: SetProcessAffinityMask failed (%lu); nothing changed.", GetLastError()); return; }
     SetProcessPriorityBoost(GetCurrentProcess(), TRUE);
     int ok = 0;
     if ((o_SetThreadAffinityMask = iat_swap("KERNEL32.dll", "SetThreadAffinityMask", (void *)h_SetThreadAffinityMask))) ok++;
@@ -124,25 +126,23 @@ static void cpu_install(void) {
     if ((o_GetSystemInfo = iat_swap("KERNEL32.dll", "GetSystemInfo", (void *)h_GetSystemInfo))) ok++;
     if ((o_GetLogicalProcessorInformation = iat_swap("KERNEL32.dll", "GetLogicalProcessorInformation", (void *)h_GetLogicalProcessorInformation))) ok++;
     if ((o_SetProcessPriorityBoost = iat_swap("KERNEL32.dll", "SetProcessPriorityBoost", (void *)h_SetProcessPriorityBoost))) ok++;
-    qlog("CPU: %d de %d processadores logicos para o jogo (afinidade %llx); %d reservados para o Windows (ini: %s). Boost dinamico desligado. %d/5 importacoes redirecionadas.",
-         g_cpu_n, total, (unsigned long long)allowed, livres, v, ok);
+    qlog("CPU: %d of %d logical processors for the game (affinity %llx); %d reserved for Windows (ini: %s). Dynamic boost off. %d/5 imports redirected.",
+         g_cpu_n, total, (unsigned long long)allowed, reserve, v, ok);
 }
 
-// ---- Prioridade ----
+// ---- Priority ----
 static void prio_install(void) {
-    char v[16];
-    GetPrivateProfileStringA("Prioridade", "LimitarEmNormal", "", v, sizeof v, g_inipath);
-    if (!v[0]) { WritePrivateProfileStringA("Prioridade", "LimitarEmNormal", "1", g_inipath); strcpy(v, "1"); }
-    if (atoi(v) != 1) { qlog("Prioridade: desligado no ini (o jogo sobe para acima do normal com foco)."); return; }
-    if (!same_build()) { qlog("Prioridade: executavel de outra versao; nada alterado."); return; }
+    char v[16]; ini_get("Priority", "CapAtNormal", "1", v, sizeof v);
+    if (atoi(v) != 1) { qlog("Priority: disabled in the ini (the game raises itself to above normal while focused)."); return; }
+    if (!same_build()) { qlog("Priority: different game build; nothing changed."); return; }
     unsigned char *p = g_base + RVA_PRIO_ABOVE;
     static const unsigned char want[] = { 0xff,0x15 }, mid[] = { 0x48,0x8b,0xc8, 0xba,0x00,0x80,0x00,0x00, 0xff,0x15 };
-    if (!mem_ok(p, 18) || memcmp(p, want, 2) || memcmp(p + 6, mid, sizeof mid)) { qlog("Prioridade: codigo do jogo diferente do esperado; nada alterado."); return; }
+    if (!mem_ok(p, 18) || memcmp(p, want, 2) || memcmp(p + 6, mid, sizeof mid)) { qlog("Priority: game code is not as expected; nothing changed."); return; }
     DWORD old;
-    if (!VirtualProtect(p + 10, 4, PAGE_EXECUTE_READWRITE, &old)) { qlog("Prioridade: VirtualProtect falhou."); return; }
-    *(unsigned *)(p + 10) = 0x20;                       // NORMAL_PRIORITY_CLASS no lugar de ABOVE_NORMAL (0x8000)
+    if (!VirtualProtect(p + 10, 4, PAGE_EXECUTE_READWRITE, &old)) { qlog("Priority: VirtualProtect failed."); return; }
+    *(unsigned *)(p + 10) = 0x20;                       // NORMAL_PRIORITY_CLASS instead of ABOVE_NORMAL (0x8000)
     VirtualProtect(p + 10, 4, old, &old); FlushInstructionCache(GetCurrentProcess(), p + 10, 4);
-    qlog("Prioridade: com foco o jogo fica em NORMAL (antes ACIMA DO NORMAL). Sem foco continua abaixo do normal.");
+    qlog("Priority: the game stays at NORMAL while focused (was ABOVE_NORMAL). In the background it is still below normal.");
 }
 
 BOOL WINAPI DllMain(HINSTANCE h, DWORD reason, LPVOID r) {
@@ -156,8 +156,8 @@ BOOL WINAPI DllMain(HINSTANCE h, DWORD reason, LPVOID r) {
     const char *en = strrchr(exe, '\\'); en = en ? en + 1 : exe;
     if (_stricmp(en, "AraHistoryUntold.exe") != 0) return TRUE;
     g_base = (unsigned char *)GetModuleHandleA(NULL);
-    qlog("=== ARA CPU Fix 1.0 carregado (Project ARA: Reborn; proxy de avutil-58.dll)");
-    cpu_install();                                      // independe da versao do exe (so APIs do Windows)
-    prio_install();                                     // depende da versao (patch de 4 bytes conferido)
+    qlog("=== ARA CPU Fix 1.0 loaded (Project ARA: Reborn; proxy of avutil-58.dll)");
+    cpu_install();                                      // independent of the game build (Windows APIs only)
+    prio_install();                                     // build-specific 4-byte patch, checked first
     return TRUE;
 }

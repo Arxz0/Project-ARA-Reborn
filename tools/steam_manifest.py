@@ -1,5 +1,5 @@
-# Le um manifesto de depot da Steam (depotcache\<depot>_<manifest>.manifest) e lista {tamanho, sha1 do conteudo, nome}.
-# Serve para conferir se um arquivo e o ORIGINAL da Steam sem precisar baixar nada. uso: steam_manifest.py arquivo.manifest [filtro]
+# Reads a Steam depot manifest (depotcache\<depot>_<manifest>.manifest) and lists {size, content sha1, name}.
+# Used to check whether a file is the ORIGINAL Steam file without downloading anything. Usage: steam_manifest.py file.manifest [filter]
 import sys, struct
 def varint(b, i):
     r = s = 0
@@ -14,7 +14,7 @@ def fields(b):
         elif t == 2: n, i = varint(b, i); v = b[i:i + n]; i += n
         elif t == 5: v = b[i:i + 4]; i += 4
         elif t == 1: v = b[i:i + 8]; i += 8
-        else: raise ValueError('tipo %d' % t)
+        else: raise ValueError('wire type %d' % t)
         yield f, v
 def load(path):
     d = open(path, 'rb').read(); i = 0; files = []; meta = {}
@@ -37,7 +37,7 @@ def load(path):
     return files, meta
 if __name__ == '__main__':
     files, meta = load(sys.argv[1])
-    print(len(files), 'arquivos; nomes cifrados:', meta.get(4))
+    print(len(files), 'files; encrypted names:', meta.get(4))
     flt = sys.argv[2].lower().encode() if len(sys.argv) > 2 else b''
     for m in files:
         nm = m.get('name', b'')

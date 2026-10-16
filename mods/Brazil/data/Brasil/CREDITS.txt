@@ -1,0 +1,5 @@
+Brazil mod - third-party credits
+
+Leader introduction narration:
+  Generated with Coqui XTTS-v2 (https://huggingface.co/coqui/XTTS-v2) using a stock studio voice,
+  under the Coqui Public Model License (non-commercial use).

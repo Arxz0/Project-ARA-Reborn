@@ -1,10 +1,10 @@
-# Confere um arquivo pedaco a pedaco contra os SHA-1 dos chunks do manifesto da Steam e lista os pedacos diferentes.
-# uso: chunk_check.py arquivo caminho_relativo_no_jogo
+# Checks a file chunk by chunk against the chunk SHA-1s of the Steam manifest and lists the chunks that differ.
+# Usage: chunk_check.py file relative_path_in_game [manifest]
 import sys, os, hashlib
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from steam_manifest import fields, varint
 import struct
-MAN = r'C:\Program Files (x86)\Steam\depotcache\2021881_2028503611726990938.manifest'
+MAN = sys.argv[3] if len(sys.argv) > 3 else r'C:\Program Files (x86)\Steam\depotcache\2021881_2028503611726990938.manifest'
 def chunks_of(rel):
     d = open(MAN, 'rb').read(); i = 0
     while i + 8 <= len(d):
@@ -32,5 +32,5 @@ if __name__ == '__main__':
         for c in ch:
             f.seek(c.get('off', 0)); b = f.read(c['len'])
             if hashlib.sha1(b).hexdigest() != c['sha']: bad.append(c)
-    print(len(ch), 'chunks;', len(bad), 'diferentes')
+    print(len(ch), 'chunks;', len(bad), 'different')
     for c in bad[:50]: print('  off %d len %d' % (c.get('off', 0), c['len']))

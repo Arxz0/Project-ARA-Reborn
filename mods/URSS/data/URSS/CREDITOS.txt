@@ -1,6 +1,0 @@
-Mod URSS - creditos de terceiros
-
-Quepe de marechal (skin "Stalin 1945"):
-  Malha 3D adaptada de "Russian Imperial WW1 Army Cap" por dawiderodawid (Sketchfab),
-  licenciado sob Creative Commons Attribution (CC BY 4.0) - https://creativecommons.org/licenses/by/4.0/
-  Alteracoes: convertido para o formato do jogo, reposicionado/escalado e repintado (branco, faixa vermelha, estrela).

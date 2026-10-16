@@ -1,23 +1,31 @@
 # ARA CPU Fix 1.0
 
-Evita que o PC inteiro congele durante a passagem de turno de ARA: History Untold. Parte do **Project ARA: Reborn**; funciona sozinho.
+Stops the whole-PC freeze that can happen during end-of-turn processing in ARA: History Untold. Part of **Project ARA: Reborn**; works on its own.
 
-## O problema
-O jogo cria uma thread de trabalho por processador lógico (menos uma), prende cada uma num processador, deixa elas girando quando não há trabalho, com prioridade alta, e sobe o processo para "acima do normal" quando a janela tem foco. Na passagem de turno todos os processadores ficam ocupados acima do Windows e o sistema pode travar por completo.
+## The problem
+The game:
+- creates one worker thread per logical processor (minus one);
+- pins each worker to a processor;
+- lets the workers spin when they have no work, at high priority;
+- raises its own process to "above normal" priority while the window has focus.
 
-## O que o mod faz (só na memória; nenhum arquivo do jogo muda)
-1. **Reserva processadores lógicos para o Windows.** O jogo passa a ver e a usar só os outros: afinidade do processo, as chamadas de afinidade do jogo, a contagem de processadores (o jogo cria menos threads) e o boost dinâmico de prioridade.
-   `bin\ARA_CpuFix.ini`, `[CPU] ProcessadoresLivres`:
-   - `auto` (padrão): 16 ou mais processadores lógicos → reserva 4; 12 ou mais → 2; 6 ou mais → 1; menos → nenhum;
-   - um número (ex. `2`) para escolher; `0` desliga.
-2. **Prioridade normal com foco** em vez de "acima do normal" (`[Prioridade] LimitarEmNormal=1`; `0` = comportamento original).
+During turn processing every processor ends up busy above Windows itself, and the whole system can lock up.
 
-Vale ao abrir o jogo. Log em `bin\ARA_CpuFix.log` (mostra quantos processadores ficaram para o jogo).
+## What the mod does
+Everything happens in memory; no game file is changed.
 
-## Instalar
-Feche o jogo e rode `INSTALAR.bat`. Substitui `bin\avutil-58.dll` (a original fica como `avutil-58_orig.dll`). Remover: `DESINSTALAR.bat`.
+1. **Reserves logical processors for Windows.** The game only sees and uses the others. This covers the process affinity, the game's thread-pinning calls, the processor count (so the game creates fewer workers) and the dynamic priority boost.
+2. **Keeps the game at normal priority** while it has focus, instead of "above normal".
 
-Se você usava o AraQoL 1.9c, atualize para o AraQoL 2.0 (sem a parte de CPU) para a correção não rodar duas vezes.
+Both apply when the game starts. `bin\ARA_CpuFix.log` shows how many processors were left to the game.
 
-## English
-Stops the whole-PC freeze at end of turn: reserves logical processors for Windows (game affinity, thread pinning calls, processor count and priority boost are filtered through the mod) and keeps the game at normal priority when focused. Setting: `bin\ARA_CpuFix.ini` → `[CPU] ProcessadoresLivres=auto|N|0`. Replaces `avutil-58.dll`.
+## Settings (`bin\ARA_CpuFix.ini`)
+| Key | Default | Meaning |
+|---|---|---|
+| `[CPU] ReservedProcessors` | `auto` | `auto`: 4 with 16+ logical processors, 2 with 12+, 1 with 6+, none below that. Or a number; `0` disables |
+| `[Priority] CapAtNormal` | `1` | `1` = normal priority while focused, `0` = game's original behaviour |
+
+## Install
+Close the game and run `INSTALL.bat`. It replaces `bin\avutil-58.dll`; the original is kept as `avutil-58_orig.dll`. To remove the mod, run `UNINSTALL.bat`.
+
+If you used AraQoL 1.9c, update to AraQoL 2.0, which no longer contains the CPU part. Otherwise the fix runs twice.

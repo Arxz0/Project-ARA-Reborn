@@ -11,8 +11,8 @@
 #     jogo nem dos mods usa) recebe o elemento da fabrica com o asset trocado para GEN_MAC_TrainStation.
 #     O mod usa .Asset = "Improvement_PostOffice" em imp_TrainStation.
 # Sempre parte dos ORIGINAIS guardados em BACKUP (copiados na 1a execucao; refeitos se a Steam atualizar os pacotes).
-# uso: python estacao.py [instalar|restaurar] [pasta do jogo]   (sem a pasta, acha pela Steam)
-# Project ARA: Reborn - mod Ferrovias. Requer Python 3.10+ e numpy.
+# Usage: python station.py [install|restore] [game folder]   (without the folder it is found through Steam)
+# Project ARA: Reborn - Railroads mod. Requires Python 3.10+ and numpy.
 import struct, sys, os, shutil, hashlib, json, ctypes, re
 import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -34,7 +34,7 @@ def find_game():
     for lib in libs:
         g = os.path.join(lib, 'steamapps', 'common', 'Ara History Untold')
         if os.path.exists(os.path.join(g, 'bin', 'AraHistoryUntold.exe')): return g
-    sys.exit('Nao achei o jogo. Use: python estacao.py instalar "C:\\caminho\\Ara History Untold"')
+    sys.exit('ARA: History Untold not found. Use: python station.py install "C:\\path\\Ara History Untold"')
 
 def documents():
     buf = ctypes.create_unicode_buffer(260)
@@ -42,7 +42,7 @@ def documents():
     return buf.value
 
 GAME = os.path.join(find_game(), 'assets')
-BACKUP = os.environ.get('ARA_ESTACAO_BACKUP') or os.path.join(documents(), 'My Games', 'Ara History Untold', 'Mods', 'Ferrovias', 'estacao_backup')
+BACKUP = os.environ.get('ARA_STATION_BACKUP') or os.path.join(documents(), 'My Games', 'Ara History Untold', 'Mods', 'Ferrovias', 'station_backup')
 PKG = 'Improvements_04_ENL_ATM'
 NEW = 'GEN_MAC_TrainStation'
 DONOR = 'GEN_MAC_Factory'
@@ -97,7 +97,7 @@ def ref(D, o):
 
 # ---------- AssetInfo ----------
 def meshdesc_hidden(blk):
-    assert zrbf_fix(blk) == bytes(blk), 'MeshDesc: cabecalho nao confere'
+    assert zrbf_fix(blk) == bytes(blk), 'MeshDesc: header check failed'
     b = bytearray(blk); D = memoryview(b)[0x30:]
     ini, fim, cnt, _ = struct.unpack_from('<4I', D, 0)
     assert (fim - ini) == cnt * 0x80
@@ -116,7 +116,7 @@ def meshdesc_hidden(blk):
         if nm: recs[nm.decode()] = o
     ro, fo = recs[RAIL_NODE_OLD], recs[FOUND_NODE]
     a1, e1, n1 = struct.unpack_from('<3I', D, ro + 0x60); a2, e2, n2 = struct.unpack_from('<3I', D, fo + 0x60)
-    assert n1 == n2 and e1 - a1 == n1 * 4, 'listas de estados com tamanhos diferentes'
+    assert n1 == n2 and e1 - a1 == n1 * 4, 'state lists differ in size'
     D[a1:e1] = bytes(D[a2:e2])
     del D
     # nome novo no fim do bloco (+0 = nome do ponto, +0x30 = nome do no)
@@ -130,10 +130,10 @@ def meshdesc_hidden(blk):
 
 def patch_assetinfo(src):
     p = Pkg(src)
-    assert mm3(NEW_MD.encode()) not in p.blocks, 'asset novo ja existe (use os originais)'
+    assert mm3(NEW_MD.encode()) not in p.blocks, 'station asset already present (start from the original files)'
     lst = [e for e in p.ent if p.name(e[0]) == PKG][0]
     blk = bytearray(p.blocks[lst[0]]); hdr = blk[:0x30]; D = bytearray(blk[0x30:0x30 + struct.unpack_from('<I', blk, 0x20)[0]])
-    assert zrbf_fix(blk) == bytes(blk), 'lista de assets: cabecalho nao confere'
+    assert zrbf_fix(blk) == bytes(blk), 'asset list: header check failed'
     ini, fim, cnt, _ = struct.unpack_from('<4I', D, 0)
     assert fim - ini == cnt * 0xC0
     recs = [bytes(D[ini + i * 0xC0:ini + (i + 1) * 0xC0]) for i in range(cnt)]
@@ -170,7 +170,7 @@ def mesh_no_chimneys(B):
     subs = [struct.unpack_from('<HHIII', B, secs[0][0] + 16 * i) for i in range(secs[0][1] // 16)]
     ni, k57, io, ib = struct.unpack_from('<4I', B, secs[3][0])
     w = 4 if ib >= ni * 4 else 2                     # PackagedData: u32; PackagedDataHD (sem o LOD0): u16
-    assert ib == ((ni * w + 15) & ~15) or ib == ni * w, 'tamanho dos indices inesperado'
+    assert ib == ((ni * w + 15) & ~15) or ib == ni * w, 'unexpected index size'
     ind = np.frombuffer(bytes(B[io:io + ni * w]), np.uint32 if w == 4 else np.uint16).copy()
     st = struct.unpack_from('<4I', B, secs[5][0])
     pos = np.frombuffer(bytes(B[st[2]:st[2] + st[0] * 12]), np.float32).reshape(-1, 3).copy()
@@ -206,7 +206,7 @@ def mesh_no_chimneys(B):
     keep = pos[move]; struct.pack_into('<3fI3f', B, secs[2][0], *keep.min(0), 0, *keep.max(0))
     s1 = secs[1][0]; nn = struct.unpack_from('<I', B, s1 + 8)[0] >> 16
     o_nodes, o_m1, o_m2 = struct.unpack_from('<I', B, s1 + 0xc)[0], struct.unpack_from('<I', B, s1 + 0x18)[0], struct.unpack_from('<I', B, s1 + 0x1c)[0]
-    assert o_m2 - o_m1 == nn * 0x40, 'pontos do modelo: layout inesperado'
+    assert o_m2 - o_m1 == nn * 0x40, 'model nodes: unexpected layout'
     fixed = {mm3(n.encode()) for n in KEEP_NODES}; shifted = hidden = 0
     for i in range(nn):
         h = struct.unpack_from('<I', B, s1 + o_nodes + i * 0x40 + 0x28)[0]
@@ -252,13 +252,13 @@ def patch_models(src):
 def patch_viz(src):
     p = Pkg(src)
     e = [x for x in p.ent if p.name(x[0]) == VIZ_BLOCK][0]
-    b = bytearray(p.blocks[e[0]]); assert zrbf_fix(b) == bytes(b), 'bloco de visuais: cabecalho nao confere'
+    b = bytearray(p.blocks[e[0]]); assert zrbf_fix(b) == bytes(b), 'visuals block: header check failed'
     D = memoryview(b)[0x30:]
     hit = None
     for o in range(0, 0x100, 4):
         a, en, n, z = struct.unpack_from('<4I', D, o)
         if n > 100 and en - a == n * 0x80: hit = (a, n); break
-    assert hit, 'lista de visuais nao achada'
+    assert hit, 'visuals list not found'
     a, n = hit; slot = donor = None
     for i in range(n):
         h = struct.unpack_from('<I', D, a + i * 0x80)[0]
@@ -275,10 +275,10 @@ def patch_viz(src):
 def patch_texpkg(src):
     d = open(src, 'rb').read()
     ver, cnt, hs, isz, ds, dsz = struct.unpack_from('<6I', d, 0)
-    assert (ver, hs, isz, ds, ds + dsz) == (2, 0x20, cnt * 0x30, 0x20 + cnt * 0x30, len(d)), 'pacote de texturas inesperado'
+    assert (ver, hs, isz, ds, ds + dsz) == (2, 0x20, cnt * 0x30, 0x20 + cnt * 0x30, len(d)), 'unexpected texture package'
     E = {struct.unpack_from('<Q', d, 0x20 + i * 0x30)[0]: list(struct.unpack_from('<6Q', d, 0x20 + i * 0x30)) for i in range(cnt)}
     new = [(mm3(p.encode()), open(f, 'rb').read()) for p, f in DECAL_TEX.items()]
-    for k, _ in new: assert k not in E, 'textura do decalque ja existe (use os originais)'
+    for k, _ in new: assert k not in E, 'decal texture already present (start from the original files)'
     n2 = cnt + len(new); ds2 = 0x20 + n2 * 0x30; sh = ds2 - ds
     for e in E.values(): e[2] += sh
     tail = bytearray(); pos = len(d) + sh
@@ -292,7 +292,7 @@ def patch_texpkg(src):
 
 def patch_csv(src):
     t = open(src, 'rb').read()
-    assert DECAL.encode() + b',' not in t, 'linha do decalque ja existe (use os originais)'
+    assert DECAL.encode() + b',' not in t, 'decal row already present (start from the original files)'
     if not t.endswith(b'\r\n'): t += b'\r\n'
     return t + DECAL_ROW.encode() + b'\r\n'
 
@@ -300,7 +300,7 @@ def md5(path): return hashlib.md5(open(path, 'rb').read()).hexdigest()
 
 def main(cmd):
     os.makedirs(BACKUP, exist_ok=True)
-    man = os.path.join(BACKUP, 'instalado.json')                     # md5 do que este instalador gravou no jogo
+    man = os.path.join(BACKUP, 'installed.json')                     # md5 do que este instalador gravou no jogo
     inst = json.load(open(man)) if os.path.exists(man) else {}
     for sub, f in FILES:
         g = os.path.join(GAME, sub, f); bk = os.path.join(BACKUP, sub, f); key = sub + '/' + f
@@ -308,9 +308,9 @@ def main(cmd):
         # sem backup, ou o arquivo do jogo nao e o que instalamos (Steam atualizou/verificou): o atual vira o original
         if not os.path.exists(bk) or (inst.get(key) and md5(g) != inst[key] and md5(g) != md5(bk)):
             shutil.copy2(g, bk); print('backup:', sub, f)
-    if cmd == 'restaurar':
+    if cmd in ('restore', 'restaurar'):
         for sub, f in FILES:
-            shutil.copy2(os.path.join(BACKUP, sub, f), os.path.join(GAME, sub, f)); print('restaurado:', sub, f)
+            shutil.copy2(os.path.join(BACKUP, sub, f), os.path.join(GAME, sub, f)); print('restored:', sub, f)
         if os.path.exists(man): os.remove(man)
         return
     out = {}
@@ -318,7 +318,7 @@ def main(cmd):
         out[(sub, PKG + '.OxAssetInfoPackage')] = patch_assetinfo(os.path.join(BACKUP, sub, PKG + '.OxAssetInfoPackage'))
         m, total, rep = patch_models(os.path.join(BACKUP, sub, PKG + '.OxModelPackage'))
         out[(sub, PKG + '.OxModelPackage')] = m
-        print('%s: malha da estacao com %d triangulos de chamine removidos %s' % (sub, total, rep))
+        print('%s: station mesh built (%d chimney triangles removed) %s' % (sub, total, rep))
     out[('PackagedData', 'ZData_IndusClientData.OxZDataLibPackage')] = patch_viz(os.path.join(BACKUP, 'PackagedData', 'ZData_IndusClientData.OxZDataLibPackage'))
     for sub in ('PackagedData', 'PackagedDataHD'):
         out[(sub, DECAL_PKG)] = patch_texpkg(os.path.join(BACKUP, sub, DECAL_PKG))
@@ -329,9 +329,9 @@ def main(cmd):
         if f.endswith('Package') and 'Model' not in f and 'Texture' not in f: Pkg(tmp)
         os.remove(tmp)
     for (sub, f), data in out.items():
-        g = os.path.join(GAME, sub, f); open(g, 'wb').write(data); print('instalado: %s\\%s (%d bytes)' % (sub, f, len(data)))
+        g = os.path.join(GAME, sub, f); open(g, 'wb').write(data); print('installed: %s\\%s (%d bytes)' % (sub, f, len(data)))
         inst[sub + '/' + f] = hashlib.md5(data).hexdigest()
     json.dump(inst, open(man, 'w'), indent=1)
 
 if __name__ == '__main__':
-    main(sys.argv[1] if len(sys.argv) > 1 else 'instalar')
+    main(sys.argv[1] if len(sys.argv) > 1 else 'install')

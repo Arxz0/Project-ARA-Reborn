@@ -1,0 +1,10 @@
+Soviet Union mod - third-party credits
+
+Marshal cap (Stalin 1945 look):
+  3D mesh adapted from "Russian Imperial WW1 Army Cap" by dawiderodawid (Sketchfab),
+  licensed under Creative Commons Attribution (CC BY 4.0) - https://creativecommons.org/licenses/by/4.0/
+  Changes: converted to the game's format, repositioned/rescaled and repainted (white, red band, star).
+
+Leader introduction narration:
+  Generated with Coqui XTTS-v2 (https://huggingface.co/coqui/XTTS-v2) using a stock studio voice,
+  under the Coqui Public Model License (non-commercial use).

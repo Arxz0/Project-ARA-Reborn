@@ -1,9 +1,9 @@
-# Gera um patch binario ORIGINAL -> MODIFICADO que so carrega o que e do mod: o resto vira "copie N bytes do original
-# a partir de X". O instalador (tools\rpatch.ps1) refaz o arquivo modificado a partir do arquivo original de quem instala
-# e confere o SHA-1 do resultado. Nenhum conteudo do jogo vai no patch (so tabelas de indice e o que os mods acrescentam).
-# Formato (little-endian): 'ARAPATCH' u32 versao=1 | u64 tam_orig | sha1_orig[20] | u64 tam_novo | sha1_novo[20] | u32 nops |
-#   ops: u8 0 = COPY u64 origem u64 tamanho | u8 1 = DATA u64 tamanho + bytes
-# uso: make_rpatch.py original modificado saida.rpatch [texture|model|small]
+# Builds a binary patch ORIGINAL -> MODIFIED that only carries the mod's own data: everything else becomes "copy N bytes of
+# the original starting at X". The installer (tools\rpatch.ps1) rebuilds the modified file from the user's own original
+# file and checks the SHA-1 of the result. No game content goes into the patch (only index tables and what the mods add).
+# Format (little-endian): 'ARAPATCH' u32 version=1 | u64 orig_size | sha1_orig[20] | u64 new_size | sha1_new[20] | u32 nops |
+#   ops: u8 0 = COPY u64 source u64 length | u8 1 = DATA u64 length + bytes
+# Usage: make_rpatch.py original modified out.rpatch [texture|model|small]     make_rpatch.py apply original patch out
 import sys, os, mmap, struct, hashlib, bisect
 MINRUN = 32; STEP = 16
 
@@ -14,13 +14,13 @@ def sha1_file(p):
     return h.digest()
 
 def matchlen(O, so, M, sm, cap):
-    """quantos bytes iguais a partir de O[so] e M[sm] (ate cap)"""
+    """number of equal bytes from O[so] and M[sm] (up to cap)"""
     if cap <= 0 or so < 0: return 0
     n = 0; step = 64
     while n < cap:
         k = min(step, cap - n)
         if O[so + n:so + n + k] == M[sm + n:sm + n + k]: n += k; step = min(step * 4, 1 << 22); continue
-        lo, hi = 0, k                                            # primeiro byte diferente dentro deste pedaco
+        lo, hi = 0, k                                            # first differing byte inside this piece
         while hi - lo > 1:
             mid = (lo + hi) // 2
             if O[so + n:so + n + mid] == M[sm + n:sm + n + mid]: lo = mid
@@ -48,7 +48,7 @@ def model_cands(O, M):
     return lambda pos: tab if pos < dsm else [dso - dsm]
 
 def small_cands(O, M):
-    """ancoras: pedacos de 16 bytes de M (a cada 64) achados em O dao os deslocamentos candidatos da regiao"""
+    """anchors: 16-byte pieces of M (every 64 bytes) found in O give the candidate shifts of each region"""
     where = {}
     for o in range(0, len(O) - 16, 4): where.setdefault(O[o:o + 16], o)
     samp = []
@@ -99,13 +99,13 @@ def make(op, mp, outp, kind):
         for t, a, b in ops:
             if t == 0: f.write(struct.pack('<BQQ', 0, a, b))
             else: f.write(struct.pack('<BQ', 1, b)); f.write(M[a:a + b])
-    print('%s: %d ops, %d bytes de dados do mod, patch %d bytes' % (os.path.basename(mp), len(ops), data_bytes, os.path.getsize(outp)))
+    print('%s: %d ops, %d bytes of mod data, patch %d bytes' % (os.path.basename(mp), len(ops), data_bytes, os.path.getsize(outp)))
 
 def apply(op, pp, outp):
-    """aplicador de referencia (o instalador usa tools\\rpatch.ps1); confere os SHA-1"""
+    """reference applier (the installer uses tools\\rpatch.ps1); checks both SHA-1"""
     d = open(pp, 'rb').read(); assert d[:8] == b'ARAPATCH'
     ver, no = struct.unpack_from('<IQ', d, 8); so = d[20:40]; nn = struct.unpack_from('<Q', d, 40)[0]; sn = d[48:68]; nops = struct.unpack_from('<I', d, 68)[0]
-    assert sha1_file(op) == so, 'original diferente'
+    assert sha1_file(op) == so, 'original file differs'
     i = 72; fo = open(op, 'rb')
     with open(outp, 'wb') as f:
         for _ in range(nops):
@@ -115,9 +115,9 @@ def apply(op, pp, outp):
                 while b: k = min(b, 16 << 20); f.write(fo.read(k)); b -= k
             else:
                 b = struct.unpack_from('<Q', d, i)[0]; i += 8; f.write(d[i:i + b]); i += b
-    assert sha1_file(outp) == sn, 'resultado diferente'
+    assert sha1_file(outp) == sn, 'result differs'
     return True
 
 if __name__ == '__main__':
-    if sys.argv[1] == 'apply': print('ok' if apply(*sys.argv[2:5]) else 'falhou')
+    if sys.argv[1] == 'apply': print('ok' if apply(*sys.argv[2:5]) else 'failed')
     else: make(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4] if len(sys.argv) > 4 else 'small')
