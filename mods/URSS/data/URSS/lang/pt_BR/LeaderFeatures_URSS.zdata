@@ -1,0 +1,17 @@
+schema Leaders;
+
+export LeaderFeature ftr_GreatPatrioticWar =
+{
+    .Name = "Grande Guerra Patri\xC3\xB3tica",
+    .Description = "Em 1941\xE2\x80\x931945 o povo sovi\xC3\xA9tico defendeu sua terra ao custo de milh\xC3\xB5es de vidas, enquanto as f\xC3\xA1bricas transferidas para al\xC3\xA9m dos Urais abasteciam o Ex\xC3\xA9rcito Vermelho: +25% de For\xC3\xA7a aos ex\xC3\xA9rcitos terrestres dentro do seu territ\xC3\xB3rio, +50% de Velocidade de Fabrica\xC3\xA7\xC3\xA3o nas Melhorias Militares e -50% de Cansa\xC3\xA7o de Guerra.",
+    .AtlasID = "GreatPatrioticWar",
+
+    .Buffs =
+    {
+        "buf_GreatPatrioticWar_A","buf_GreatPatrioticWar_B","buf_GreatPatrioticWar_C"
+    },
+
+    .GameStartReward =
+    {
+    }
+};

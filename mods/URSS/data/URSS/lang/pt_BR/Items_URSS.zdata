@@ -1,0 +1,143 @@
+schema Items;
+/*
+Note about AIAlignments:
+They are optional, if you don't add them at all the AI system will attempt to fill them out from the data (mainly from buffs)
+If there are partially filled out the AI system will attempt to fill out any unset values
+Any entry filled out between -10 and +10 will be accepted and used directly
+An entry that you want the AI to fill out (as opposed to the entire array) would have <byte>AIAlignment.AUTO_ALIGNMENT_VALUE for it's value
+A fully filled out block will look something like this (this is random, I hope none actually use these values
+.AIAlignment = 
+{
+	[AIAlignment.Alignment.Prestige]     = 5i8,
+	[AIAlignment.Alignment.Research]     = 0i8,
+	[AIAlignment.Alignment.Masterpieces] = 2i8,
+	[AIAlignment.Alignment.Religion]     = 4i8,
+	[AIAlignment.Alignment.Production]   = 6i8,
+	[AIAlignment.Alignment.Offense]      = -8i8,
+	[AIAlignment.Alignment.Defense]      = -8i8,
+	[AIAlignment.Alignment.Food]         = 5i8,
+	[AIAlignment.Alignment.Stone]        = 5i8,
+	[AIAlignment.Alignment.Wood]         = 5i8,
+	[AIAlignment.Alignment.Money]        = 5i8,
+	[AIAlignment.Alignment.Happiness]    = 5i8,
+	[AIAlignment.Alignment.Health]       = 5i8,
+	[AIAlignment.Alignment.Wealth]       = 5i8,
+	[AIAlignment.Alignment.Education]    = 5i8,
+	[AIAlignment.Alignment.Security]     = 5i8,
+	[AIAlignment.Alignment.Bias]         = 10i8,
+	[AIAlignment.Alignment.Diplomacy]    = 0i8,
+	[AIAlignment.Alignment.Housing]      = 5i8,
+},
+These values will essentially have a dot product taken with an aspect of game state (in the same format) to determine the best value
+Note that if the game state has a negative on an element, then having a positve in the value for the improvement will make it less likely to be chosen
+Bias doesnt map to anything in particular. It is a hammer that can be used to tell the AI that this is very good (or bad) as the corresponding gamestate
+that it will be dotted against is will alwys be assumed to be +10.
+If needed, more categories can be added.
+I shorter version that also works would look like this:
+.AIAlignment = 
+{
+    // Prestige Research Masterpieces Religion Production Offense Defense Food Stone Wood Money Happiness Health Wealth Education Security Bias Diplomacy Housing
+        0i8,     0i8,     0i8,         0i8,     4i8,       0i8,    0i8,    0i8, 0i8,  0i8, 0i8,  0i8,      0i8,   0i8,   0i8,      0i8,     0i8, 0i8,      0i8,
+},
+A partially filled out one will look something like this:
+.AIAlignment = update(defaultData.alignment)
+{
+	[AIAlignment.Alignment.Bias] = 5i8,
+},
+This is the same thing as:
+.AIAlignment = 
+{
+ 	[AIAlignment.Alignment.Prestige]     = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Research]     = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Masterpieces] = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Religion]     = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Production]   = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Offense]      = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Defense]      = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Food]         = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Stone]        = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Wood]         = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Money]        = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Happiness]    = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Health]       = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Wealth]       = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Education]    = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Security]     = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Bias]         = 5i8,
+	[AIAlignment.Alignment.Diplomacy]    = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Housing]      = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+},
+In this case the update(defaultData.alignment) is needed!!!
+!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!-!
+Yet another way and my current favorite:
+.AIAlignment = 
+{
+    default                              =  <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Bias]         = 5i8,
+},
+*/
+// this is needed to have autoAlignment work with partially filled out entries
+ItemTemplate defaultData = {};
+export ItemTemplate itm_T34 =
+{
+    .Name = "T-34", 
+    .Description = "Tanque m\xC3\xA9dio do Ex\xC3\xA9rcito Vermelho, com blindagem inclinada, canh\xC3\xA3o potente e lagartas largas para a lama e a neve. Projetado para derrotar infantaria e unidades \xC3\xA0 dist\xC3\xA2ncia, mas vulner\xC3\xA1vel a unidades anticavalaria.", 
+    .FlavorText = "", 
+    .TargetUnitID = "unt_T34", 
+    .RecipeID = "rcp_T34", 
+    .AtlasID = "Tank", 
+    .EncartaStrategy = "Tanque exclusivo da Uni\xC3\xA3o Sovi\xC3\xA9tica, mais forte que os outros tanques da sua era. Use-o para romper as linhas de infantaria inimigas e mantenha-o longe das unidades anticavalaria.", 
+    .EncartaHistory = "O T-34 entrou em servi\xC3\xA7o em 1940 e se tornou o s\xC3\xADmbolo do esfor\xC3\xA7o de guerra sovi\xC3\xA9tico. Sua blindagem inclinada, o canh\xC3\xA3o de 76 mm e as lagartas largas surpreenderam o ex\xC3\xA9rcito alem\xC3\xA3o em 1941, e seu projeto simples permitiu que f\xC3\xA1bricas evacuadas para os Urais, como o complexo \xE2\x80\x9CTankogrado\xE2\x80\x9D em Tcheliabinsk, constru\xC3\xADssem mais de 80 mil unidades durante a guerra. Os T-34 lutaram em Moscou, em Stalingrado e na grande batalha de tanques de Kursk, e em 1945 entraram em Berlim.", 
+    .SearchTags = 
+    {
+        "TXT_ITM_RECIPE", 
+        "TXT_ITM_ITEMS", 
+        "TXT_ITM_INGREDIENTS", 
+        "TXT_ITM_PRODUCTION", 
+        "TXT_ITM_STRATEGIC", 
+        "TXT_IMP_FOUNDRY", 
+        "TXT_RTY_UNCOMMON", 
+        "TXT_RCP_TANK", 
+        "TXT_ITM_DESC_TANK", 
+        "TXT_ITM_TANK", 
+    }, 
+    .uiStartingCost = 205u, 
+    .uiMinCost = 68u, 
+    .uiMaxCost = 1025u, 
+    .uiActStart = 1u, 
+    .uiActEnd = 4u, 
+    .uiRarity = RulesTypes.eRarity.Uncommon, 
+    .uiType = RulesTypes.ItemType.Strategic, 
+    .Domain = RulesTypes.DomainSets.Military, 
+    .uiHarvestType = RulesTypes.HarvestType.NoneOfTheAbove, 
+    .Flags = (Flags.OnMarket | Flags.Craftable | Flags.Weapon), 
+    .uiActivateCost = 0u, 
+    .ActivateBuffs = {}, 
+    .AddItemsOnConsume = 
+    {
+    }, 
+    .uiGiveConsumeItemsForNumTurns = 0u, 
+    .ActivateBuffsForImprovements = {}, 
+    .AIAlignment =
+    {
+        [AIAlignment.Alignment.Prestige]     = 0i8,
+        [AIAlignment.Alignment.Research]     = 0i8,
+        [AIAlignment.Alignment.Masterpieces]     = 0i8,
+        [AIAlignment.Alignment.Religion]     = 0i8,
+        [AIAlignment.Alignment.Production]     = 0i8,
+        [AIAlignment.Alignment.Offense]     = 5i8,
+        [AIAlignment.Alignment.Defense]     = 5i8,
+        [AIAlignment.Alignment.Food]     = 0i8,
+        [AIAlignment.Alignment.Stone]     = 0i8,
+        [AIAlignment.Alignment.Wood]     = 0i8,
+        [AIAlignment.Alignment.Money]     = 0i8,
+        [AIAlignment.Alignment.Happiness]     = 0i8,
+        [AIAlignment.Alignment.Health]     = 0i8,
+        [AIAlignment.Alignment.Wealth]     = 0i8,
+        [AIAlignment.Alignment.Education]     = 0i8,
+        [AIAlignment.Alignment.Security]     = 0i8,
+        [AIAlignment.Alignment.Bias]     = 1i8,
+        [AIAlignment.Alignment.Diplomacy]     = 0i8,
+        [AIAlignment.Alignment.Housing]     = 0i8,
+    },
+};

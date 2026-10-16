@@ -1,0 +1,88 @@
+schema Technologies;
+
+int baseTechCost = 50;
+
+int AncientEraCost = 75;
+int BronzeAgeCost = 150;
+int IronAgeCost =  300;
+int AntiquitiesCost =  500;
+int EarlyMiddleAgesCost = 800;
+int HighMedievalCost = 1200; 
+int RenaissanceCost = 1600;
+int EnlightenmentCost = 2000;
+int MachineAgeCost = 2500;
+int AtomicAgeCost = 3200;
+int InformationAgeCost = 5000;
+int FutureAgeCost = 6500;
+
+
+export TechnologyTemplate tch_InternalCombustionEngine =
+{
+    .Name = "TXT_TCH_INTERNAL_COMBUSTION_ENGINE", 
+    .Description = "TXT_TCH_DESC_INTERNAL_COMBUSTION_ENGINE",
+    
+    .AtlasID = "OilRefining", 
+    .EncartaEntry = "tch_InternalCombustionEngine", 
+    .EncartaStrategy = "TXT_ENC_TCH_INTERNAL_COMBUSTION_ENGINE_STRATEGY_0", 
+    .EncartaHistory = "TXT_ENC_TCH_INTERNAL_COMBUSTION_ENGINE_HISTORY_0", 
+    .Domains = (RulesTypes.Domain.Industry), 
+    .Era = RulesTypes.TechEras.MachineAge, 
+    .iRoughDate = 1926i, 
+    .uiResearchCost = MachineAgeCost, 
+    .SearchTags = 
+    {
+        "TXT_TECHNOLOGY", 
+        "TXT_ITM_RESEARCH", 
+        "TXT_DOMAIN", 
+        "TXT_RARITY", 
+        "TXT_RTY_COMMON", 
+        "TXT_TECH_ERA_MACHINE_AGE", 
+        "TXT_DOM_MILITARY", 
+        "TXT_TCH_DEFENSIVE_ARTILLERY", 
+        "TXT_TCH_DESC_DEFENSIVE_ARTILLERY", 
+    }, 
+    .Flags = 0, 
+    .UnlockRecipesIDs = 
+    {
+        "rcp_Dreadnought", 
+        "rcp_Tank",
+        "rcp_T34",
+        "rcp_InternalCombustionEngine",
+        "rcp_Cars",
+        "rcp_Tractors",
+
+    }, 
+    .UnlockImprovementsIDs = 
+    {
+        "imp_OilWell", 
+        "imp_VehicleFactory",
+        "imp_PoliceStation",
+    }, 
+    .UnlockGovernmentsIDs = 
+    {
+    }, 
+    .UnlockNaturalResourcesIDs = 
+    {
+
+    }, 
+    .UnlockedFormationsIDs = 
+    {
+        "frm_Division",
+        "frm_Blitz",
+    }, 
+    .UnlockCitySpecialProjects = 
+    {
+    }, 
+    .AddItemsOnUnlock = 
+    {
+        .itm_Prestige = 22u,
+    }, 
+    .GrantBuffs = 
+    {
+
+    },
+    .ObsoleteCityUnitProjectIDs = 
+    {
+        "cup_Dragoon",
+    }, 
+};

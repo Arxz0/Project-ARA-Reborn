@@ -1,0 +1,8 @@
+﻿<Flags>
+    <Flag ID="flg_Brazil_Default"
+        Name="Brazil"
+        AtlasID="Brazil"
+        TextureID="1"
+        >
+    </Flag>
+</Flags>

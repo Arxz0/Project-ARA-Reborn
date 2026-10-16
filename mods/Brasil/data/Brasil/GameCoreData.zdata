@@ -1,0 +1,79 @@
+schema ZNODataLibrary;
+
+export Library Root =
+{
+    .Groups =
+    {
+        .LeaderTemplates =
+        {
+            .Entries =
+            {
+                .ldr_GetulioVargas = { "files/ldr_GetulioVargas.zdata", "Root" },
+            },
+        },
+
+        .AILeaders =
+        {
+            .Entries =
+            {
+                .ldr_GetulioVargas = { "files/AI_GetulioVargas.zdata", "Root" },
+            },
+        },
+
+        .Nations =
+        {
+            .Entries =
+            {
+                .ntn_Brazil = { "files/ntn_Brazil.zdata", "ntn_Brazil" },
+            },
+        },
+
+        .UnitTemplates =
+        {
+            .FromFiles = { "files/Units_Brasil.zdata" },
+        },
+
+        .ItemTemplates =
+        {
+            .FromFiles = { "files/Items_Brasil.zdata" },
+        },
+
+        .Recipes =
+        {
+            .FromFiles = { "files/Recipes_Brasil.zdata" },
+        },
+
+        .CityUnitProjects =
+        {
+            .FromFiles = { "files/CityUnitProjects_Brasil.zdata" },
+        },
+
+        .Technologies =
+        {
+            .FromFiles = { "files/Tech_Brasil.zdata" },
+        },
+
+        .Improvements =
+        {
+            .FromFiles = { "files/Improvements_Brasil.zdata" },
+        },
+
+        .LeaderFeatures =
+        {
+            .FromFiles = { "files/LeaderFeatures_Brasil.zdata" },
+        },
+
+        .BuffTemplates =
+        {
+            .FromFiles = { "files/Buffs_Brasil.zdata" },
+        },
+
+        .GameCreationManager =
+        {
+            .Entries =
+            {
+                .UniqueStartInfo = { "files/UniqueStartInfo_Brasil.zdata", "Root" },
+            },
+        },
+    },
+};

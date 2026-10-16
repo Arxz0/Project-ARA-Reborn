@@ -1,0 +1,17 @@
+schema Leaders;
+
+export LeaderFeature ftr_EstadoNovo =
+{
+    .Name = "Estado Novo",
+    .Description = "Under the Estado Novo (1937\xE2\x80\x93\x31\x39\x34\x35), Vargas centralized power, founded the state steel and mining industries and created Brazil's labor laws and social rights: +50% Build Production towards Industry Improvements, and +5 to all Citizen Stats in all Cities.",
+    .AtlasID = "EstadoNovo",
+
+    .Buffs =
+    {
+        "buf_EstadoNovo_A","buf_EstadoNovo_B"
+    },
+
+    .GameStartReward =
+    {
+    }
+};

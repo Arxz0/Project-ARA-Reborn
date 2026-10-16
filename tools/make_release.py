@@ -41,7 +41,14 @@ MODS = [
     dict(key='Ferrovias', name='Ferrovias (Railroads)', ver='1.9', proxy='avformat-60.dll', marker='avformat-60_orig.', data='Ferrovias',
          src='mods/Ferrovias/src', build=['ferrovias.c', 'proxy.def'], libs=[], extra_dirs=['estacao'],
          params=', [switch]$Estacao3D', paramdoc=' [-Estacao3D]', ei=FERROVIAS_I, eu=FERROVIAS_U, bat_args=' -Estacao3D'),
+    # lideres: cada zip leva a BASE compartilhada (DLL swscale-7 + patches dos pacotes do jogo, mods\Lideres) e os dados do lider
+    dict(key='Brasil', leader=True, name='Brasil - Getulio Vargas', ver='1.0', proxy='swscale-7.dll', marker='swscale-7_orig.', data='Brasil',
+         src='mods/Lideres/src', build=['ara_unlock.c', 'proxy.def'], libs=['-lwinmm']),
+    dict(key='URSS', leader=True, name='URSS - Josef Stalin', ver='1.0', proxy='swscale-7.dll', marker='swscale-7_orig.', data='URSS',
+         src='mods/Lideres/src', build=['ara_unlock.c', 'proxy.def'], libs=['-lwinmm']),
 ]
+TPL_LI = open(os.path.join(ROOT, 'tools', 'leader_install_template.ps1'), encoding='utf-8').read()
+TPL_LU = open(os.path.join(ROOT, 'tools', 'leader_uninstall_template.ps1'), encoding='utf-8').read()
 
 def build(m):
     src = os.path.join(ROOT, m['src']); out = os.path.join(src, m['proxy'])
@@ -62,11 +69,21 @@ def main():
         if m['data']: shutil.copytree(os.path.join(mdir, 'data', m['data']), os.path.join(d, 'data', m['data']))
         for x in m.get('extra_dirs', []): shutil.copytree(os.path.join(mdir, x), os.path.join(d, x), ignore=shutil.ignore_patterns('__pycache__'))
         shutil.copy2(os.path.join(mdir, 'README.md'), os.path.join(d, 'README.md'))
+        if m.get('leader'):
+            base = os.path.join(d, 'base'); lid = os.path.join(ROOT, 'mods', 'Lideres')
+            shutil.copytree(os.path.join(lid, 'patches'), os.path.join(base, 'patches'))
+            shutil.copytree(os.path.join(lid, 'files'), os.path.join(base, 'files'))
+            shutil.copy2(os.path.join(ROOT, 'tools', 'rpatch.ps1'), os.path.join(base, 'rpatch.ps1'))
+            shutil.copy2(os.path.join(lid, 'README.md'), os.path.join(base, 'LEIA-ME_BASE.md'))
+            i, u = TPL_LI.replace('@@LEADER@@', m['data']), TPL_LU.replace('@@LEADER@@', m['data'])
+        else:
+            i = u = None
         rep = {'@@NAME@@': '%s %s' % (m['name'], m['ver']), '@@PROXY@@': m['proxy'], '@@MARKER@@': m['marker'], '@@DATA@@': m['data'],
                '@@PARAMS@@': m.get('params', ''), '@@PARAMDOC@@': m.get('paramdoc', '')}
-        i, u = TPL_I, TPL_U
-        for k, v in rep.items(): i = i.replace(k, v); u = u.replace(k, v)
-        i = i.replace('@@EXTRA@@', m.get('ei', '')); u = u.replace('@@EXTRA@@', m.get('eu', ''))
+        if i is None:
+            i, u = TPL_I, TPL_U
+            for k, v in rep.items(): i = i.replace(k, v); u = u.replace(k, v)
+            i = i.replace('@@EXTRA@@', m.get('ei', '')); u = u.replace('@@EXTRA@@', m.get('eu', ''))
         open(os.path.join(d, 'install.ps1'), 'w', encoding='utf-8-sig', newline='\r\n').write(i)
         open(os.path.join(d, 'uninstall.ps1'), 'w', encoding='utf-8-sig', newline='\r\n').write(u)
         open(os.path.join(d, 'INSTALAR.bat'), 'w', newline='\r\n').write('@echo off\r\npowershell -NoProfile -ExecutionPolicy Bypass -File "%%~dp0install.ps1"%s\r\npause\r\n' % m.get('bat_args', ''))

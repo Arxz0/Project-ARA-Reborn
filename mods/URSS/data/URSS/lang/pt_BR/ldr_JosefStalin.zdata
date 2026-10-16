@@ -1,0 +1,93 @@
+schema Leaders;
+
+export LeaderTemplate Root =
+{
+    .sID            = "ldr_JosefStalin",
+    .sName           = "Josef Stalin",
+    .sTitle         = "TXT_TITLE_REVOLUTIONARY",
+    .AtlasID       = "JosefStalin",
+    .uiPronounID     = "prn_He",
+    .uiPersonalityID = "psn_Megalomaniacal",
+    .sDescription   = "Josef Stalin foi o l\xC3\xADder da Uni\xC3\xA3o Sovi\xC3\xA9tica de meados da d\xC3\xA9cada de 1920 at\xC3\xA9 sua morte em 1953. Imp\xC3\xB4s ao pa\xC3\xADs uma industrializa\xC3\xA7\xC3\xA3o acelerada e a coletiviza\xC3\xA7\xC3\xA3o da agricultura, governou pelo terror e por um vasto sistema de campos de trabalho for\xC3\xA7ado e conduziu o Ex\xC3\xA9rcito Vermelho \xC3\xA0 vit\xC3\xB3ria sobre a Alemanha nazista na Grande Guerra Patri\xC3\xB3tica, deixando a URSS como uma das duas superpot\xC3\xAAncias do mundo.",
+    .sEncartaStrategy = "Josef Stalin \xC3\xA9 um l\xC3\xADder para quem quer uma na\xC3\xA7\xC3\xA3o industrial e quase imposs\xC3\xADvel de conquistar. Sua caracter\xC3\xADstica, \xE2\x80\x9CGrande Guerra Patri\xC3\xB3tica\xE2\x80\x9D, d\xC3\xA1 +25% de For\xC3\xA7a aos ex\xC3\xA9rcitos terrestres que lutam dentro do seu territ\xC3\xB3rio, faz as Melhorias Militares fabricarem 50% mais r\xC3\xA1pido e reduz pela metade o seu Cansa\xC3\xA7o de Guerra. Agressivo d\xC3\xA1 +50% de For\xC3\xA7a aos ex\xC3\xA9rcitos por 5 turnos no in\xC3\xADcio de uma guerra, Eficiente acrescenta Produ\xC3\xA7\xC3\xA3o \xC3\xA0s Melhorias para cada Melhoria de Ind\xC3\xBAstria na sua Regi\xC3\xA3o, Disciplinado transforma cada Melhoria Militar em Cultura para a sua Cidade e Inflex\xC3\xADvel faz cada vit\xC3\xB3ria infligir Cansa\xC3\xA7o de Guerra ao inimigo. Construa ind\xC3\xBAstria e quart\xC3\xA9is cedo, deixe o inimigo se quebrar contra as suas fronteiras e, na Era das M\xC3\xA1quinas, coloque em campo o T-34, o tanque exclusivo da Uni\xC3\xA3o Sovi\xC3\xA9tica.",
+    .sEncartaHistory = "Ioseb Jughashvili nasceu em 1878 em Gori, na Ge\xC3\xB3rgia, filho de um sapateiro. Expulso do semin\xC3\xA1rio de T\xC3\xADflis, entrou para os bolcheviques, assaltou bancos para financiar o partido, foi exilado v\xC3\xA1rias vezes na Sib\xC3\xA9ria e adotou o nome Stalin, \xE2\x80\x9Chomem de a\xC3\xA7o\xE2\x80\x9D. Depois da Revolu\xC3\xA7\xC3\xA3o de 1917, tornou-se Secret\xC3\xA1rio-Geral do Partido Comunista em 1922 e, ap\xC3\xB3s a morte de Lenin, superou Trotsky e seus outros rivais at\xC3\xA9 se tornar o governante absoluto da Uni\xC3\xA3o Sovi\xC3\xA9tica. A partir de 1928, seus Planos Quinquenais ergueram sider\xC3\xBArgicas, represas e cidades industriais inteiras, como Magnitogorsk, enquanto a coletiviza\xC3\xA7\xC3\xA3o for\xC3\xA7ada da agricultura provocou a fome de 1932\xE2\x80\x931933, que matou milh\xC3\xB5es, sobretudo na Ucr\xC3\xA2nia. Entre 1936 e 1938, o Grande Expurgo executou ou prendeu centenas de milhares de membros do partido, oficiais e cidad\xC3\xA3os comuns, e os campos do Gulag mantiveram milh\xC3\xB5es de prisioneiros. Em 1939 assinou um pacto de n\xC3\xA3o agress\xC3\xA3o com Hitler, mas em junho de 1941 a Alemanha invadiu a URSS. Stalin permaneceu em Moscou, deu a ordem \xE2\x80\x9CNem um passo atr\xC3\xA1s!\xE2\x80\x9D e, depois das vit\xC3\xB3rias em Stalingrado e Kursk, o Ex\xC3\xA9rcito Vermelho chegou a Berlim em maio de 1945. Em Ialta e Potsdam negociou a ordem do p\xC3\xB3s-guerra com Roosevelt, Churchill e Truman, e a Uni\xC3\xA3o Sovi\xC3\xA9tica saiu da guerra como uma superpot\xC3\xAAncia que testou sua primeira bomba at\xC3\xB4mica em 1949. Stalin morreu em mar\xC3\xA7o de 1953; tr\xC3\xAAs anos depois, Nikita Kruschev denunciou seus crimes e seu culto \xC3\xA0 personalidade.",
+    .uiFeatureID = "ftr_GreatPatrioticWar",
+    .vTraits =
+    {
+        "trt_Aggressive",
+        "trt_Efficient",
+        "trt_Disciplined",
+        "trt_Vindictive",
+    },
+
+
+    .ActFlavorHeadings =
+    {
+        "O homem de a\xC3\xA7o.",
+        "Os Planos Quinquenais.",
+        "Nem um passo atr\xC3\xA1s.",
+    },
+
+    .ActFlavorStrings =
+    {
+        "Josef Stalin, filho de um sapateiro de Gori, a Revolu\xC3\xA7\xC3\xA3o colocou em suas m\xC3\xA3os uma terra vasta e devastada. Forje os seus povos numa s\xC3\xB3 Uni\xC3\xA3o e torne-a forte o bastante para que ningu\xC3\xA9m jamais ouse invadi-la outra vez.",
+        "Os altos-fornos queimam dia e noite, e cidades de a\xC3\xA7o se erguem onde antes s\xC3\xB3 havia estepe. A Uni\xC3\xA3o est\xC3\xA1 mudando num ritmo que o mundo nunca viu. Mantenha as f\xC3\xA1bricas funcionando e a Uni\xC3\xA3o se tornar\xC3\xA1 uma pot\xC3\xAAncia que nenhum inimigo conseguir\xC3\xA1 quebrar.",
+        "A bandeira vermelha tremula sobre as capitais dos seus inimigos, e a Uni\xC3\xA3o fala de igual para igual com as maiores pot\xC3\xAAncias da Terra. Enquanto foguetes sobem rumo \xC3\xA0s estrelas, voc\xC3\xAA decidir\xC3\xA1 o que a Uni\xC3\xA3o se tornar\xC3\xA1.",
+    },
+
+    .Act2RankStrings =
+    {
+        "De Leningrado a Vladivostok, o mundo observa a ascens\xC3\xA3o da Uni\xC3\xA3o com espanto e medo.",
+        "A\xC3\xA7o, tratores e novas ferrovias: as bases do poder sovi\xC3\xA9tico est\xC3\xA3o firmemente assentadas.",
+        "O pre\xC3\xA7o foi terr\xC3\xADvel e os inimigos foram muitos, mas a Uni\xC3\xA3o continua de p\xC3\xA9.",
+    },
+
+    .Act3RankStrings =
+    {
+        "A Uni\xC3\xA3o Sovi\xC3\xA9tica se ergue como superpot\xC3\xAAncia, e ningu\xC3\xA9m no mundo pode ignorar a sua voz.",
+        "A Uni\xC3\xA3o resistiu e se fortaleceu sob a sua m\xC3\xA3o de ferro.",
+        "Atrav\xC3\xA9s de guerras, fomes e crises voc\xC3\xAA resistiu, e a Uni\xC3\xA3o resistiu com voc\xC3\xAA.",
+    },
+
+    .FirstContact =
+    {
+        "Stalin recebe voc\xC3\xAA com um sorriso lento e o cachimbo na m\xC3\xA3o, e prop\xC3\xB5e um tratado que parece, \xC3\xA0 primeira vista, generoso.",
+        "O l\xC3\xADder sovi\xC3\xA9tico escuta em sil\xC3\xAAncio, estudando voc\xC3\xAA como um enxadrista estuda o tabuleiro. \xC3\x89 imposs\xC3\xADvel saber o que ele est\xC3\xA1 pensando.",
+        "Stalin mal olha para voc\xC3\xAA. Seus assessores anotam cada palavra, e voc\xC3\xAA tem a sensa\xC3\xA7\xC3\xA3o inc\xC3\xB4moda de que o seu nome est\xC3\xA1 entrando numa lista.",
+    },
+
+	.AIAlignment =
+	{
+		[AIAlignment.Alignment.Prestige]     = 6u8,
+		[AIAlignment.Alignment.Research]     = 6u8,
+		[AIAlignment.Alignment.Masterpieces] = 2u8,
+		[AIAlignment.Alignment.Religion]     = 1u8,
+		[AIAlignment.Alignment.Production]   = 9u8,
+		[AIAlignment.Alignment.Offense]      = 6u8,
+		[AIAlignment.Alignment.Defense]      = 8u8,
+		[AIAlignment.Alignment.Food]         = 5u8,
+		[AIAlignment.Alignment.Stone]        = 6u8,
+		[AIAlignment.Alignment.Wood]         = 5u8,
+		[AIAlignment.Alignment.Money]        = 4u8,
+		[AIAlignment.Alignment.Happiness]    = 3u8,
+		[AIAlignment.Alignment.Health]       = 4u8,
+		[AIAlignment.Alignment.Wealth]       = 3u8,
+		[AIAlignment.Alignment.Education]    = 6u8,
+		[AIAlignment.Alignment.Security]     = 9u8,
+		[AIAlignment.Alignment.Bias]         = 10u8,
+		[AIAlignment.Alignment.Diplomacy]    = 3u8,
+		[AIAlignment.Alignment.Housing]      = 5u8,
+	},
+
+    .vSkins =
+    {
+        {
+            .SkinID = "ldr_c_1924",
+            .AtlasID = "JosefStalin",
+        },
+        {
+            .SkinID = "ldr_c_1945",
+            .AtlasID = "MarechalStalin",
+        },
+    },
+};

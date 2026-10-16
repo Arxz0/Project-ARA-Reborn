@@ -1,0 +1,8 @@
+﻿<Flags>
+    <Flag ID="flg_SovietUnion_Default"
+        Name="Soviet Union"
+        AtlasID="SovietUnion"
+        TextureID="1"
+        >
+    </Flag>
+</Flags>

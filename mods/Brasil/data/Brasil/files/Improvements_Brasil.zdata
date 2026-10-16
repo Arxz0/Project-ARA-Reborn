@@ -1,0 +1,315 @@
+
+schema Improvements;
+
+/*
+
+Note about AIAlignments:
+
+They are optional, if you don't add them at all the AI system will attempt to fill them out from the data (mainly from buffs)
+
+If there are partially filled out the AI system will attempt to fill out any unset values
+Any entry filled out between -10 and +10 will be accepted and used directly
+An entry that you want the AI to fill out (as opposed to the entire array) would have <byte>AIAlignment.AUTO_ALIGNMENT_VALUE for it's value
+
+A fully filled out block will look something like this (this is random, I hope none actually use these values
+.alignment = 
+{
+	[AIAlignment.Alignment.Prestige]     = 5i8,
+	[AIAlignment.Alignment.Research]     = 0i8,
+	[AIAlignment.Alignment.Masterpieces] = 2i8,
+	[AIAlignment.Alignment.Religion]     = 4i8,
+	[AIAlignment.Alignment.Production]   = 6i8,
+	[AIAlignment.Alignment.Offense]      = -8i8,
+	[AIAlignment.Alignment.Defense]      = -8i8,
+	[AIAlignment.Alignment.Food]         = 5i8,
+	[AIAlignment.Alignment.Stone]        = 5i8,
+	[AIAlignment.Alignment.Wood]         = 5i8,
+	[AIAlignment.Alignment.Money]        = 5i8,
+	[AIAlignment.Alignment.Happiness]    = 5i8,
+	[AIAlignment.Alignment.Health]       = 5i8,
+	[AIAlignment.Alignment.Wealth]       = 5i8,
+	[AIAlignment.Alignment.Education]    = 5i8,
+	[AIAlignment.Alignment.Security]     = 5i8,
+	[AIAlignment.Alignment.Bias]         = 7i8,
+	[AIAlignment.Alignment.Diplomacy]    = 0i8,
+	[AIAlignment.Alignment.Housing]      = 5i8,
+},
+
+These values will essentially have a dot product taken with an aspect of game state (in the same format) to determine the best value
+Note that if the game state has a negative on an element, then having a positve in the value for the improvement will make it less likely to be chosen
+
+Bias doesn't map to anything in particular. It is a hammer that can be used to tell the AI that this is very good (or bad) as the corresponding gamestate
+that it will be dotted against is will alwys be assumed to be +10.
+
+If needed, more categories can be added.
+
+I shorter version that also works would look like this:
+
+.alignment = 
+{
+    // Prestige Research Masterpieces Religion Production Offense Defense Food Stone Wood Money Happiness Health Wealth Education Security Bias Diplomacy Housing
+        0i8,     0i8,     0i8,         0i8,     4i8,       0i8,    0i8,    0i8, 0i8,  0i8, 0i8,  0i8,      0i8,   0i8,   0i8,      0i8,     0i8, 0i8,      0i8,
+},
+
+A partially filled out one will look something like this:
+
+.alignment = update(defaultData.alignment)
+{
+	[AIAlignment.Alignment.Bias] = 5i8,
+},
+
+This is the same thing as:
+
+.alignment = 
+{
+ 	[AIAlignment.Alignment.Prestige]     = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Research]     = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Masterpieces] = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Religion]     = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Production]   = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Offense]      = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Defense]      = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Food]         = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Stone]        = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Wood]         = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Money]        = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Happiness]    = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Health]       = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Wealth]       = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Education]    = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Security]     = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Bias]         = 5i8,
+	[AIAlignment.Alignment.Diplomacy]    = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+	[AIAlignment.Alignment.Housing]      = <byte>AIAlignment.AUTO_ALIGNMENT_VALUE,
+},
+
+In this case the update() is needed
+
+*/
+
+// this is needed to have autoAlignment work with partially filled out entries
+ImprovementTemplate defaultData = {};
+
+export ImprovementTemplate imp_Stable =
+{
+    .PrevLevelID = "", 
+    .NextLevelID = "", 
+    .Name = "TXT_IMP_STABLE", 
+    .Description = "TXT_IMP_DESC_STABLE", 
+    .EncartaStrategy = "TXT_ENC_IMP_STABLE_STRATEGY_0", 
+    .EncartaHistory = "TXT_ENC_IMP_STABLE_HISTORY_0", 
+    .Asset = "Improvement_Stables", 
+    .AtlasID = "Stable", 
+    .FOWOverride = "", 
+    .SearchTags = 
+    {
+        "TXT_IMP_STABLE",
+        "TXT_IMP_DESC_STABLE",
+        "TXT_DOM_MILITARY",
+        "TXT_ITM_PRODUCTION",
+        "TXT_ARMY",
+        "TXT_UNIT_STAT_EXP",
+    },
+    .Domains = (RulesTypes.Domain.Industry), 
+    .uiProductionCost = 200u, 
+    .uiNationMaxCount = 0u, 
+    .uiProvinceMaxCount = 1u, 
+    .GrantedFlags = 0, 
+    .AddPopulationOnComplete = 0u, 
+    .BiomeRequirement = (RulesTypes.BiomeFlags.PolarDesert | RulesTypes.BiomeFlags.ColdDesert | RulesTypes.BiomeFlags.TemperateGrassland | RulesTypes.BiomeFlags.XericShrubland | RulesTypes.BiomeFlags.AridDesert | RulesTypes.BiomeFlags.Tundra | RulesTypes.BiomeFlags.Taiga | RulesTypes.BiomeFlags.TemperateForest | RulesTypes.BiomeFlags.Mediterranean | RulesTypes.BiomeFlags.Savanna | RulesTypes.BiomeFlags.TemperateRainforest | RulesTypes.BiomeFlags.TropicalForest | RulesTypes.BiomeFlags.TropicalRainforest), 
+    .uiBaseProductionOutput = 1u, 
+    .uiAttack = 2u, 
+    .uiDefense = 4u, 
+    .uiMaxHealth = 175u, 
+    .uiActStart = 1u, 
+    .uiActEnd = 3u, 
+    .uiMasterpieceCreationSlots = {}, 
+    .ProductionType = ProductionType.Item, 
+    .HarvestorType = RulesTypes.HarvestorType.Placeholder, 
+    .BlockSize = BlockSize.e2x2, 
+    .RegionHarvestType = 0, 
+    .BuildImprovementItemCost = 
+    {
+        .itm_Food = 20u,
+        .itm_Wood = 45u,
+
+    }, 
+    .UpgradeToImprovementItemCost = 
+    {
+        .itm_Food = 7u,
+        .itm_Wood = 15u,
+        .itm_Stone = 9u,
+    }, 
+    .AddItemsOnComplete = 
+    {
+        .itm_Prestige = 1u,
+    }, 
+    .Recipes = 
+    {
+        "rcp_BallistaHowdah", 
+        "rcp_Chariot", 
+        "rcp_Howdah", 
+        "rcp_Lance", 
+        "rcp_PlatedSaddle", 
+        "rcp_Saddles", 
+        "rcp_ShortStaff", 
+        "rcp_Rope",
+        "rcp_HorsebackCarriage",
+        "rcp_CamelArcherGear",
+        "rcp_LegionaryWeapon",
+        "rcp_GauchoGear",
+        "rcp_DiggerRifle",
+        "rcp_JaguarWeapon",
+        "rcp_RedoubtRifle",
+        "rcp_PracinhaGear",
+        "rcp_CataphractArmor",
+        "rcp_MountieGear",
+        "rcp_WoadAxe",
+        "rcp_PlainsHorseArcherGear",
+        "rcp_MongolHorseArcherGear",
+        "rcp_CataphractHorseArcherGear",
+        "rcp_ImmortalMask",
+        "rcp_HussarSaddle",
+        "rcp_CossackSaddle",
+        "rcp_SahelHorseGear",
+        "rcp_ConquistadorHelmet",
+        "rcp_ElephantBow",
+        "rcp_MinutemanRifle",
+        "rcp_LlaneroLasso",
+        "rcp_ImpiSpear",
+        "rcp_LevySpear",
+        "rcp_ChuKoNu",
+        "rcp_RoyalChariot",
+        "rcp_EnglishLongbow",
+        "rcp_Shotel",
+        "rcp_GendarmeArmor",
+        "rcp_Tomahawk",
+        "rcp_KhevsurBlade",
+        "rcp_GermanyHalberd",
+        "rcp_AsanteSpear",
+        "rcp_HopliteSpear",
+        "rcp_TeutonicGear",
+        "rcp_AndesSling",
+        "rcp_RoyalElephantGear",
+        "rcp_CondottieroBlade",
+        "rcp_Katana",
+        "rcp_HwachaRockets",
+        "rcp_KandakeSpear",
+        "rcp_RuralesRifle",
+        
+    }, 
+    .MasterpieceSets = 
+    {
+    }, 
+    .AddImprovementsOnComplete = 
+    {
+    }, 
+    .GrantRewardBundlesOnComplete = 
+    {
+    }, 
+    .SpawnQuestsOnComplete = 
+    {
+    }, 
+    .AddBuffsOnComplete = 
+    {
+    }, 
+    .FunctionsOnComplete = 0, 
+    .WorkerSlots = 
+    {
+        {
+            .Maintenance = 
+            {
+                .itm_Money = 1u,
+            }, 
+            .Buffs = 
+            {
+                "buf_Improvement_Stable_A", 
+                "buf_Improvement_Stable_B", 
+            }, 
+            .AddItemsOnWorked = 
+            {
+            }, 
+            .uiOccupations = 
+            {
+                0u, 
+                0u, 
+                0u, 
+                0u, 
+                0u, 
+                0u, 
+                0u, 
+                0u, 
+                4u, 
+                0u, 
+                0u, 
+                0u, 
+                0u, 
+                0u, 
+            }, 
+            .UpdateFunctionsTypes = ImpUpdateFunction.NoSpecialFunction, 
+        }, 
+        {
+            .Maintenance = 
+            {
+                .itm_Money = 1u,
+            }, 
+            .Buffs = 
+            {
+                "buf_Improvement_Stable_A", 
+                "buf_Improvement_Stable_B", 
+                "buf_Worker_Generic_CraftRateHere_Small",
+            }, 
+            .AddItemsOnWorked = 
+            {
+            }, 
+            .uiOccupations = 
+            {
+                0u, 
+                0u, 
+                0u, 
+                0u, 
+                0u, 
+                0u, 
+                0u, 
+                0u, 
+                4u, 
+                0u, 
+                0u, 
+                0u, 
+                0u, 
+                0u, 
+            }, 
+            .UpdateFunctionsTypes = ImpUpdateFunction.NoSpecialFunction, 
+        }, 
+    }, 
+    .ItemOptions = 
+    {
+    }, 
+    .uiMaxOwnedArmies = 0u, 
+	.alignment = 
+	{
+		[AIAlignment.Alignment.Prestige]     = 0i8,
+		[AIAlignment.Alignment.Research]     = 0i8,
+		[AIAlignment.Alignment.Masterpieces] = 0i8,
+		[AIAlignment.Alignment.Religion]     = 0i8,
+		[AIAlignment.Alignment.Production]   = 7i8, // if worked and from carriages which are awesome
+		[AIAlignment.Alignment.Offense]      = 0i8,
+		[AIAlignment.Alignment.Defense]      = 0i8,
+		[AIAlignment.Alignment.Food]         = 0i8,
+		[AIAlignment.Alignment.Stone]        = 0i8,
+		[AIAlignment.Alignment.Wood]         = 0i8,
+		[AIAlignment.Alignment.Money]        = 0i8,
+		[AIAlignment.Alignment.Happiness]    = 0i8,
+		[AIAlignment.Alignment.Health]       = 0i8, // going to ignore the debuff here
+		[AIAlignment.Alignment.Wealth]       = 2i8,
+		[AIAlignment.Alignment.Education]    = 0i8,
+		[AIAlignment.Alignment.Security]     = 0i8,
+		[AIAlignment.Alignment.Bias] = 1i8,
+		[AIAlignment.Alignment.Diplomacy]    = 0i8,
+		[AIAlignment.Alignment.Housing]      = 0i8,
+	},
+    .Tags = 
+    {
+        "tag_Military",
+    }, 
+};

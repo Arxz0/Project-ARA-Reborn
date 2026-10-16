@@ -1,0 +1,120 @@
+schema Nations;
+
+export NationTemplate ntn_Brazil = 
+{
+    .TemplateName = "ntn_Brazil",
+    .Name = "Brasil",
+    .SortName = "Brasil",
+    .CultureSet = "cul_American",
+    .AtlasID = "Brazil",
+    .LanguageTableID = "lt_Iberian",
+    .PeopleAdjective = "Brasileiro",
+    .PeoplePluralAdjective = "Brasileiros",
+    .Heritage = "Brasileiro",
+    .Description = "O Brasil \xC3\xA9 a maior Na\xC3\xA7\xC3\xA3o da Am\xC3\xA9rica do Sul, estendendo-se da Floresta Amaz\xC3\xB4nica aos pampas do sul. Colonizado por Portugal a partir de 1500, tornou-se um imp\xC3\xA9rio independente em 1822 e uma rep\xC3\xBA\x62lica em 1889, crescendo at\xC3\xA9 se tornar um dos pa\xC3\xADses mais populosos e diversos do mundo.",
+    .EncartaHistory = "Antes da chegada dos europeus, as terras do Brasil eram habitadas por muitos povos ind\xC3\xADgenas, como os tupis, os guaranis e os tapuias. Em 1500, a esquadra portuguesa de Pedro \xC3\x81lvares Cabral chegou ao litoral da Bahia, e o territ\xC3\xB3rio tornou-se uma col\xC3\xB4nia portuguesa baseada no pau-brasil, na cana-de-a\xC3\xA7\xC3\xBA\x63\x61r e, mais tarde, no ouro de Minas Gerais, sustentada por s\xC3\xA9\x63ulos pelo trabalho for\xC3\xA7\x61\x64o de africanos escravizados. Em 1808, fugindo de Napole\xC3\xA3o, a fam\xC3\xADlia real portuguesa mudou-se para o Rio de Janeiro. Em 1822, o pr\xC3\xADncipe Pedro declarou a independ\xC3\xAAncia e tornou-se o imperador Pedro I. O Imp\xC3\xA9rio durou at\xC3\xA9 1889, um ano ap\xC3\xB3s a aboli\xC3\xA7\xC3\xA3o da escravatura, quando foi proclamada a rep\xC3\xBA\x62lica. No s\xC3\xA9\x63ulo XX, o Brasil passou pela Era Vargas, pela industrializa\xC3\xA7\xC3\xA3o, pela constru\xC3\xA7\xC3\xA3o de Bras\xC3\xADlia, por uma ditadura militar e pela redemocratiza\xC3\xA7\xC3\xA3o em 1985, tornando-se uma das maiores economias do mundo.",
+    .RegionNames = 
+    {
+        "Rio de Janeiro", 
+        "S\xC3\xA3o Paulo", 
+        "Salvador", 
+        "Porto Alegre", 
+        "Belo Horizonte", 
+        "Recife", 
+        "Bel\xC3\xA9m", 
+        "Curitiba", 
+        "Fortaleza", 
+        "Manaus", 
+        "S\xC3\xA3o Lu\xC3\xADs", 
+        "Florian\xC3\xB3polis", 
+        "Goi\xC3\xA2nia", 
+        "Cuiab\xC3\xA1", 
+        "Campinas", 
+        "Santos", 
+        "Niter\xC3\xB3i", 
+        "Petr\xC3\xB3polis", 
+        "Ouro Preto", 
+        "Olinda", 
+        "Natal", 
+        "Jo\xC3\xA3o Pessoa", 
+        "Macei\xC3\xB3", 
+        "Aracaju", 
+        "Teresina", 
+        "Vit\xC3\xB3ria", 
+        "Campo Grande", 
+        "Londrina", 
+        "Pelotas", 
+        "S\xC3\xA3o Borja", 
+        "Juiz de Fora", 
+        "Ribeir\xC3\xA3o Preto", 
+        "Joinville", 
+        "Blumenau", 
+        "Caxias do Sul", 
+        "Santa Maria", 
+        "Uberl\xC3\xA2ndia", 
+        "Feira de Santana", 
+        "Campina Grande", 
+        "Porto Velho", 
+        "Bras\xC3\xADlia", 
+    },
+    .LeaderIDs = 
+    {
+        "ldr_GetulioVargas", 
+    },
+    .FlagIDs = 
+    {
+        "flg_Brazil_Default", 
+    },
+    .TeamColor = 
+    {
+        .Main = "plt_007",
+        .Secondary = "plt_004",
+        .Accent = "plt_010",
+    },
+    .SkinColors = 
+    {
+        {
+            .ColorIndex = 16,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 17,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 18,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 19,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 20,
+            .Weight = 1,
+        }, 
+    },
+    .HairColors = 
+    {
+        {
+            .ColorIndex = 31,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 32,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 33,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 37,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 38,
+            .Weight = 1,
+        }, 
+    },
+};

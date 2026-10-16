@@ -1,0 +1,47 @@
+
+schema Recipes;
+
+
+int AncientEraCost = 100;
+int BronzeAgeCost = 150;
+int IronAgeCost =  200;
+int AntiquitiesCost =  300;
+int EarlyMiddleAgesCost = 400;
+int HighMedievalCost = 600;
+int RenaissanceCost = 750;
+int EnlightenmentCost = 1000;
+int MachineAgeCost = 1200;
+int MachineAgeCost_Ingredient = 300;
+int AtomicAgeCost = 2000;
+int AtomicAgeCost_Ingredient = 400;
+int InformationAgeCost = 2500;
+int InformationAgeCost_Ingredient = 500;
+int FutureAgeCost = 3000;
+
+export RecipeTemplate rcp_PracinhaGear =
+{
+    .Name = "Pracinhas",
+    .Description = "Rifle-armed ranged infantry of the Brazilian Expeditionary Force that works best when firing on enemy armies from range. Vulnerable to cavalry in combat.",
+    .EncartaStrategy = "Infantry unique to Brazil, slightly stronger than other rifle infantry of its era. Position the Pracinhas to weaken enemy armies from range before melee. Beware of cavalry.",
+    .EncartaHistory = "",
+    .UnlockingNations = 
+    {
+        "ntn_Brazil",
+    },
+    .SearchTags = "TXT_ITM_RECIPE TXT_ITM_ITEMS TXT_ITM_INGREDIENTS TXT_ITM_PRODUCTION",
+    .ItemCreated = "itm_PracinhaGear",
+    .Flags = 0,
+    .ProductionCost = 100u,
+    .Ingredients =
+    {
+        {
+            .Desc = "TXT_RCP_SLOT_DESC_ACCELERATOR",
+            .DefaultOption = "",
+            .Options =
+            {
+                .itm_Money = 1i,
+            },
+            .ProductionBonus = 1u,
+        },
+    },
+};

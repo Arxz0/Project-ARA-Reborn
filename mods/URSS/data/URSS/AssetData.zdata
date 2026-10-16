@@ -1,0 +1,57 @@
+schema ModAssets;
+
+export AssetList Root =
+{
+    .IconAtlases =
+    {
+        .NationEmblems =
+        {
+            .Textures =
+            {
+                ."SovietUnion" = "images/SovietUnion_NationEmblem.png",
+            },
+        },
+        .LeaderEmblems_256 =
+        {
+            .Textures =
+            {
+                ."SovietUnion" = "images/SovietUnion_LeaderEmblem_256.png",
+            },
+        },
+        .LeaderSquare_256 =
+        {
+            .Textures =
+            {
+                ."JosefStalin" = "images/Stalin_Square_256.png",
+            },
+        },
+        .Leaders_Left_Facing =
+        {
+            .Textures =
+            {
+                ."JosefStalin" = "images/Stalin_Left_256x350.png",
+            },
+        },
+        .Leaders_Right_Facing =
+        {
+            .Textures =
+            {
+                ."JosefStalin" = "images/Stalin_Right_256x350.png",
+            },
+        },
+        .LeaderFeatures =
+        {
+            .Textures =
+            {
+                ."GreatPatrioticWar" = "images/GreatPatrioticWar_256.png",
+            },
+        },
+        .ContinueGame_Leaders =
+        {
+            .Textures =
+            {
+                ."JosefStalin" = "images/Stalin_Continue_250x350.png",
+            },
+        },
+    },
+};

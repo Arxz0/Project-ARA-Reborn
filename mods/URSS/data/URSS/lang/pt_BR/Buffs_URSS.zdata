@@ -1,0 +1,40 @@
+schema Buffs;
+
+// Grande Guerra Patriotica A - defesa da patria: forca dos exercitos terrestres dentro do proprio territorio
+export BuffTemplateData buf_GreatPatrioticWar_A =
+{
+    .Description = "TXT_BUFF_ARMIESINTERRITORY_LAND_STRENGTH_MUL",
+    .SourceType = BuffSourceType.LeaderFeature,
+    .TargetType = BuffTargetType.Unit,
+    .Scope = BuffScope.All,
+    .Turns = 0u,
+    .Attributes = @"ATTR(AtrRegionStatCheck(IsOwnedFlag, '=', 1.0) and AtrArmyTypeCheck(Land) and not AtrArmyFormationCheck(frm_Civilian))ATTR",
+    .Modifiers = @"MODS(ModMul(Strength, 0.25))MODS",
+    .Flags = 0,
+};
+
+// Grande Guerra Patriotica B - economia de guerra: fabricacao mais rapida nas Melhorias Militares
+export BuffTemplateData buf_GreatPatrioticWar_B =
+{
+    .Description = "+50% de Velocidade de Fabrica\xC3\xA7\xC3\xA3o nas Melhorias Militares",
+    .SourceType = BuffSourceType.LeaderFeature,
+    .TargetType = BuffTargetType.Improvement,
+    .Scope = BuffScope.All,
+    .Turns = 0u,
+    .Attributes = @"ATTR(AtrImprovementDomainCheck(Military))ATTR",
+    .Modifiers = @"MODS(ModMul(CraftRate, 0.50))MODS",
+    .Flags = 0,
+};
+
+// Grande Guerra Patriotica C - resistencia do povo: menos cansaco de guerra
+export BuffTemplateData buf_GreatPatrioticWar_C =
+{
+    .Description = "TXT_BUFF_LEADER_STUDYPATIENCE_B",
+    .SourceType = BuffSourceType.LeaderFeature,
+    .TargetType = BuffTargetType.Nation,
+    .Scope = BuffScope.All,
+    .Turns = 0u,
+    .Attributes = @"ATTR()ATTR",
+    .Modifiers = @"MODS(ModMul(WarWeariness, -0.50))MODS",
+    .Flags = 0,
+};

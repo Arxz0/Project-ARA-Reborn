@@ -1,0 +1,120 @@
+schema Nations;
+
+export NationTemplate ntn_SovietUnion = 
+{
+    .TemplateName = "ntn_SovietUnion",
+    .Name = "Soviet Union",
+    .SortName = "Soviet Union",
+    .CultureSet = "cul_European",
+    .AtlasID = "SovietUnion",
+    .LanguageTableID = "lt_Slavic",
+    .PeopleAdjective = "Soviet",
+    .PeoplePluralAdjective = "Soviets",
+    .Heritage = "Soviet",
+    .Description = "The Union of Soviet Socialist Republics was a federation of fifteen republics that stretched from the Baltic Sea to the Pacific Ocean. Born from the Russian Revolution of 1917, it became the first socialist state in history, an industrial and military superpower and one of the two poles of the Cold War until its dissolution in 1991.",
+    .EncartaHistory = "In October 1917, the Bolsheviks led by Vladimir Lenin seized power in Petrograd and, after a brutal civil war, founded the Union of Soviet Socialist Republics in 1922, uniting Russia, Ukraine, Belarus and the Transcaucasian republics. Under Joseph Stalin, the Five-Year Plans turned an agrarian country into an industrial power at an enormous human cost: the forced collectivization of agriculture, the famine of 1932\xE2\x80\x931933 and the Great Purge took millions of lives. Invaded by Nazi Germany in 1941, the Soviet Union lost more than 25 million people in the Great Patriotic War, but its Red Army turned the tide at Moscow, Stalingrad and Kursk and reached Berlin in 1945. In the following decades the USSR became a nuclear superpower, launched Sputnik and sent Yuri Gagarin into space in 1961, and led the Eastern Bloc in the Cold War against the United States. Economic stagnation, the reforms of Mikhail Gorbachev and the rise of national movements led to its dissolution in December 1991.",
+    .RegionNames = 
+    {
+        "Moscow", 
+        "Leningrad", 
+        "Stalingrad", 
+        "Kiev", 
+        "Minsk", 
+        "Tbilisi", 
+        "Baku", 
+        "Tashkent", 
+        "Kharkov", 
+        "Sverdlovsk", 
+        "Novosibirsk", 
+        "Gorky", 
+        "Kuibyshev", 
+        "Odessa", 
+        "Rostov-on-Don", 
+        "Riga", 
+        "Vilnius", 
+        "Tallinn", 
+        "Yerevan", 
+        "Alma-Ata", 
+        "Frunze", 
+        "Stalinabad", 
+        "Ashkhabad", 
+        "Kishinev", 
+        "Murmansk", 
+        "Arkhangelsk", 
+        "Vladivostok", 
+        "Khabarovsk", 
+        "Irkutsk", 
+        "Omsk", 
+        "Chelyabinsk", 
+        "Magnitogorsk", 
+        "Molotov", 
+        "Kazan", 
+        "Ufa", 
+        "Saratov", 
+        "Voronezh", 
+        "Smolensk", 
+        "Sevastopol", 
+        "Krasnoyarsk", 
+        "Gori", 
+    },
+    .LeaderIDs = 
+    {
+        "ldr_JosefStalin", 
+    },
+    .FlagIDs = 
+    {
+        "flg_SovietUnion_Default", 
+    },
+    .TeamColor = 
+    {
+        .Main = "plt_001",
+        .Secondary = "plt_004",
+        .Accent = "plt_015",
+    },
+    .SkinColors = 
+    {
+        {
+            .ColorIndex = 1,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 2,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 3,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 4,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 5,
+            .Weight = 1,
+        }, 
+    },
+    .HairColors = 
+    {
+        {
+            .ColorIndex = 33,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 34,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 35,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 36,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 38,
+            .Weight = 1,
+        }, 
+    },
+};

@@ -1,0 +1,292 @@
+schema Technologies;
+
+int baseTechCost = 50;
+
+int AncientEraCost = 75;
+int BronzeAgeCost = 150;
+int IronAgeCost =  300;
+int AntiquitiesCost =  500;
+int EarlyMiddleAgesCost = 800;
+int HighMedievalCost = 1200; 
+int RenaissanceCost = 1600;
+int EnlightenmentCost = 2000;
+int MachineAgeCost = 2500;
+int AtomicAgeCost = 3200;
+int InformationAgeCost = 5000;
+int FutureAgeCost = 6500;
+
+
+export TechnologyTemplate tch_Industrialization =
+{
+    .Name = "TXT_TCH_INDUSTRIALIZATION", 
+    .Description = "TXT_TCH_DESC_INDUSTRIALIZATION",
+    
+    .AtlasID = "Statistics", 
+    .EncartaEntry = "tch_Industrialization", 
+    .EncartaStrategy = "TXT_ENC_TCH_INDUSTRIALIZATION_STRATEGY_0", 
+    .EncartaHistory = "TXT_ENC_TCH_INDUSTRIALIZATION_HISTORY_0", 
+    .Domains = (RulesTypes.Domain.Government), 
+    .Era = RulesTypes.TechEras.Enlightenment, 
+    .iRoughDate = 1798i, 
+    .uiResearchCost = MachineAgeCost, 
+    .SearchTags = 
+    {
+        "TXT_TECHNOLOGY", 
+        "TXT_ITM_RESEARCH", 
+        "TXT_DOMAIN", 
+        "TXT_RARITY", 
+        "TXT_RTY_COMMON", 
+        "TXT_TECH_ERA_ENLIGHTENMENT", 
+        "TXT_DOM_INDUSTRY", 
+        "TXT_TCH_INTERCHANGEABLE_PARTS", 
+        "TXT_TCH_DESC_INTERCHANGEABLE_PARTS", 
+    }, 
+    .Flags = (TechFlags.CapstoneTech), 
+    .UnlockRecipesIDs = 
+    {
+        "rcp_Fuel",
+         "rcp_Wheel",
+         "rcp_Glass",
+        "rcp_Explosives",
+        "rcp_Clothes",
+        "rcp_MachinedParts", 
+        "rcp_IndustrialTools", 
+        "rcp_Trousers",
+        "rcp_SewingMachines",
+        "rcp_Barrels",
+        // Migrated from removed tch_GroundedFoundations
+        "rcp_Steel",
+        "rcp_IndoorStoves",
+        "rcp_RedoubtRifle",
+        "rcp_PracinhaGear",
+    }, 
+    .UnlockImprovementsIDs = 
+    {
+        "imp_Factory", 
+        "imp_Refinery",
+        "imp_Foundry", 
+        "imp_CementPlant",
+        "imp_Tailor",
+        "imp_Mine",
+        // Migrated from removed tch_GroundedFoundations
+        "imp_TajMahal",
+        "imp_ExhibitionHall",
+        "imp_Museum",
+        "imp_EiffelTower",
+        "imp_StatueOfLiberty",
+    }, 
+    .UnlockGovernmentsIDs = 
+    {
+         "gvt_Fascist", 
+    }, 
+    .UnlockNaturalResourcesIDs = 
+    {
+        {
+            .Key = "All", 
+            .Value = "itm_HeavyMetals", 
+        }, 
+        {
+            .Key = "All", 
+            .Value = "itm_Fuel", 
+        }, 
+        {
+            .Key = "All", 
+            .Value = "itm_Coal", 
+        }, 
+        {
+            .Key = "All", 
+            .Value = "itm_Oil", 
+        },
+                {
+            .Key = "All", 
+            .Value = "itm_Rubber", 
+        },
+         {
+            .Key = "All", 
+            .Value = "itm_NaturalGas", 
+        },
+
+    }, 
+    .UnlockedFormationsIDs = 
+    {
+        "frm_Division",
+        "frm_Swarm",
+    }, 
+    .UnlockCitySpecialProjects = 
+    {
+    }, 
+    .AddItemsOnUnlock = 
+    {
+        .itm_Prestige = 20u,
+  
+    }, 
+    .GrantBuffs = 
+    {
+      "buf_Nation_CityCap",
+    }, 
+    .ObsoleteImprovementIDs = 
+    {
+        "imp_FermentingHut",
+        "imp_Docks",
+        "imp_Dwelling",
+        "imp_LumberMill",
+        "imp_Mill",
+        "imp_Monastery",
+        "imp_Quarry",
+        "imp_BlackSmith",
+        "imp_Farm", 
+    },
+    .ObsoleteCityUnitProjectIDs = 
+    {
+       "cup_Crossbowmen",
+       "cup_Privateer",
+       "cup_Longbowmen",
+       "cup_Musketeers",
+       "cup_Raiders",
+       "cup_Horseman",
+       "cup_Trireme",
+       "cup_Axemen",
+       "cup_Lancers",
+       "cup_Halberdiers",
+       "cup_Caravel",
+        "cup_Cog",
+        "cup_AssaultOcteres",
+        "cup_Mangonel",
+        "cup_Trebuchet",
+        "cup_WarElephants",
+        "cup_Knights",
+        "cup_Carrack",
+        "cup_ElephantCannon",
+        "cup_ElephantArtillery",
+        "cup_MenAtArms",
+        "cup_LineInfantry",
+        "cup_Harquebus",
+
+    },
+};
+
+export TechnologyTemplate tch_InterchangeableParts =
+{
+    .Name = "TXT_TCH_INTERCHANGEABLE_PARTS", 
+    .Description = "TXT_TCH_DESC_INTERCHANGEABLE_PARTS",
+    
+    .AtlasID = "InterchangeableParts", 
+    .EncartaEntry = "tch_InterchangeableParts", 
+    .EncartaStrategy = "TXT_ENC_TCH_INTERCHANGEABLE_PARTS_STRATEGY_0", 
+    .EncartaHistory = "TXT_ENC_TCH_INTERCHANGEABLE_PARTS_HISTORY_0", 
+    .Domains = (RulesTypes.Domain.Industry), 
+    .Era = RulesTypes.TechEras.MachineAge, 
+    .iRoughDate = 1890i, 
+    .uiResearchCost = MachineAgeCost, 
+    .SearchTags = 
+    {
+        "TXT_TECHNOLOGY", 
+        "TXT_ITM_RESEARCH", 
+        "TXT_DOMAIN", 
+        "TXT_RARITY", 
+        "TXT_RTY_UNCOMMON", 
+        "TXT_TECH_ERA_MACHINE_AGE", 
+        "TXT_DOM_CULTURE", 
+        "TXT_TCH_MOVIE_PROJECTORS", 
+        "TXT_TCH_DESC_MOVIE_PROJECTORS", 
+    }, 
+    .Flags = 0, 
+    .UnlockRecipesIDs = 
+    {
+        "rcp_Refrigerators", 
+         "rcp_Currency",
+          "rcp_LampPosts",
+        "rcp_GatlingGun",
+        "rcp_Flamethrower",
+        "rcp_Destroyer",
+        "rcp_RedoubtRifle",
+        "rcp_PracinhaGear",
+    }, 
+    .UnlockImprovementsIDs = 
+    {
+        "imp_VolklingenIronworks", 
+    }, 
+    .UnlockGovernmentsIDs = 
+    {
+    }, 
+    .UnlockNaturalResourcesIDs = 
+    {
+    }, 
+    .UnlockedFormationsIDs = 
+    {
+    }, 
+    .UnlockCitySpecialProjects = 
+    {
+    }, 
+    .AddItemsOnUnlock = 
+    {
+        .itm_Prestige = 22u,
+    }, 
+    .GrantBuffs = 
+    {
+     
+    }, 
+};
+
+export TechnologyTemplate tch_MassProducedTextiles =
+{
+    .Name = "TXT_TCH_MASS_PRODUCED_TEXTILES", 
+    .Description = "TXT_TCH_DESC_MASS_PRODUCED_TEXTILES",
+
+    .AtlasID = "CarAssembly", 
+    .EncartaEntry = "tch_MassProducedTextiles", 
+    .EncartaStrategy = "TXT_ENC_TCH_MASS_PRODUCED_TEXTILES_STRATEGY_0", 
+    .EncartaHistory = "TXT_ENC_TCH_MASS_PRODUCED_TEXTILES_HISTORY_0", 
+    .Domains = (RulesTypes.Domain.Commerce), 
+    .Era = RulesTypes.TechEras.MachineAge, 
+    .iRoughDate = 1900i, 
+    .uiResearchCost = MachineAgeCost, 
+    .SearchTags = 
+    {
+        "TXT_TECHNOLOGY", 
+        "TXT_ITM_RESEARCH", 
+        "TXT_DOMAIN", 
+        "TXT_RARITY", 
+        "TXT_RTY_UNCOMMON", 
+        "TXT_TECH_ERA_MACHINE_AGE", 
+        "TXT_DOM_MILITARY", 
+        "TXT_TCH_ZEPPELINS", 
+        "TXT_TCH_DESC_ZEPPELIN", 
+    }, 
+    .Flags = 0, 
+    .UnlockRecipesIDs = 
+    {
+        "rcp_MachinedParts",
+        "rcp_GatlingGun",
+        "rcp_Flamethrower",
+        "rcp_Destroyer",
+        "rcp_RedoubtRifle",
+        "rcp_PracinhaGear",
+    }, 
+    .UnlockImprovementsIDs = 
+    {
+        "imp_Factory", 
+        "imp_PoliceStation",
+        "imp_Citadel",
+    }, 
+    .UnlockGovernmentsIDs = 
+    {
+        "gvt_Communist", 
+    }, 
+    .UnlockNaturalResourcesIDs = 
+    {
+    }, 
+    .UnlockedFormationsIDs = 
+    {
+    }, 
+    .UnlockCitySpecialProjects = 
+    {
+    }, 
+    .AddItemsOnUnlock = 
+    {
+        .itm_Prestige = 0u,
+    }, 
+    .GrantBuffs = 
+    {
+    }, 
+};

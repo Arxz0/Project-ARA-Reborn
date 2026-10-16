@@ -1,0 +1,13 @@
+schema Cities;
+
+export UnitProjectTemplate cup_T34 = 
+{
+    .uiProductionCost = 300,
+    .ItemCost =
+    {
+        .itm_Steel = 1,
+        .itm_Cars= 1,
+        .itm_Fuel = 1,
+    },
+    .UnitItemCreated = "itm_T34",
+};

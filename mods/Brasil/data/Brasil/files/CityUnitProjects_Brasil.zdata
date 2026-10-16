@@ -1,0 +1,12 @@
+schema Cities;
+
+export UnitProjectTemplate cup_Pracinhas =
+{
+    .uiProductionCost = 75,
+    .ItemCost =
+    {
+        .itm_Stone = 80i,
+        .itm_Gunpowder = 1i,
+    },
+    .UnitItemCreated = "itm_PracinhaGear",
+};

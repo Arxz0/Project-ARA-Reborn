@@ -1,0 +1,59 @@
+
+schema Recipes;
+
+
+int AncientEraCost = 100;
+int BronzeAgeCost = 150;
+int IronAgeCost =  200;
+int AntiquitiesCost =  300;
+int EarlyMiddleAgesCost = 400;
+int HighMedievalCost = 600;
+int RenaissanceCost = 750;
+int EnlightenmentCost = 1000;
+int MachineAgeCost = 1200;
+int MachineAgeCost_Ingredient = 300;
+int AtomicAgeCost = 2000;
+int AtomicAgeCost_Ingredient = 400;
+int InformationAgeCost = 2500;
+int InformationAgeCost_Ingredient = 500;
+int FutureAgeCost = 3000;
+
+export RecipeTemplate rcp_T34 =
+{
+    .Name = "T-34", 
+    .Description = "Tanque m\xC3\xA9dio do Ex\xC3\xA9rcito Vermelho, com blindagem inclinada, canh\xC3\xA3o potente e lagartas largas para a lama e a neve. Projetado para derrotar infantaria e unidades \xC3\xA0 dist\xC3\xA2ncia, mas vulner\xC3\xA1vel a unidades anticavalaria.", 
+    .EncartaStrategy = "Tanque exclusivo da Uni\xC3\xA3o Sovi\xC3\xA9tica, mais forte que os outros tanques da sua era. Use-o para romper as linhas de infantaria inimigas e mantenha-o longe das unidades anticavalaria.", 
+    .EncartaHistory = "",
+    .UnlockingNations = 
+    {
+        "ntn_SovietUnion",
+    },
+    .SearchTags = "TXT_ITM_RECIPE TXT_ITM_ITEMS TXT_ITM_INGREDIENTS TXT_ITM_PRODUCTION", 
+    .ItemCreated = "itm_T34", 
+    .Flags = 0, 
+    .ProductionCost = 750u, 
+    .Ingredients = 
+    {
+        {
+            .Desc = "TXT_RCP_SLOT_DESC_ACCELERATOR",
+            .DefaultOption = "",
+            .Options =
+            {
+                .itm_Money = 90i,
+                .itm_Steel = 1i,
+                .itm_MetalIngots = 15i,
+            }, 
+            .ProductionBonus = 263u, 
+        }, 
+        {
+            .Desc = "TXT_RCP_SLOT_DESC_ACCELERATOR",
+            .DefaultOption = "",
+            .Options =
+            {
+                .itm_Money = 18i,
+                .itm_Fuel = 1i,
+            }, 
+            .ProductionBonus = 53u, 
+        }, 
+    }, 
+};

@@ -1,0 +1,55 @@
+
+schema Items;
+
+// see note in Items0.zdata if you are curious about this
+ItemTemplate defaultData = {};
+
+export ItemTemplate itm_PracinhaGear =
+{
+    .Name = "Pracinhas",
+    .Description = "Infantaria armada com fuzis da For\xC3\xA7\x61 Expedicion\xC3\xA1ria Brasileira, que funciona melhor disparando contra ex\xC3\xA9rcitos inimigos \xC3\xA0 dist\xC3\xA2ncia. Vulner\xC3\xA1vel \xC3\xA0 cavalaria em combate.",
+    .FlavorText = "NONE",
+    .TargetUnitID = "unt_Pracinhas",
+    .RecipeID = "rcp_PracinhaGear",
+    .AtlasID = "Rifleman",
+    .EncartaStrategy = "Infantaria exclusiva do Brasil, um pouco mais forte que as outras infantarias de fuzileiros da sua era. Posicione os Pracinhas para enfraquecer os ex\xC3\xA9rcitos inimigos \xC3\xA0 dist\xC3\xA2ncia antes do corpo a corpo. Cuidado com a cavalaria.",
+    .EncartaHistory = "\xE2\x80\x9CPracinhas\xE2\x80\x9D foi o apelido carinhoso dado aos soldados da For\xC3\xA7\x61 Expedicion\xC3\xA1ria Brasileira (FEB), enviada pelo governo Vargas para lutar ao lado dos Aliados na Segunda Guerra Mundial. Mais de 25 mil brasileiros atravessaram o Atl\xC3\xA2ntico e combateram na It\xC3\xA1lia entre 1944 e 1945. Enfrentando o frio do inverno nos Apeninos, os Pracinhas tomaram Monte Castello em fevereiro de 1945 e Montese em abril, e perto de Fornovo di Taro aceitaram a rendi\xC3\xA7\xC3\xA3o de uma divis\xC3\xA3o alem\xC3\xA3 inteira. O emblema deles, uma cobra fumando cachimbo, respondia \xC3\xA0 velha piada de que seria mais f\xC3\xA1\x63il uma cobra fumar do que o Brasil entrar na guerra.",
+
+    .SearchTags =
+    {
+        "TXT_ITM_RECIPE",
+        "TXT_ITM_ITEMS",
+        "TXT_ITM_INGREDIENTS",
+        "TXT_ITM_PRODUCTION",
+        "TXT_ITM_STRATEGIC",
+        "TXT_IMP_FORGE",
+        "TXT_RTY_COMMON",
+        "Pracinhas",
+        "Infantaria armada com fuzis da For\xC3\xA7\x61 Expedicion\xC3\xA1ria Brasileira, que funciona melhor disparando contra ex\xC3\xA9rcitos inimigos \xC3\xA0 dist\xC3\xA2ncia. Vulner\xC3\xA1vel \xC3\xA0 cavalaria em combate.",
+        "Pracinhas",
+    },
+
+    .uiStartingCost = 60u,
+    .uiMinCost = 20u,
+    .uiMaxCost = 240u,
+    .uiActStart = 1u,
+    .uiActEnd = 5u,
+    .uiRarity = RulesTypes.eRarity.Common,
+    .uiType = RulesTypes.ItemType.Strategic,
+    .Domain = RulesTypes.DomainSets.Military,
+    .uiHarvestType = RulesTypes.HarvestType.NoneOfTheAbove,
+
+    .Flags = (Flags.OnMarket | Flags.Craftable | Flags.Weapon),
+    .uiActivateCost = 0u,
+    .ActivateBuffs = {},
+    .AddItemsOnConsume = {},
+    .uiGiveConsumeItemsForNumTurns = 0u,
+    .ActivateBuffsForImprovements = {},
+
+    .AIAlignment =
+    {
+        default = 0i8,
+        [AIAlignment.Alignment.Offense] = 4i8,
+        [AIAlignment.Alignment.Defense] = 3i8,
+    },
+};

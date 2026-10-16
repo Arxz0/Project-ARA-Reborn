@@ -1,0 +1,80 @@
+
+schema Units;
+
+[[ Define our upgrade role types through idents to allow easier ability to both adjust/allow mods to utilize]]
+ident UpgradeGroupMeleeInfantry = "MeleeInfantry";
+ident UpgradeGroupMeleeCavalry = "MeleeCavalry";
+ident UpgradeGroupProjectile = "Projectile";
+ident UpgradeGroupGunpowderInfantry = "GunpowderInfantry";
+ident UpgradeGroupGunCavalry = "GunCavalry";
+ident UpgradeGroupArtillery = "Artillery";
+ident UpgradeGroupModernInfantry = "ModernInfantry";
+ident UpgradeGroupArmor = "Armor";
+ident UpgradeGroupWarship = "Warship";
+ident UpgradeGroupTransport = "Transport";
+ident UpgradeGroupCannonShip = "CannonShip";
+ident UpgradeGroupSubmarine = "Submarine";
+ident UpgradeGroupDestroyer = "Destroyer";
+ident UpgradeGroupBattleship = "Battleship";
+ident UpgradeGroupCarrier = "Carrier";
+ident UpgradeGroupFighter = "Fighter";
+ident UpgradeGroupBomber = "Bomber";
+ident UpgradeGroupHelicopter = "Helicopter";
+ident UpgradeGroupSiege = "Siege";
+ident UpgradeGroupInfantry = "Infantry";
+ident UpgradeGroupRanged = "Ranged";
+ident UpgradeGroupMountedRanged = "MountedRanged";
+ident UpgradeGroupMounted = "Mounted";
+
+export UnitTemplate unt_T34 =
+{
+    .Name = "T-34", 
+    .Description = "Tanque m\xC3\xA9dio do Ex\xC3\xA9rcito Vermelho, com blindagem inclinada, canh\xC3\xA3o potente e lagartas largas para a lama e a neve. Projetado para derrotar infantaria e unidades \xC3\xA0 dist\xC3\xA2ncia, mas vulner\xC3\xA1vel a unidades anticavalaria.", 
+    .EncartaStrategy = "Tanque exclusivo da Uni\xC3\xA3o Sovi\xC3\xA9tica, mais forte que os outros tanques da sua era. Use-o para romper as linhas de infantaria inimigas e mantenha-o longe das unidades anticavalaria.", 
+    .EncartaHistory = "O T-34 entrou em servi\xC3\xA7o em 1940 e se tornou o s\xC3\xADmbolo do esfor\xC3\xA7o de guerra sovi\xC3\xA9tico. Sua blindagem inclinada, o canh\xC3\xA3o de 76 mm e as lagartas largas surpreenderam o ex\xC3\xA9rcito alem\xC3\xA3o em 1941, e seu projeto simples permitiu que f\xC3\xA1bricas evacuadas para os Urais, como o complexo \xE2\x80\x9CTankogrado\xE2\x80\x9D em Tcheliabinsk, constru\xC3\xADssem mais de 80 mil unidades durante a guerra. Os T-34 lutaram em Moscou, em Stalingrado e na grande batalha de tanques de Kursk, e em 1945 entraram em Berlim.", 
+    .Asset = "Tank", 
+    .AtlasID = "WWITank", 
+    .SearchTags = 
+    {
+        "TXT_UNT_ORDER_MOVE", 
+        "TXT_UNT_ORDER_FORTIFY", 
+        "TXT_UNT_ORDER_PILLAGE", 
+        "TXT_UNT_WAIT", 
+        "TXT_UNT_WAIT_TIL_HEALED", 
+        "TXT_NEW_UNIT_Armored", 
+        "TXT_STAT_ATTACK", 
+        "TXT_STAT_DEFENSE", 
+        "TXT_STAT_SPEED", 
+        "TXT_STAT_RANGE", 
+        "TXT_STAT_INITIATIVE", 
+        "TXT_WAR", 
+        "TXT_SIEGE", 
+        "TXT_UNIT_LAND", 
+        "TXT_UNIT_TRAMPLE", 
+        "T-34", 
+        "Tanque m\xC3\xA9dio do Ex\xC3\xA9rcito Vermelho, com blindagem inclinada, canh\xC3\xA3o potente e lagartas largas para a lama e a neve. Projetado para derrotar infantaria e unidades \xC3\xA0 dist\xC3\xA2ncia, mas vulner\xC3\xA1vel a unidades anticavalaria.", 
+    }, 
+    .ImprovementID = "", 
+    .uiFOWOverrideHash = "", 
+    .iAct = -1i, 
+    .Flags = (Actions.CanUpgrade | Actions.Military | Actions.CanPillage | Actions.CanHeal | Actions.CanSiege | Actions.CanAttackLand | Actions.CanDisengage | Actions.CanNavigateLand | Actions.CanAutoExplore), 
+    .uiBaseStrength = 66u, 
+    .uiBaseReligionStrength = 0u, 
+    .uiBaseSpeed = 2u, 
+    .uiBombardRange = 0u, 
+    .Type = RulesTypes.FormationType.Land, 
+    .DamageType = RulesTypes.DamageTypes.Cavalry, 
+    .Role = RulesTypes.UnitRoles.Armor, 
+	.UpgradeGroup = UpgradeGroupMounted, 
+    .ConstructionCost = 
+    {
+        .itm_T34 = 1u,
+    }, 
+    .MaintenanceCost = 
+    {
+        .itm_Food = 1u,
+        .itm_Money = 2u,
+        .itm_Stone = 1u,
+    }, 
+    .uiMaxOwnedArmies = 0u, 
+};

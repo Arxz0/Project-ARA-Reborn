@@ -1,0 +1,115 @@
+schema AIPlanning;
+
+export AILeaderDef Root = 
+{
+    .goals = 
+    {
+        /*
+        {
+            .name = "Keep a More Secular State", //Benito wasn't anti-religion, but he did take a lot of land away from the Catholic Church and I think having him act when a religion is nearing a "monopoly" and coverting his City is thematically appropriate.
+            .religionState = ReligionState.CityNearConversion,
+            .definitions = "Def(A,Nation)",
+            .seekCondition = "HasAbilityCountGE(Self,Denounce,One)",
+            .goal = "Denounce(Self,A)", //Use his own Missionary to Denounce population in his City that is near conversion (specifically to a religion that isn't his own).
+        },
+        {
+            .name = "Man of The Court", //Like Cesare, Benito was also known for some legal reform.
+            .econState = EconState.Established,
+            .seekCondition = "not ImprovementCount(Courthouse,One)", //Checking that no Courthouses currently exist. 
+            .goal = "ImprovementCount(Courthouse,One)",
+        },
+        {
+            .name = "Prevent Foreign Intervention", //Benito was big on defending against foreign intervention in Mexico.
+            .econState = EconState.Established,
+            .definitions = "Def(A,Nation)",
+            .seekCondition = "not Relationship(A,Neutral) and DiploStatusActive(Self,A,OpenBorders)", //If Benito has Open Borders with Nation A (who he has lower than Neutral relationship with) and they have an army (or multiple) in his borders, close borders. 
+            .goal = "DiploStatusActive(Self,A,ClosedBorders)",
+        },
+        */
+    },
+
+    .armies =
+    {
+        {
+            .name = "MissionaryArmy",
+            .formation = "frm_Civilian",
+            .units =
+            {
+                {.id = "unt_Missionary"},
+            }
+        },
+        {
+            .name = "HorseSquare",
+            .formation = "frm_Square",
+            .units =
+            {
+                {.id = "unt_Horseman"},
+                {.id = "unt_Halberdier"},
+                {.id = "unt_Longbowman"},
+                {.id = "unt_Longbowman"},
+            },
+        },
+    },
+
+    .warConditions = 
+    {
+        /*
+        {
+            WarState.Preparing,
+            {
+                "not HasArmyStrGE(Self,Formidable) and not HasWarWearinessLevelLT(Self,Low)",
+            },
+        },
+        {
+            WarState.Prepared,
+            {
+                "HasArmyStrGE(Self,Formidable) and HasWarWearinessLevelLT(Self,Low)",
+            },
+        },
+        */
+    },
+
+    .econConditions = 
+    {
+        /*
+        {    
+            EconState.Starting,
+            {
+                "not HasYieldCountGE(itm_Food,Some) and not HasYieldCountGE(itm_Stone,Some) and not HasYieldCountGE(itm_Wood,Some) and not HasYieldCountGE(itm_Money,Some)",
+            },
+        },
+        {
+            EconState.Established,
+            {
+                "HasYieldCountGE(itm_Food,Some) and HasYieldCountGE(itm_Stone,Some) and HasYieldCountGE(itm_Wood,Some) and HasYieldCountGE(itm_Money,Some)",
+            },
+        },
+        */
+    },
+
+    .diploConditions = 
+    {
+    },
+
+    .religionConditions = 
+    {
+        /*
+        {
+            ReligionState.Founding,
+            {
+                "IsEra(IronAge) and EconState(Established) and not WarState(Attacking) and not WarState(Defending)", //Trying to make Benito still look for religion but be less interested in it. Basically, if it's the iron age and he's not doing anything else more important. 
+            },
+        },
+        {
+            ReligionState.CityNearConversion,
+            {
+                "HasReligionPercentGE(A,40)", //Meaning the city in question has a religion which has 40% or more of the population following it. 
+            },
+        },
+        */
+    },
+
+    .expansionConditions = 
+    {
+    },
+};

@@ -1,0 +1,89 @@
+schema Leaders;
+
+export LeaderTemplate Root = 
+{
+    .sID            = "ldr_GetulioVargas",
+    .sName           = "Get\xC3\xBAlio Vargas",
+    .sTitle         = "TXT_TITLE_PRESIDENT",
+    .AtlasID       = "GetulioVargas",
+    .uiPronounID     = "prn_He",
+    .uiPersonalityID = "psn_Formal",
+    .sDescription   = "Get\xC3\xBAlio Vargas foi um estadista brasileiro do s\xC3\xA9\x63ulo XX que governou o pa\xC3\xADs por quase duas d\xC3\xA9\x63\x61\x64\x61s. Chegando ao poder com a Revolu\xC3\xA7\xC3\xA3o de 1930, centralizou o Estado, criou as primeiras leis trabalhistas do Brasil e conduziu a na\xC3\xA7\xC3\xA3o de uma economia agr\xC3\xA1ria rumo \xC3\xA0 ind\xC3\xBAstria pesada, fundando a siderurgia e a empresa de petr\xC3\xB3leo que at\xC3\xA9 hoje carregam seu legado.",
+    .sEncartaStrategy = "Get\xC3\xBAlio Vargas \xC3\xA9 um l\xC3\xAD\x64\x65r para quem quer industrializar cedo e manter o povo ao seu lado. Sua caracter\xC3\xADstica, Estado Novo, acelera em 50% a constru\xC3\xA7\xC3\xA3o de todas as Melhorias de Ind\xC3\xBAstria e, gra\xC3\xA7\x61s aos direitos sociais (leis trabalhistas, sal\xC3\xA1rio m\xC3\xADnimo, Minist\xC3\xA9rio da Educa\xC3\xA7\xC3\xA3o e Sa\xC3\xBA\x64\x65), d\xC3\xA1 +5 a todas as Estat\xC3\xADsticas de Cidad\xC3\xA3os em todas as Cidades. Carism\xC3\xA1tico recompensa acordos comerciais e de pesquisa com pontos de Era de Ouro, Produtivo acelera as constru\xC3\xA7\xC3\xB5\x65s durante as Eras de Ouro, e Burocr\xC3\xA1tico e Caridoso concentram felicidade e prosperidade na Capital \xC3\xA0 custa das cidades do interior. Construa f\xC3\xA1\x62ricas, moinhos e oficinas cedo: o b\xC3\xB4nus aos cidad\xC3\xA3os \xC3\xA9 permanente, na paz ou na guerra. Na era industrial, coloque em campo os Pracinhas, a infantaria exclusiva do Brasil.",
+    .sEncartaHistory = "Get\xC3\xBAlio Dornelles Vargas nasceu em 1882 em S\xC3\xA3o Borja, no Rio Grande do Sul. Formado em Direito, foi governador de seu estado antes de concorrer \xC3\xA0 presid\xC3\xAAncia em 1930. Ap\xC3\xB3s uma elei\xC3\xA7\xC3\xA3o contestada, liderou a Revolu\xC3\xA7\xC3\xA3o de 1930, que encerrou a Rep\xC3\xBA\x62lica Velha e o dom\xC3\xADnio das oligarquias do caf\xC3\xA9 de S\xC3\xA3o Paulo e Minas Gerais. \xC3\x80 frente do governo provis\xC3\xB3rio, Vargas enfrentou a Revolu\xC3\xA7\xC3\xA3o Constitucionalista de 1932, aprovou uma nova constitui\xC3\xA7\xC3\xA3o em 1934 e, em 1937, fechou o Congresso e proclamou o Estado Novo, regime autorit\xC3\xA1rio que durou at\xC3\xA9 1945. Nesse per\xC3\xADodo criou o Minist\xC3\xA9rio do Trabalho, o sal\xC3\xA1rio m\xC3\xADnimo e a Consolida\xC3\xA7\xC3\xA3o das Leis do Trabalho (CLT), o que lhe rendeu o apelido de \xE2\x80\x9CPai dos Pobres\xE2\x80\x9D. Fundou tamb\xC3\xA9m a Companhia Sider\xC3\xBArgica Nacional e a Companhia Vale do Rio Doce e levou o Brasil \xC3\xA0 Segunda Guerra Mundial ao lado dos Aliados. Deposto pelos militares em 1945, Vargas voltou \xC3\xA0 presid\xC3\xAAncia pelo voto popular em 1950 e criou a Petrobras em 1953, sob o lema \xE2\x80\x9CO petr\xC3\xB3leo \xC3\xA9 nosso\xE2\x80\x9D. Diante de uma grave crise pol\xC3\xADtica em agosto de 1954, tirou a pr\xC3\xB3pria vida no Pal\xC3\xA1\x63io do Catete, deixando uma carta que terminava com as palavras: \xE2\x80\x9CSaio da vida para entrar na Hist\xC3\xB3ria.\xE2\x80\x9D",
+    .uiFeatureID = "ftr_EstadoNovo",
+    .vTraits = 
+    {
+        "trt_Charismatic",
+        "trt_Bureaucratic",
+        "trt_Productive",
+        "trt_Charitable",
+    },
+
+
+    .ActFlavorHeadings = 
+    {
+        "O homem de S\xC3\xA3o Borja.",
+        "Pai dos Pobres.",
+        "Para entrar na Hist\xC3\xB3ria.",
+    },
+
+    .ActFlavorStrings = 
+    {
+        "Get\xC3\xBAlio Vargas, ga\xC3\xBA\x63ho de S\xC3\xA3o Borja, o olhar de todo um povo agora se volta para voc\xC3\xAA. Una as prov\xC3\xADncias dispersas sob uma s\xC3\xB3 vontade e lance as bases de uma na\xC3\xA7\xC3\xA3o que n\xC3\xA3o se curvar\xC3\xA1 mais \xC3\xA0s velhas oligarquias.",
+        "Oper\xC3\xA1rios enchem as ruas e f\xC3\xA1\x62ricas se erguem onde antes s\xC3\xB3 havia lavouras. O Brasil est\xC3\xA1 mudando, e est\xC3\xA1 mudando \xC3\xA0 sua imagem. Mantenha o Estado forte e o povo ao seu lado, e o Brasil se tornar\xC3\xA1 a grande pot\xC3\xAAncia que sempre esteve destinado a ser.",
+        "O petr\xC3\xB3leo \xC3\xA9 nosso, as usinas est\xC3\xA3o acesas e a na\xC3\xA7\xC3\xA3o fala com uma s\xC3\xB3 voz. Enquanto novas m\xC3\xA1quinas tomam a terra e os c\xC3\xA9us, \xC3\xA9 voc\xC3\xAA quem decidir\xC3\xA1 o que o Brasil ser\xC3\xA1. O que quer que venha a seguir, seu nome j\xC3\xA1 pertence \xC3\xA0 Hist\xC3\xB3ria.",
+    },
+
+    .Act2RankStrings = 
+    {
+        "Suas reformas s\xC3\xA3o celebradas dos pampas \xC3\xA0 Amaz\xC3\xB4nia, e o mundo agora olha para o Brasil com respeito.",
+        "A\xC3\xA7o, leis trabalhistas e novas estradas: as bases de um Brasil moderno est\xC3\xA3o firmemente assentadas.",
+        "O caminho foi duro e os inimigos foram muitos, mas o povo ainda chama pelo seu nome.",
+    },
+
+    .Act3RankStrings = 
+    {
+        "O Brasil est\xC3\xA1 entre os gigantes do mundo, e seu povo deve essa grandeza a voc\xC3\xAA.",
+        "O Brasil prosperou sob a sua lideran\xC3\xA7\x61, e o povo se lembra de quem esteve ao seu lado.",
+        "Crise ap\xC3\xB3s crise, voc\xC3\xAA resistiu, e o Brasil resistiu com voc\xC3\xAA.",
+    },
+
+    .FirstContact = 
+    {
+        "Vargas o recebe com um largo sorriso e um charuto na m\xC3\xA3o, j\xC3\xA1 falando de acordos comerciais que beneficiariam os dois povos.",
+        "O presidente brasileiro escuta muito mais do que fala. \xC3\x89 imposs\xC3\xADvel saber o que ele realmente pensa de voc\xC3\xAA, e talvez seja exatamente essa a inten\xC3\xA7\xC3\xA3o dele.",
+        "Vargas o recebe com uma cortesia fria. Por tr\xC3\xA1s das palavras diplom\xC3\xA1ticas, fica claro que ele o v\xC3\xAA como uma amea\xC3\xA7\x61 aos interesses do Brasil.",
+    },
+
+	.AIAlignment = 
+	{
+		[AIAlignment.Alignment.Prestige]     = 5u8,
+		[AIAlignment.Alignment.Research]     = 5u8,
+		[AIAlignment.Alignment.Masterpieces] = 2u8,
+		[AIAlignment.Alignment.Religion]     = 2u8,
+		[AIAlignment.Alignment.Production]   = 6u8,
+		[AIAlignment.Alignment.Offense]      = 1u8,
+		[AIAlignment.Alignment.Defense]      = 3u8,
+		[AIAlignment.Alignment.Food]         = 5u8,
+		[AIAlignment.Alignment.Stone]        = 5u8,
+		[AIAlignment.Alignment.Wood]         = 5u8,
+		[AIAlignment.Alignment.Money]        = 5u8,
+		[AIAlignment.Alignment.Happiness]    = 8u8,
+		[AIAlignment.Alignment.Health]       = 5u8,
+		[AIAlignment.Alignment.Wealth]       = 5u8,
+		[AIAlignment.Alignment.Education]    = 5u8,
+		[AIAlignment.Alignment.Security]     = 7u8,
+		[AIAlignment.Alignment.Bias]         = 10u8,
+		[AIAlignment.Alignment.Diplomacy]    = 7u8,
+		[AIAlignment.Alignment.Housing]      = 5u8,
+	},
+
+    .vSkins =
+    {
+        {
+            .SkinID = "ldr_c_1937",
+            .AtlasID = "GetulioVargas",
+        },
+    },
+};

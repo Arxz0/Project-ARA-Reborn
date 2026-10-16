@@ -1,0 +1,89 @@
+schema Leaders;
+
+export LeaderTemplate Root = 
+{
+    .sID            = "ldr_GetulioVargas",
+    .sName           = "Get\xC3\xBAlio Vargas",
+    .sTitle         = "TXT_TITLE_PRESIDENT",
+    .AtlasID       = "GetulioVargas",
+    .uiPronounID     = "prn_He",
+    .uiPersonalityID = "psn_Formal",
+    .sDescription   = "Get\xC3\xBAlio Vargas was a 20th-century Brazilian statesman who governed the country for almost two decades. Rising to power with the Revolution of 1930, he centralized the state, created Brazil's first labor laws and steered the nation from an agrarian economy toward heavy industry, founding the steel mills and oil company that still carry his legacy.",
+    .sEncartaStrategy = "Get\xC3\xBAlio Vargas is a leader for those who want to industrialize early and keep the people on their side. His feature, Estado Novo, speeds up the construction of every Industry Improvement by 50% and, thanks to his social rights (labor laws, minimum wage, the Ministry of Education and Health), gives +5 to all Citizen Stats in all Cities. Charismatic rewards trade and research agreements with Golden Age points, Productive speeds up construction during Golden Ages, and Bureaucratic and Charitable concentrate happiness and prosperity in the Capital at the cost of the outer cities. Build factories, mills and workshops early: the bonus to the citizens is permanent, in peace or at war. In the industrial era, field the Pracinhas, Brazil's unique infantry.",
+    .sEncartaHistory = "Get\xC3\xBAlio Dornelles Vargas was born in 1882 in S\xC3\xA3o Borja, in the southern state of Rio Grande do Sul. Trained as a lawyer, he became governor of his home state before running for president in 1930. After a disputed election, he led the Revolution of 1930, which ended the Old Republic and the dominance of the coffee oligarchies of S\xC3\xA3o Paulo and Minas Gerais. As head of the provisional government, Vargas faced the Constitutionalist Revolution of 1932, approved a new constitution in 1934 and, in 1937, closed Congress and proclaimed the Estado Novo, an authoritarian regime that lasted until 1945. During those years he created the Ministry of Labor, the minimum wage and the Consolidation of Labor Laws (CLT), earning the nickname \xE2\x80\x9C\x46\x61ther of the Poor\xE2\x80\x9D. He also founded the Companhia Sider\xC3\xBArgica Nacional and the Companhia Vale do Rio Doce and brought Brazil into the Second World War on the side of the Allies. Deposed by the military in 1945, Vargas returned to the presidency through a popular vote in 1950 and created Petrobras in 1953 under the slogan \xE2\x80\x9CThe oil is ours\xE2\x80\x9D. Facing a severe political crisis in August 1954, he took his own life in the Catete Palace, leaving a letter that ended with the words: \xE2\x80\x9CI leave life to enter History.\xE2\x80\x9D",
+    .uiFeatureID = "ftr_EstadoNovo",
+    .vTraits = 
+    {
+        "trt_Charismatic",
+        "trt_Bureaucratic",
+        "trt_Productive",
+        "trt_Charitable",
+    },
+
+
+    .ActFlavorHeadings = 
+    {
+        "The man from S\xC3\xA3o Borja.",
+        "Father of the Poor.",
+        "Into History.",
+    },
+
+    .ActFlavorStrings = 
+    {
+        "Get\xC3\xBAlio Vargas, ga\xC3\xBA\x63ho of S\xC3\xA3o Borja, the gaze of a whole people now turns to you. Unite the scattered provinces under a single will and lay the foundations of a nation that will no longer bow to the oligarchs of old.",
+        "Workers fill the streets and factories rise where once there were only plantations. Brazil is changing, and it is changing in your image. Keep the state strong and the people on your side, and Brazil will become the great power it was always meant to be.",
+        "The oil is ours, the mills are burning and the nation speaks with a single voice. As new machines fill the earth and the skies, you will decide what Brazil becomes. Whatever comes next, your name already belongs to History.",
+    },
+
+    .Act2RankStrings = 
+    {
+        "Your reforms are celebrated from the pampas to the Amazon, and the world now watches Brazil with respect.",
+        "Steel, labor laws and new roads: the foundations of a modern Brazil are firmly in place.",
+        "The road has been hard and your enemies many, but the people still call your name.",
+    },
+
+    .Act3RankStrings = 
+    {
+        "Brazil stands among the giants of the world, and its people owe that greatness to you.",
+        "Brazil has prospered under your leadership, and the people remember who stood by them.",
+        "Through crisis after crisis you have endured, and Brazil endured with you.",
+    },
+
+    .FirstContact = 
+    {
+        "Vargas greets you with a broad smile and a cigar in hand, already talking about trade deals that would benefit both your peoples.",
+        "The Brazilian president listens far more than he speaks. It is impossible to tell what he really thinks of you, which is perhaps exactly his intention.",
+        "Vargas receives you with cold courtesy. Behind the diplomatic words, it is clear he sees you as a threat to Brazil's interests.",
+    },
+
+	.AIAlignment = 
+	{
+		[AIAlignment.Alignment.Prestige]     = 5u8,
+		[AIAlignment.Alignment.Research]     = 5u8,
+		[AIAlignment.Alignment.Masterpieces] = 2u8,
+		[AIAlignment.Alignment.Religion]     = 2u8,
+		[AIAlignment.Alignment.Production]   = 6u8,
+		[AIAlignment.Alignment.Offense]      = 1u8,
+		[AIAlignment.Alignment.Defense]      = 3u8,
+		[AIAlignment.Alignment.Food]         = 5u8,
+		[AIAlignment.Alignment.Stone]        = 5u8,
+		[AIAlignment.Alignment.Wood]         = 5u8,
+		[AIAlignment.Alignment.Money]        = 5u8,
+		[AIAlignment.Alignment.Happiness]    = 8u8,
+		[AIAlignment.Alignment.Health]       = 5u8,
+		[AIAlignment.Alignment.Wealth]       = 5u8,
+		[AIAlignment.Alignment.Education]    = 5u8,
+		[AIAlignment.Alignment.Security]     = 7u8,
+		[AIAlignment.Alignment.Bias]         = 10u8,
+		[AIAlignment.Alignment.Diplomacy]    = 7u8,
+		[AIAlignment.Alignment.Housing]      = 5u8,
+	},
+
+    .vSkins =
+    {
+        {
+            .SkinID = "ldr_c_1937",
+            .AtlasID = "GetulioVargas",
+        },
+    },
+};

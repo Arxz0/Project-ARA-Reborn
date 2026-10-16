@@ -1,0 +1,20 @@
+schema ZNODataLibrary;
+
+export Library Root =
+{
+    .Groups =
+    {
+        .LeaderTemplates = { .Entries = { .ldr_JosefStalin = { "files/ldr_JosefStalin.zdata", "Root" }, }, },
+        .AILeaders = { .Entries = { .ldr_JosefStalin = { "files/AI_JosefStalin.zdata", "Root" }, }, },
+        .Nations = { .Entries = { .ntn_SovietUnion = { "files/ntn_SovietUnion.zdata", "ntn_SovietUnion" }, }, },
+        .UnitTemplates = { .FromFiles = { "files/Units_URSS.zdata" }, },
+        .ItemTemplates = { .FromFiles = { "files/Items_URSS.zdata" }, },
+        .Recipes = { .FromFiles = { "files/Recipes_URSS.zdata" }, },
+        .CityUnitProjects = { .FromFiles = { "files/CityUnitProjects_URSS.zdata" }, },
+        .Technologies = { .FromFiles = { "files/Tech_URSS.zdata" }, },
+        .Improvements = { .FromFiles = { "files/Improvements_URSS.zdata" }, },
+        .LeaderFeatures = { .FromFiles = { "files/LeaderFeatures_URSS.zdata" }, },
+        .BuffTemplates = { .FromFiles = { "files/Buffs_URSS.zdata" }, },
+        .GameCreationManager = { .Entries = { .UniqueStartInfo = { "files/UniqueStartInfo_URSS.zdata", "Root" }, }, },
+    },
+};

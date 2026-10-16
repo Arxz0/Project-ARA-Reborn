@@ -1,0 +1,328 @@
+schema NewGameConfig;
+
+//Note, the map generator performs corrections on these points in the event that they fall in unbuildable regions
+//Small adjustments may therefore get lost when loading into game, bear this in mind
+export UniqueStartData Root =
+{
+.maps = 
+	{
+		.Earth_v1 = 
+		{
+			.nations = 
+			{
+				.ntn_Brazil               = { .pos = {-4850, -7850}, },   // Rio de Janeiro (mod Brasil)
+				.ntn_SovietUnion          = { .pos = {3380, 6250}, },   // Moscou (mod URSS)
+				// North America
+				.ntn_AztecEmpire           = { .pos = {-11000, -500}, },
+				.ntn_Canada                = { .pos = {-7000, 5200}, },
+				.ntn_Cherokee              = { .pos = {-9300, 2000}, },
+				.ntn_CrowNation            = { .pos = {-11500, 5000}, },
+				.ntn_Mexico                = { .pos = {-11000, -500}, },
+				.ntn_UnitedStates          = { .pos = {-7500, 3100}, },
+
+				// South America
+				.ntn_Argentina             = { .pos = {-6400, -9750}, },
+				.ntn_IncaEmpire            = { .pos = {-7400, -6300}, },
+				.ntn_Venezuela             = { .pos = {-7400, -2500}, },
+
+				// Europe
+				.ntn_Belgium               = { .pos = {-225, 4650}, },
+				.ntn_ByzantineEmpire       = { .pos = {2400, 3000}, },
+				.ntn_Celts                 = { .pos = {-1800, 6000}, },
+				.ntn_England               = { .pos = {-830, 5600}, },
+				.ntn_France                = { .pos = {-900, 4500}, },
+				.ntn_Georgia               = { .pos = {4000, 3300}, },
+				.ntn_Germany               = { .pos = {650, 5000}, },
+				.ntn_Greece                = { .pos = {1950, 1950}, },
+				.ntn_HolyRomanEmpire       = { .pos = {0, 5300}, },
+				.ntn_Italy                 = { .pos = {450, 3340}, },
+				.ntn_Poland                = { .pos = {1800, 4800}, },
+				.ntn_RomanEmpire           = { .pos = {800, 2600}, },
+				.ntn_Spain                 = { .pos = {-1200, 2700}, },
+
+				// Asia
+				.ntn_AbbasidCaliphate      = { .pos = {4400, 600}, },
+				.ntn_AssyrianEmpire        = { .pos = {4300, 1300}, },
+				.ntn_China                 = { .pos = {12000, 3500}, },
+				.ntn_India                 = { .pos = {8000, 200}, },
+				.ntn_Japan                 = { .pos = {15600, 2300}, },
+				.ntn_Korea                 = { .pos = {13500, 2800}, },
+				.ntn_MongolEmpire          = { .pos = {10000, 5500}, },
+				.ntn_PalmyreneEmpire       = { .pos = {3800, 1600}, },
+				.ntn_PersianEmpire         = { .pos = {6200, 300}, },
+				.ntn_Russia                = { .pos = {5800, 8500}, },
+				.ntn_Thailand              = { .pos = {11000, -1800}, },
+
+				// Africa
+				.ntn_Egypt                 = { .pos = {2500, 500}, },
+				.ntn_Ethiopia              = { .pos = {4000, -2700}, },
+				.ntn_Ghana                 = { .pos = {-500, -3000}, },
+				.ntn_Kush                  = { .pos = {3000, -1000}, },
+				.ntn_SonghaiEmpire         = { .pos = {-500, -1500}, },
+				.ntn_Zulu                  = { .pos = { 2700, -8500}, },
+
+				// Australia
+				.ntn_Australia             = { .pos = {15000, -10000}, },
+			}
+		},
+
+		.Earth_v13 = 
+		{
+			.nations = 
+			{
+				.ntn_Brazil               = { .pos = {-4850, -7850}, },   // Rio de Janeiro (mod Brasil)
+				.ntn_SovietUnion          = { .pos = {3380, 6250}, },   // Moscou (mod URSS)
+				// North America
+				.ntn_AztecEmpire           = { .pos = {-11000, -500}, },
+				.ntn_Canada                = { .pos = {-7000, 5200}, },
+				.ntn_Cherokee              = { .pos = {-9300, 2000}, },
+				.ntn_CrowNation            = { .pos = {-11500, 5000}, },
+				.ntn_Mexico                = { .pos = {-11000, -500}, },
+				.ntn_UnitedStates          = { .pos = {-7500, 3100}, },
+
+				// South America
+				.ntn_Argentina             = { .pos = {-6400, -9750}, },
+				.ntn_IncaEmpire            = { .pos = {-7400, -6300}, },
+				.ntn_Venezuela             = { .pos = {-7400, -2500}, },
+
+				// Europe
+				.ntn_Belgium               = { .pos = {-225, 4650}, },
+				.ntn_ByzantineEmpire       = { .pos = {2400, 3000}, },
+				.ntn_Celts                 = { .pos = {-1800, 6000}, },
+				.ntn_England               = { .pos = {-830, 5600}, },
+				.ntn_France                = { .pos = {-400, 4500}, },
+				.ntn_Georgia               = { .pos = {4000, 3300}, },
+				.ntn_Germany               = { .pos = {700, 4500}, },
+				.ntn_Greece                = { .pos = {1950, 1950}, },
+				.ntn_HolyRomanEmpire       = { .pos = {-0, 5300}, },
+				.ntn_Italy                 = { .pos = {450, 3340}, },
+				.ntn_Poland                = { .pos = {1800, 4800}, },
+				.ntn_RomanEmpire           = { .pos = {800, 2600}, },
+				.ntn_Spain                 = { .pos = {-1200, 2700}, },
+
+				// Asia
+				.ntn_AbbasidCaliphate      = { .pos = {4400, 600}, },
+				.ntn_AssyrianEmpire        = { .pos = {4300, 1300}, },
+				.ntn_China                 = { .pos = {11500, 2500}, },
+				.ntn_India                 = { .pos = {8000, 200}, },
+				.ntn_Japan                 = { .pos = {15600, 2300}, },
+				.ntn_Korea                 = { .pos = {13500, 3200}, },
+				.ntn_MongolEmpire          = { .pos = {10000, 5500}, },
+				.ntn_PalmyreneEmpire       = { .pos = {3800, 1600}, },
+				.ntn_PersianEmpire         = { .pos = {6200, 300}, },
+				.ntn_Russia                = { .pos = {2742, 7400}, },
+				.ntn_Thailand              = { .pos = {11000, -1800}, },
+
+				// Africa
+				.ntn_Egypt                 = { .pos = {2500, 500}, },
+				.ntn_Ethiopia              = { .pos = {4000, -2700}, },
+				.ntn_Ghana                 = { .pos = {-500, -3000}, },
+				.ntn_Kush                  = { .pos = {3000, -1000}, },
+				.ntn_SonghaiEmpire         = { .pos = {-500, -1500}, },
+				.ntn_Zulu                  = { .pos = { 2700, -8500}, },
+
+				// Australia
+				.ntn_Australia             = { .pos = {15000, -10000}, },
+			}
+		},
+
+		.SkirmishTestSmall = 
+		{
+			.nations = 
+			{
+				.ntn_Canada                = { .pos = {-4855, 3148}, },
+				.ntn_UnitedStates          = { .pos = {4584, -3084}, },
+			}
+		},
+
+		.EuropeMap = 
+		{
+			.nations = 
+			{
+				.ntn_England                = { .pos = { -10044, 3777}, },
+				.ntn_Belgium          		= { .pos = {-5717, 1858}, },
+				.ntn_France          		= { .pos = {-7893, -443}, },
+				.ntn_Germany         		= { .pos = {-1092, 3218}, },
+				.ntn_Italy         			= { .pos = {-3573, -2833}, },
+				.ntn_Poland         		= { .pos = {2396, 4018}, },
+				.ntn_Russia         		= { .pos = {7970, 11741}, },
+				.ntn_Spain         			= { .pos = {-10737, -6312}, },
+				.ntn_HolyRomanEmpire       = { .pos = {-4102, 2353}, },
+				.ntn_Celts                 = { .pos = {-9027, 4430}, },
+				.ntn_ByzantineEmpire       = { .pos = {7417, -5963}, },
+				.ntn_Greece                = { .pos = {4275, -7906}, },
+				.ntn_RomanEmpire           = { .pos = {-1926, -5367}, },
+				.ntn_Georgia               = { .pos = {15332, -4848}, },
+				.ntn_AssyrianEmpire        = { .pos = {15660, -12193}, },
+				.ntn_SonghaiEmpire         = { .pos = {-11291, -13345}, },
+				.ntn_PalmyreneEmpire       = { .pos = {12122, -11508}, },
+				.ntn_Egypt                 = { .pos = {6451, -13555}, },
+				.ntn_AbbasidCaliphate      = { .pos = {14292, -10265}, },
+				.ntn_PersianEmpire         = { .pos = {12678, -13216}, },
+			}
+		},
+
+		.AsiaMap = 
+		{
+			.nations = 
+			{
+				.ntn_China                = { .pos = { -954, 3927}, },
+				.ntn_Thailand          = { .pos = {-4256, -4326}, },
+				.ntn_Korea          = { .pos = {6590, 5109}, },
+				.ntn_Japan                 = { .pos = {11293, -469}, },
+				.ntn_India                 = { .pos = {-12877, 160}, },
+				.ntn_MongolEmpire          = { .pos = {-2614, 9514}, },
+				.ntn_Russia          		= { .pos = {-13622, 9876}, },
+			}
+		},
+
+		.MedMap = 
+		{
+			.nations = 
+			{
+				.ntn_Greece                 = { .pos = { -11982, 3419}, },
+				.ntn_Egypt          		= { .pos = {-2196, -11910}, },
+				.ntn_PersianEmpire          = { .pos = {14624, -5971}, },
+				.ntn_AssyrianEmpire         = { .pos = {11099, 1660}, },
+				.ntn_ByzantineEmpire        = { .pos = {-4968, 7344}, },
+				.ntn_Kush                  	= { .pos = {-988, -13206}, },
+				.ntn_PalmyreneEmpire       	= { .pos = {4475, -1925}, },
+				.ntn_Georgia               	= { .pos = {11301, 7312}, },
+				.ntn_AbbasidCaliphate      	= { .pos = {10361, -3184}, },
+			}
+		},
+
+		.SkirmishMap = 
+		{
+			.nations = 
+			{
+				.ntn_RomanEmpire            = { .pos = { -9061, -7905}, },
+				.ntn_China          		= { .pos = {7581, 8935}, },
+			}
+		},
+
+		.TeraMap = 
+		{
+			.nations = 
+			{
+				// North America
+				.ntn_AztecEmpire           = { .pos = {-5268, -1566}, },
+				.ntn_Canada                = { .pos = {684, 5817}, },
+				.ntn_Cherokee              = { .pos = {-3957, 1061}, },
+				.ntn_CrowNation            = { .pos = {-4966, 2807}, },
+				.ntn_Mexico                = { .pos = {-5632, -2847}, },
+				.ntn_UnitedStates          = { .pos = {-209, 1920}, },
+
+				// South America
+				.ntn_Argentina             = { .pos = {-4990, -10795}, },
+				.ntn_IncaEmpire            = { .pos = {-6270, -5570}, },
+				.ntn_Venezuela             = { .pos = {-2861, -4024}, },
+
+				// Europe
+				.ntn_Belgium               = { .pos = {6697, 5701}, },
+				.ntn_ByzantineEmpire       = { .pos = {13176, 3238}, },
+				.ntn_Celts                 = { .pos = {6472, 9595}, },
+				.ntn_England               = { .pos = {5171, 9101}, },
+				.ntn_France                = { .pos = {5422, 3970}, },
+				.ntn_Georgia               = { .pos = {14136, 790}, },
+				.ntn_Germany               = { .pos = {8645, 5460}, },
+				.ntn_Greece                = { .pos = {12022, 633}, },
+				.ntn_HolyRomanEmpire       = { .pos = {9816, 3944}, },
+				.ntn_Italy                 = { .pos = {7660, 2975}, },
+				.ntn_Poland                = { .pos = {11054, 6299}, },
+				.ntn_RomanEmpire           = { .pos = {8714, 1788}, },
+				.ntn_Spain                 = { .pos = {4353, 1003}, },
+
+				// Asia
+				.ntn_AbbasidCaliphate      = { .pos = {13137, -2131}, },
+				.ntn_AssyrianEmpire        = { .pos = {15190, 1706}, },
+				.ntn_China                 = { .pos = {-14681, -1222}, },
+				.ntn_India                 = { .pos = {14650, -3060}, },
+				.ntn_Japan                 = { .pos = {-10879, -3607}, },
+				.ntn_Korea                 = { .pos = {-11573, 497}, },
+				.ntn_MongolEmpire          = { .pos = {-15558, 3569}, },
+				.ntn_PalmyreneEmpire       = { .pos = {13623, -514}, },
+				.ntn_PersianEmpire         = { .pos = {12609, 1578}, },
+				.ntn_Russia                = { .pos = {12875, 8845}, },
+				.ntn_Thailand              = { .pos = {-15052, -3969}, },
+
+				// Africa
+				.ntn_Egypt                 = { .pos = {8250, -5740}, },
+				.ntn_Ethiopia              = { .pos = {9492, -7345}, },
+				.ntn_Ghana                 = { .pos = {3058, -6568}, },
+				.ntn_Kush                  = { .pos = {9119, -4900}, },
+				.ntn_SonghaiEmpire         = { .pos = {2446, -5434}, },
+				.ntn_Zulu                  = { .pos = {8127, -11709}, },
+
+				// Australia
+				.ntn_Australia             = { .pos = {-9207, -10854}, },
+			}
+		},
+
+		.IslandsMap = 
+		{
+			.nations = 
+			{
+				.ntn_Spain                  = { .pos = { -11196, 4407}, },
+				.ntn_UnitedStates          	= { .pos = {-618, 10230}, },
+				.ntn_France          		= { .pos = {9430, 7469}, },
+				.ntn_Germany         		= { .pos = {9830, -4380}, },
+				.ntn_Italy         			= { .pos = {-456, -10406}, },
+				.ntn_England         		= { .pos = {-10602, -5511}, },
+			}
+		},
+
+		.AmericaMap =
+		{
+			.nations =
+			{
+				// North America
+				.ntn_AztecEmpire           = { .pos = {-4717, -8093}, },
+				.ntn_Canada                = { .pos = {6233, 6601}, },
+				.ntn_Cherokee              = { .pos = {2981, -2604}, },
+				.ntn_CrowNation            = { .pos = {-9698, 4061}, },
+				.ntn_Mexico                = { .pos = {-4217, -11563}, },
+				.ntn_UnitedStates          = { .pos = {6506, 1191}, },
+				.ntn_IncaEmpire          = { .pos = {-536, -13625}, },
+			}
+		},
+
+		.EurasiaMap =
+		{
+			.nations =
+			{
+				// North America
+				.ntn_MongolEmpire           = { .pos = {9274, 6258}, },
+				.ntn_China                	= { .pos = {11507, 2353}, },
+				.ntn_Korea              	= { .pos = {15389, 2670}, },
+				.ntn_Thailand            	= { .pos = {10749, -3733}, },
+				.ntn_India                	= { .pos = {5188, -1367}, },
+				.ntn_ByzantineEmpire        = { .pos = {-6094, 3339}, },
+				.ntn_Celts          		= { .pos = {-12565, 8187}, },
+				.ntn_Russia          		= { .pos = {-6793, 8913}, },
+				.ntn_HolyRomanEmpire        = { .pos = {-10769, 6264}, },
+				.ntn_SonghaiEmpire      	= { .pos = {-15289, -5036}, },
+				.ntn_AbbasidCaliphate       = { .pos = {-3028, 771}, },
+				.ntn_RomanEmpire           	= { .pos = {-10102, 3464}, },
+				.ntn_Zulu                  	= { .pos = { -4326, -11227}, },
+				.ntn_Japan                 	= { .pos = {14669, 462}, },
+				.ntn_Greece                	= { .pos = {-8072, 2919}, },
+				.ntn_Egypt                 	= { .pos = {-5090, -1516}, },
+				.ntn_Italy                 	= { .pos = {-10690, 4425}, },
+				.ntn_Spain                 	= { .pos = {-13563, 3713}, },
+				.ntn_Germany               	= { .pos = {-9674, 6281}, },
+				.ntn_AssyrianEmpire        	= { .pos = {-3967, 1667}, },
+				.ntn_England               	= { .pos = {-13018, 8132}, },
+				.ntn_PersianEmpire         	= { .pos = {1576, -216}, },
+				.ntn_Ethiopia              	= { .pos = {-4097, -5826}, },
+				.ntn_Georgia               	= { .pos = {-3042, 2776}, },
+				.ntn_Kush                  	= { .pos = {-4616, -3846}, },
+				.ntn_France          		= { .pos = {-12192, 5714}, },
+				.ntn_Belgium          		= { .pos = {-11702, 6790}, },
+				.ntn_Poland                	= { .pos = {-8849, 6519}, },
+				.ntn_Ghana                 	= { .pos = {-13173, -6025}, },
+				.ntn_PalmyreneEmpire      	= { .pos = {-4662, 1371}, },
+			}
+		},
+	},
+};

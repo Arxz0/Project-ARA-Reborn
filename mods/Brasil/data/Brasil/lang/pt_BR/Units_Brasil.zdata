@@ -1,0 +1,89 @@
+
+schema Units;
+
+[[ Define our upgrade role types through idents to allow easier ability to both adjust/allow mods to utilize]]
+ident UpgradeGroupMeleeInfantry = "MeleeInfantry";
+ident UpgradeGroupMeleeCavalry = "MeleeCavalry";
+ident UpgradeGroupProjectile = "Projectile";
+ident UpgradeGroupGunpowderInfantry = "GunpowderInfantry";
+ident UpgradeGroupGunCavalry = "GunCavalry";
+ident UpgradeGroupArtillery = "Artillery";
+ident UpgradeGroupModernInfantry = "ModernInfantry";
+ident UpgradeGroupArmor = "Armor";
+ident UpgradeGroupWarship = "Warship";
+ident UpgradeGroupTransport = "Transport";
+ident UpgradeGroupCannonShip = "CannonShip";
+ident UpgradeGroupSubmarine = "Submarine";
+ident UpgradeGroupDestroyer = "Destroyer";
+ident UpgradeGroupBattleship = "Battleship";
+ident UpgradeGroupCarrier = "Carrier";
+ident UpgradeGroupFighter = "Fighter";
+ident UpgradeGroupBomber = "Bomber";
+ident UpgradeGroupHelicopter = "Helicopter";
+ident UpgradeGroupSiege = "Siege";
+ident UpgradeGroupInfantry = "Infantry";
+ident UpgradeGroupRanged = "Ranged";
+ident UpgradeGroupMountedRanged = "MountedRanged";
+ident UpgradeGroupMounted = "Mounted";
+
+export UnitTemplate unt_Pracinhas =
+{
+    .Name = "Pracinhas",
+    .Description = "Infantaria armada com fuzis da For\xC3\xA7\x61 Expedicion\xC3\xA1ria Brasileira, que funciona melhor disparando contra ex\xC3\xA9rcitos inimigos \xC3\xA0 dist\xC3\xA2ncia. Vulner\xC3\xA1vel \xC3\xA0 cavalaria em combate.",
+    .EncartaStrategy = "Infantaria exclusiva do Brasil, um pouco mais forte que as outras infantarias de fuzileiros da sua era. Posicione os Pracinhas para enfraquecer os ex\xC3\xA9rcitos inimigos \xC3\xA0 dist\xC3\xA2ncia antes do corpo a corpo. Cuidado com a cavalaria.",
+    .EncartaHistory = "\xE2\x80\x9CPracinhas\xE2\x80\x9D foi o apelido carinhoso dado aos soldados da For\xC3\xA7\x61 Expedicion\xC3\xA1ria Brasileira (FEB), enviada pelo governo Vargas para lutar ao lado dos Aliados na Segunda Guerra Mundial. Mais de 25 mil brasileiros atravessaram o Atl\xC3\xA2ntico e combateram na It\xC3\xA1lia entre 1944 e 1945. Enfrentando o frio do inverno nos Apeninos, os Pracinhas tomaram Monte Castello em fevereiro de 1945 e Montese em abril, e perto de Fornovo di Taro aceitaram a rendi\xC3\xA7\xC3\xA3o de uma divis\xC3\xA3o alem\xC3\xA3 inteira. O emblema deles, uma cobra fumando cachimbo, respondia \xC3\xA0 velha piada de que seria mais f\xC3\xA1\x63il uma cobra fumar do que o Brasil entrar na guerra.",
+
+    .Asset = "Rifleman",
+    .AtlasID = "RedoubtInfantry",
+
+    .SearchTags =
+    {
+        "TXT_UNT_ORDER_MOVE",
+        "TXT_UNT_ORDER_FORTIFY",
+        "TXT_UNT_ORDER_PILLAGE",
+        "TXT_UNT_WAIT",
+        "TXT_UNT_WAIT_TIL_HEALED",
+        "TXT_NEW_UNIT_RANGED",
+        "TXT_STAT_ATTACK",
+        "TXT_STAT_DEFENSE",
+        "TXT_STAT_SPEED",
+        "TXT_STAT_RANGE",
+        "TXT_STAT_INITIATIVE",
+        "TXT_WAR",
+        "TXT_SIEGE",
+        "TXT_UNIT_LAND",
+        "TXT_UNIT_PIERCING",
+        "Pracinhas",
+        "Infantaria armada com fuzis da For\xC3\xA7\x61 Expedicion\xC3\xA1ria Brasileira, que funciona melhor disparando contra ex\xC3\xA9rcitos inimigos \xC3\xA0 dist\xC3\xA2ncia. Vulner\xC3\xA1vel \xC3\xA0 cavalaria em combate.",
+    },
+
+    .ImprovementID = "",
+    .uiFOWOverrideHash = "",
+    
+
+    .Flags = ( Actions.CanUpgrade | Actions.Military | Actions.CanPillage | Actions.CanHunt | Actions.CanHeal | Actions.CanSiege | Actions.CanAttackLand | Actions.CanDisengage | Actions.CanAttackSea | Actions.CanNavigateLand | Actions.CanBombardArmies | Actions.CanAutoExplore),
+
+    .uiBaseStrength = 57u,
+    .uiBaseReligionStrength = 0u,
+    .uiBaseSpeed = 1u,
+    .uiBombardRange = 1u,
+
+    .Type = RulesTypes.FormationType.Land,
+    .DamageType = RulesTypes.DamageTypes.Ranged,
+    .Role = RulesTypes.UnitRoles.GunpowderInfantry,
+    .UpgradeGroup = UpgradeGroupInfantry,
+    
+
+    .ConstructionCost =
+    {
+        .itm_PracinhaGear = 1u,
+    },
+
+    .MaintenanceCost =
+    {
+        .itm_Food = 1u,
+        .itm_Money = 2u,
+    },
+
+    .uiMaxOwnedArmies = 0u,
+};

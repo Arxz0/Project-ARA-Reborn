@@ -1,0 +1,57 @@
+schema ModAssets;
+
+export AssetList Root =
+{
+    .IconAtlases =
+    {
+        .NationEmblems =
+        {
+            .Textures =
+            {
+                ."Brazil" = "images/Brazil_NationEmblem.png",
+            },
+        },
+        .LeaderEmblems_256 =
+        {
+            .Textures =
+            {
+                ."Brazil" = "images/Brazil_LeaderEmblem_256.png",
+            },
+        },
+        .LeaderSquare_256 =
+        {
+            .Textures =
+            {
+                ."GetulioVargas" = "images/Getulio_Square_256.png",
+            },
+        },
+        .Leaders_Left_Facing =
+        {
+            .Textures =
+            {
+                ."GetulioVargas" = "images/Getulio_Left_256x350.png",
+            },
+        },
+        .Leaders_Right_Facing =
+        {
+            .Textures =
+            {
+                ."GetulioVargas" = "images/Getulio_Right_256x350.png",
+            },
+        },
+        .LeaderFeatures =
+        {
+            .Textures =
+            {
+                ."EstadoNovo" = "images/EstadoNovo_256.png",
+            },
+        },
+        .ContinueGame_Leaders =
+        {
+            .Textures =
+            {
+                ."GetulioVargas" = "images/Getulio_Continue_250x350.png",
+            },
+        },
+    },
+};

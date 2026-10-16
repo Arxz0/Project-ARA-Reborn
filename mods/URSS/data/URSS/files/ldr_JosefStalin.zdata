@@ -1,0 +1,93 @@
+schema Leaders;
+
+export LeaderTemplate Root =
+{
+    .sID            = "ldr_JosefStalin",
+    .sName           = "Joseph Stalin",
+    .sTitle         = "TXT_TITLE_REVOLUTIONARY",
+    .AtlasID       = "JosefStalin",
+    .uiPronounID     = "prn_He",
+    .uiPersonalityID = "psn_Megalomaniacal",
+    .sDescription   = "Joseph Stalin was the leader of the Soviet Union from the mid-1920s until his death in 1953. He forced the country through rapid industrialization and the collectivization of agriculture, ruled through terror and a vast system of labor camps, and led the Red Army to victory over Nazi Germany in the Great Patriotic War, leaving the USSR as one of the world's two superpowers.",
+    .sEncartaStrategy = "Joseph Stalin is a leader for those who want an industrial nation that is almost impossible to conquer. His feature, \xE2\x80\x9CGreat Patriotic War\xE2\x80\x9D, gives +25% Strength to Land armies fighting inside your territory, makes Military Improvements craft 50% faster and halves your War Weariness. Aggressive gives +50% army Strength for 5 turns at the start of a war, Efficient adds Production to Improvements for every Industry Improvement in their Region, Disciplined turns every Military Improvement into Culture for its City, and Unyielding makes each victory inflict War Weariness on the enemy. Build industry and barracks early, let the enemy break against your borders and, in the Machine Age, field the T-34, the Soviet Union's unique tank.",
+    .sEncartaHistory = "Ioseb Jughashvili was born in 1878 in Gori, Georgia, the son of a shoemaker. Expelled from the Tiflis seminary, he joined the Bolsheviks, robbed banks to fund the party, was exiled to Siberia several times and adopted the name Stalin, \xE2\x80\x9Cman of steel\xE2\x80\x9D. After the Revolution of 1917 he became General Secretary of the Communist Party in 1922 and, after Lenin's death, outmaneuvered Trotsky and his other rivals to become the sole ruler of the Soviet Union. From 1928, his Five-Year Plans built steelworks, dams and entire industrial cities such as Magnitogorsk, while the forced collectivization of agriculture caused the famine of 1932\xE2\x80\x931933, which killed millions, above all in Ukraine. Between 1936 and 1938 the Great Purge executed or imprisoned hundreds of thousands of party members, officers and ordinary citizens, and the Gulag camps held millions. In 1939 he signed a non-aggression pact with Hitler, but in June 1941 Germany invaded the USSR. Stalin remained in Moscow, issued the order \xE2\x80\x9CNot one step back!\xE2\x80\x9D and, after the victories at Stalingrad and Kursk, the Red Army reached Berlin in May 1945. At Yalta and Potsdam he negotiated the post-war order with Roosevelt, Churchill and Truman, and the Soviet Union emerged as a superpower that tested its first atomic bomb in 1949. Stalin died in March 1953; three years later Nikita Khrushchev denounced his crimes and his cult of personality.",
+    .uiFeatureID = "ftr_GreatPatrioticWar",
+    .vTraits =
+    {
+        "trt_Aggressive",
+        "trt_Efficient",
+        "trt_Disciplined",
+        "trt_Vindictive",
+    },
+
+
+    .ActFlavorHeadings =
+    {
+        "The man of steel.",
+        "The Five-Year Plans.",
+        "Not one step back.",
+    },
+
+    .ActFlavorStrings =
+    {
+        "Joseph Stalin, son of a shoemaker from Gori, the Revolution has placed a vast and broken land in your hands. Forge its peoples into a single Union, and make it strong enough that no one will ever dare to invade it again.",
+        "Furnaces burn day and night, and cities of steel rise where there was only steppe. The Union is changing at a pace the world has never seen. Keep the factories running and the Union will become a power that no enemy can break.",
+        "The Red banner flies over the capitals of your enemies, and the Union speaks as an equal to the greatest powers on Earth. As rockets rise toward the stars, you will decide what the Union becomes.",
+    },
+
+    .Act2RankStrings =
+    {
+        "From Leningrad to Vladivostok, the world watches the rise of the Union with awe and fear.",
+        "Steel, tractors and new railways: the foundations of Soviet power are firmly in place.",
+        "The cost has been terrible and your enemies many, but the Union still stands.",
+    },
+
+    .Act3RankStrings =
+    {
+        "The Soviet Union stands as a superpower, and no one in the world can ignore its voice.",
+        "The Union has endured and grown strong under your iron hand.",
+        "Through war, famine and crisis you have held on, and the Union held on with you.",
+    },
+
+    .FirstContact =
+    {
+        "Stalin receives you with a slow smile and his pipe in hand, and proposes a treaty that seems, at first sight, generous.",
+        "The Soviet leader listens in silence, studying you like a chess player studies the board. It is impossible to know what he is thinking.",
+        "Stalin barely looks at you. His aides take notes on every word, and you have the uneasy feeling that your name is going onto a list.",
+    },
+
+	.AIAlignment =
+	{
+		[AIAlignment.Alignment.Prestige]     = 6u8,
+		[AIAlignment.Alignment.Research]     = 6u8,
+		[AIAlignment.Alignment.Masterpieces] = 2u8,
+		[AIAlignment.Alignment.Religion]     = 1u8,
+		[AIAlignment.Alignment.Production]   = 9u8,
+		[AIAlignment.Alignment.Offense]      = 6u8,
+		[AIAlignment.Alignment.Defense]      = 8u8,
+		[AIAlignment.Alignment.Food]         = 5u8,
+		[AIAlignment.Alignment.Stone]        = 6u8,
+		[AIAlignment.Alignment.Wood]         = 5u8,
+		[AIAlignment.Alignment.Money]        = 4u8,
+		[AIAlignment.Alignment.Happiness]    = 3u8,
+		[AIAlignment.Alignment.Health]       = 4u8,
+		[AIAlignment.Alignment.Wealth]       = 3u8,
+		[AIAlignment.Alignment.Education]    = 6u8,
+		[AIAlignment.Alignment.Security]     = 9u8,
+		[AIAlignment.Alignment.Bias]         = 10u8,
+		[AIAlignment.Alignment.Diplomacy]    = 3u8,
+		[AIAlignment.Alignment.Housing]      = 5u8,
+	},
+
+    .vSkins =
+    {
+        {
+            .SkinID = "ldr_c_1924",
+            .AtlasID = "JosefStalin",
+        },
+        {
+            .SkinID = "ldr_c_1945",
+            .AtlasID = "MarechalStalin",
+        },
+    },
+};

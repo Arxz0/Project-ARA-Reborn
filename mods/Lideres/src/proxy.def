@@ -1,0 +1,34 @@
+LIBRARY "swscale-7.dll"
+EXPORTS
+    sws_allocVec=swscale-7_orig.sws_allocVec @1
+    sws_alloc_context=swscale-7_orig.sws_alloc_context @2
+    sws_alloc_set_opts=swscale-7_orig.sws_alloc_set_opts @3
+    sws_convertPalette8ToPacked24=swscale-7_orig.sws_convertPalette8ToPacked24 @4
+    sws_convertPalette8ToPacked32=swscale-7_orig.sws_convertPalette8ToPacked32 @5
+    sws_frame_end=swscale-7_orig.sws_frame_end @6
+    sws_frame_start=swscale-7_orig.sws_frame_start @7
+    sws_freeContext=swscale-7_orig.sws_freeContext @8
+    sws_freeFilter=swscale-7_orig.sws_freeFilter @9
+    sws_freeVec=swscale-7_orig.sws_freeVec @10
+    sws_getCachedContext=swscale-7_orig.sws_getCachedContext @11
+    sws_getCoefficients=swscale-7_orig.sws_getCoefficients @12
+    sws_getColorspaceDetails=swscale-7_orig.sws_getColorspaceDetails @13
+    sws_getContext=swscale-7_orig.sws_getContext @14
+    sws_getDefaultFilter=swscale-7_orig.sws_getDefaultFilter @15
+    sws_getGaussianVec=swscale-7_orig.sws_getGaussianVec @16
+    sws_get_class=swscale-7_orig.sws_get_class @17
+    sws_init_context=swscale-7_orig.sws_init_context @18
+    sws_isSupportedEndiannessConversion=swscale-7_orig.sws_isSupportedEndiannessConversion @19
+    sws_isSupportedInput=swscale-7_orig.sws_isSupportedInput @20
+    sws_isSupportedOutput=swscale-7_orig.sws_isSupportedOutput @21
+    sws_normalizeVec=swscale-7_orig.sws_normalizeVec @22
+    sws_receive_slice=swscale-7_orig.sws_receive_slice @23
+    sws_receive_slice_alignment=swscale-7_orig.sws_receive_slice_alignment @24
+    sws_scale=swscale-7_orig.sws_scale @25
+    sws_scaleVec=swscale-7_orig.sws_scaleVec @26
+    sws_scale_frame=swscale-7_orig.sws_scale_frame @27
+    sws_send_slice=swscale-7_orig.sws_send_slice @28
+    sws_setColorspaceDetails=swscale-7_orig.sws_setColorspaceDetails @29
+    swscale_configuration=swscale-7_orig.swscale_configuration @30
+    swscale_license=swscale-7_orig.swscale_license @31
+    swscale_version=swscale-7_orig.swscale_version @32

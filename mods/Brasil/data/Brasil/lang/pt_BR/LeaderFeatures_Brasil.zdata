@@ -1,0 +1,17 @@
+schema Leaders;
+
+export LeaderFeature ftr_EstadoNovo =
+{
+    .Name = "Estado Novo",
+    .Description = "No Estado Novo (1937\xE2\x80\x93\x31\x39\x34\x35), Vargas centralizou o poder, fundou a siderurgia e a minera\xC3\xA7\xC3\xA3o estatais e criou as leis trabalhistas e os direitos sociais do Brasil: +50% de Produ\xC3\xA7\xC3\xA3o de Constru\xC3\xA7\xC3\xA3o para Melhorias de Ind\xC3\xBAstria e +5 a todas as Estat\xC3\xADsticas de Cidad\xC3\xA3os em todas as Cidades.",
+    .AtlasID = "EstadoNovo",
+
+    .Buffs =
+    {
+        "buf_EstadoNovo_A","buf_EstadoNovo_B"
+    },
+
+    .GameStartReward =
+    {
+    }
+};

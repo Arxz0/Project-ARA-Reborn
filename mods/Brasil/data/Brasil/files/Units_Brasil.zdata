@@ -1,0 +1,89 @@
+
+schema Units;
+
+[[ Define our upgrade role types through idents to allow easier ability to both adjust/allow mods to utilize]]
+ident UpgradeGroupMeleeInfantry = "MeleeInfantry";
+ident UpgradeGroupMeleeCavalry = "MeleeCavalry";
+ident UpgradeGroupProjectile = "Projectile";
+ident UpgradeGroupGunpowderInfantry = "GunpowderInfantry";
+ident UpgradeGroupGunCavalry = "GunCavalry";
+ident UpgradeGroupArtillery = "Artillery";
+ident UpgradeGroupModernInfantry = "ModernInfantry";
+ident UpgradeGroupArmor = "Armor";
+ident UpgradeGroupWarship = "Warship";
+ident UpgradeGroupTransport = "Transport";
+ident UpgradeGroupCannonShip = "CannonShip";
+ident UpgradeGroupSubmarine = "Submarine";
+ident UpgradeGroupDestroyer = "Destroyer";
+ident UpgradeGroupBattleship = "Battleship";
+ident UpgradeGroupCarrier = "Carrier";
+ident UpgradeGroupFighter = "Fighter";
+ident UpgradeGroupBomber = "Bomber";
+ident UpgradeGroupHelicopter = "Helicopter";
+ident UpgradeGroupSiege = "Siege";
+ident UpgradeGroupInfantry = "Infantry";
+ident UpgradeGroupRanged = "Ranged";
+ident UpgradeGroupMountedRanged = "MountedRanged";
+ident UpgradeGroupMounted = "Mounted";
+
+export UnitTemplate unt_Pracinhas =
+{
+    .Name = "Pracinhas",
+    .Description = "Rifle-armed ranged infantry of the Brazilian Expeditionary Force that works best when firing on enemy armies from range. Vulnerable to cavalry in combat.",
+    .EncartaStrategy = "Infantry unique to Brazil, slightly stronger than other rifle infantry of its era. Position the Pracinhas to weaken enemy armies from range before melee. Beware of cavalry.",
+    .EncartaHistory = "\xE2\x80\x9CPracinhas\xE2\x80\x9D was the affectionate nickname given to the soldiers of the Brazilian Expeditionary Force (FEB), sent by the Vargas government to fight alongside the Allies in the Second World War. More than 25,000 Brazilians crossed the Atlantic and fought in Italy between 1944 and 1945. Facing the cold of the Apennine winter, the Pracinhas took Monte Castello in February 1945 and Montese in April, and near Fornovo di Taro they accepted the surrender of an entire German division. Their insignia, a snake smoking a pipe, answered the old joke that it would be easier for a snake to smoke than for Brazil to go to war.",
+
+    .Asset = "Rifleman",
+    .AtlasID = "RedoubtInfantry",
+
+    .SearchTags =
+    {
+        "TXT_UNT_ORDER_MOVE",
+        "TXT_UNT_ORDER_FORTIFY",
+        "TXT_UNT_ORDER_PILLAGE",
+        "TXT_UNT_WAIT",
+        "TXT_UNT_WAIT_TIL_HEALED",
+        "TXT_NEW_UNIT_RANGED",
+        "TXT_STAT_ATTACK",
+        "TXT_STAT_DEFENSE",
+        "TXT_STAT_SPEED",
+        "TXT_STAT_RANGE",
+        "TXT_STAT_INITIATIVE",
+        "TXT_WAR",
+        "TXT_SIEGE",
+        "TXT_UNIT_LAND",
+        "TXT_UNIT_PIERCING",
+        "Pracinhas",
+        "Rifle-armed ranged infantry of the Brazilian Expeditionary Force that works best when firing on enemy armies from range. Vulnerable to cavalry in combat.",
+    },
+
+    .ImprovementID = "",
+    .uiFOWOverrideHash = "",
+    
+
+    .Flags = ( Actions.CanUpgrade | Actions.Military | Actions.CanPillage | Actions.CanHunt | Actions.CanHeal | Actions.CanSiege | Actions.CanAttackLand | Actions.CanDisengage | Actions.CanAttackSea | Actions.CanNavigateLand | Actions.CanBombardArmies | Actions.CanAutoExplore),
+
+    .uiBaseStrength = 57u,
+    .uiBaseReligionStrength = 0u,
+    .uiBaseSpeed = 1u,
+    .uiBombardRange = 1u,
+
+    .Type = RulesTypes.FormationType.Land,
+    .DamageType = RulesTypes.DamageTypes.Ranged,
+    .Role = RulesTypes.UnitRoles.GunpowderInfantry,
+    .UpgradeGroup = UpgradeGroupInfantry,
+    
+
+    .ConstructionCost =
+    {
+        .itm_PracinhaGear = 1u,
+    },
+
+    .MaintenanceCost =
+    {
+        .itm_Food = 1u,
+        .itm_Money = 2u,
+    },
+
+    .uiMaxOwnedArmies = 0u,
+};

@@ -1,0 +1,120 @@
+schema Nations;
+
+export NationTemplate ntn_SovietUnion = 
+{
+    .TemplateName = "ntn_SovietUnion",
+    .Name = "Uni\xC3\xA3o Sovi\xC3\xA9tica",
+    .SortName = "Uni\xC3\xA3o Sovi\xC3\xA9tica",
+    .CultureSet = "cul_European",
+    .AtlasID = "SovietUnion",
+    .LanguageTableID = "lt_Slavic",
+    .PeopleAdjective = "Sovi\xC3\xA9tico",
+    .PeoplePluralAdjective = "Sovi\xC3\xA9ticos",
+    .Heritage = "Sovi\xC3\xA9tico",
+    .Description = "A Uni\xC3\xA3o das Rep\xC3\xBAblicas Socialistas Sovi\xC3\xA9ticas foi uma federa\xC3\xA7\xC3\xA3o de quinze rep\xC3\xBAblicas que se estendia do Mar B\xC3\xA1ltico ao Oceano Pac\xC3\xADfico. Nascida da Revolu\xC3\xA7\xC3\xA3o Russa de 1917, tornou-se o primeiro Estado socialista da hist\xC3\xB3ria, uma superpot\xC3\xAAncia industrial e militar e um dos dois polos da Guerra Fria at\xC3\xA9 sua dissolu\xC3\xA7\xC3\xA3o em 1991.",
+    .EncartaHistory = "Em outubro de 1917, os bolcheviques liderados por Vladimir Lenin tomaram o poder em Petrogrado e, depois de uma guerra civil brutal, fundaram em 1922 a Uni\xC3\xA3o das Rep\xC3\xBAblicas Socialistas Sovi\xC3\xA9ticas, unindo R\xC3\xBAssia, Ucr\xC3\xA2nia, Bielorr\xC3\xBAssia e as rep\xC3\xBAblicas da Transcauc\xC3\xA1sia. Sob Josef Stalin, os Planos Quinquenais transformaram um pa\xC3\xADs agr\xC3\xA1rio numa pot\xC3\xAAncia industrial a um custo humano enorme: a coletiviza\xC3\xA7\xC3\xA3o for\xC3\xA7ada da agricultura, a fome de 1932\xE2\x80\x931933 e o Grande Expurgo custaram milh\xC3\xB5es de vidas. Invadida pela Alemanha nazista em 1941, a Uni\xC3\xA3o Sovi\xC3\xA9tica perdeu mais de 25 milh\xC3\xB5es de pessoas na Grande Guerra Patri\xC3\xB3tica, mas o Ex\xC3\xA9rcito Vermelho virou a guerra em Moscou, Stalingrado e Kursk e chegou a Berlim em 1945. Nas d\xC3\xA9cadas seguintes, a URSS tornou-se uma superpot\xC3\xAAncia nuclear, lan\xC3\xA7ou o Sputnik, levou Yuri Gagarin ao espa\xC3\xA7o em 1961 e liderou o Bloco do Leste na Guerra Fria contra os Estados Unidos. A estagna\xC3\xA7\xC3\xA3o econ\xC3\xB4mica, as reformas de Mikhail Gorbachev e a ascens\xC3\xA3o dos movimentos nacionais levaram \xC3\xA0 sua dissolu\xC3\xA7\xC3\xA3o em dezembro de 1991.",
+    .RegionNames = 
+    {
+        "Moscou", 
+        "Leningrado", 
+        "Stalingrado", 
+        "Kiev", 
+        "Minsk", 
+        "Tbilisi", 
+        "Baku", 
+        "Tashkent", 
+        "Kharkov", 
+        "Sverdlovsk", 
+        "Novosibirsk", 
+        "Gorki", 
+        "Kuibyshev", 
+        "Odessa", 
+        "Rostov do Don", 
+        "Riga", 
+        "Vilnius", 
+        "Tallinn", 
+        "Erevan", 
+        "Alma-Ata", 
+        "Frunze", 
+        "Stalinabad", 
+        "Asgabate", 
+        "Kishinev", 
+        "Murmansk", 
+        "Arcangel", 
+        "Vladivostok", 
+        "Khabarovsk", 
+        "Irkutsk", 
+        "Omsk", 
+        "Tcheliabinsk", 
+        "Magnitogorsk", 
+        "Molotov", 
+        "Kazan", 
+        "Ufa", 
+        "Saratov", 
+        "Voronej", 
+        "Smolensk", 
+        "Sebastopol", 
+        "Krasnoiarsk", 
+        "Gori", 
+    },
+    .LeaderIDs = 
+    {
+        "ldr_JosefStalin", 
+    },
+    .FlagIDs = 
+    {
+        "flg_SovietUnion_Default", 
+    },
+    .TeamColor = 
+    {
+        .Main = "plt_001",
+        .Secondary = "plt_004",
+        .Accent = "plt_015",
+    },
+    .SkinColors = 
+    {
+        {
+            .ColorIndex = 1,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 2,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 3,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 4,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 5,
+            .Weight = 1,
+        }, 
+    },
+    .HairColors = 
+    {
+        {
+            .ColorIndex = 33,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 34,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 35,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 36,
+            .Weight = 1,
+        }, 
+        {
+            .ColorIndex = 38,
+            .Weight = 1,
+        }, 
+    },
+};

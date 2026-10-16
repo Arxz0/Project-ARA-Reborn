@@ -1,0 +1,55 @@
+
+schema Items;
+
+// see note in Items0.zdata if you are curious about this
+ItemTemplate defaultData = {};
+
+export ItemTemplate itm_PracinhaGear =
+{
+    .Name = "Pracinhas",
+    .Description = "Rifle-armed ranged infantry of the Brazilian Expeditionary Force that works best when firing on enemy armies from range. Vulnerable to cavalry in combat.",
+    .FlavorText = "NONE",
+    .TargetUnitID = "unt_Pracinhas",
+    .RecipeID = "rcp_PracinhaGear",
+    .AtlasID = "Rifleman",
+    .EncartaStrategy = "Infantry unique to Brazil, slightly stronger than other rifle infantry of its era. Position the Pracinhas to weaken enemy armies from range before melee. Beware of cavalry.",
+    .EncartaHistory = "\xE2\x80\x9CPracinhas\xE2\x80\x9D was the affectionate nickname given to the soldiers of the Brazilian Expeditionary Force (FEB), sent by the Vargas government to fight alongside the Allies in the Second World War. More than 25,000 Brazilians crossed the Atlantic and fought in Italy between 1944 and 1945. Facing the cold of the Apennine winter, the Pracinhas took Monte Castello in February 1945 and Montese in April, and near Fornovo di Taro they accepted the surrender of an entire German division. Their insignia, a snake smoking a pipe, answered the old joke that it would be easier for a snake to smoke than for Brazil to go to war.",
+
+    .SearchTags =
+    {
+        "TXT_ITM_RECIPE",
+        "TXT_ITM_ITEMS",
+        "TXT_ITM_INGREDIENTS",
+        "TXT_ITM_PRODUCTION",
+        "TXT_ITM_STRATEGIC",
+        "TXT_IMP_FORGE",
+        "TXT_RTY_COMMON",
+        "Pracinhas",
+        "Rifle-armed ranged infantry of the Brazilian Expeditionary Force that works best when firing on enemy armies from range. Vulnerable to cavalry in combat.",
+        "Pracinhas",
+    },
+
+    .uiStartingCost = 60u,
+    .uiMinCost = 20u,
+    .uiMaxCost = 240u,
+    .uiActStart = 1u,
+    .uiActEnd = 5u,
+    .uiRarity = RulesTypes.eRarity.Common,
+    .uiType = RulesTypes.ItemType.Strategic,
+    .Domain = RulesTypes.DomainSets.Military,
+    .uiHarvestType = RulesTypes.HarvestType.NoneOfTheAbove,
+
+    .Flags = (Flags.OnMarket | Flags.Craftable | Flags.Weapon),
+    .uiActivateCost = 0u,
+    .ActivateBuffs = {},
+    .AddItemsOnConsume = {},
+    .uiGiveConsumeItemsForNumTurns = 0u,
+    .ActivateBuffsForImprovements = {},
+
+    .AIAlignment =
+    {
+        default = 0i8,
+        [AIAlignment.Alignment.Offense] = 4i8,
+        [AIAlignment.Alignment.Defense] = 3i8,
+    },
+};

@@ -1,0 +1,28 @@
+schema Buffs;
+
+// Estado Novo A - industrializacao estatal: construcao mais rapida de Melhorias de Industria
+export BuffTemplateData buf_EstadoNovo_A =
+{
+    .Description = "TXT_BUFF_IMPROVEMENTDOMAIN_INDUSTRY_BUILDRATE_MUL", 
+    .SourceType = BuffSourceType.LeaderFeature, 
+    .TargetType = BuffTargetType.Improvement, 
+    .Scope = BuffScope.All, 
+    .Turns = 0u, 
+    .Attributes = @"ATTR(AtrImprovementDomainCheck(Industry))ATTR", 
+    .Modifiers = @"MODS(ModMul(BuildRate, 0.50))MODS", 
+    .Flags = 0, 
+};
+
+// Estado Novo B - direitos sociais (CLT, salario minimo, Ministerio da Educacao e Saude, previdencia):
+// bonus a todas as estatisticas de cidadaos em todas as cidades, sem condicao
+export BuffTemplateData buf_EstadoNovo_B =
+{
+    .Description = "TXT_BUFF_ALLCITIESSTAT_ALLSTATS_ADD", 
+    .SourceType = BuffSourceType.LeaderFeature, 
+    .TargetType = BuffTargetType.City, 
+    .Scope = BuffScope.All, 
+    .Turns = 0u, 
+    .Attributes = @"ATTR()ATTR", 
+    .Modifiers = @"MODS(ModAdd(Happiness, 5.0) and ModAdd(Health, 5.0) and ModAdd(Aesthetics, 5.0) and ModAdd(Wealth, 5.0) and ModAdd(Education, 5.0))MODS", 
+    .Flags = 0, 
+};

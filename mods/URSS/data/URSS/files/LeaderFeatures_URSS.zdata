@@ -1,0 +1,17 @@
+schema Leaders;
+
+export LeaderFeature ftr_GreatPatrioticWar =
+{
+    .Name = "Great Patriotic War",
+    .Description = "In 1941\xE2\x80\x931945 the Soviet people defended their land at the cost of millions of lives while factories moved beyond the Urals kept the Red Army supplied: +25% Strength to Land armies within your territory, +50% Craft Rate in Military Improvements and -50% War Weariness.",
+    .AtlasID = "GreatPatrioticWar",
+
+    .Buffs =
+    {
+        "buf_GreatPatrioticWar_A","buf_GreatPatrioticWar_B","buf_GreatPatrioticWar_C"
+    },
+
+    .GameStartReward =
+    {
+    }
+};
