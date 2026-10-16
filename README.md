@@ -103,4 +103,10 @@ Brazil and the Soviet Union share the [**leader base**](mods/LeaderBase/README.m
 Project ARA: Reborn is a Fan project designed and inspired by the community, the project is not affiliated with Oxide Games or Microsoft. Use at your own discretion and keep backups of your saves. The project is ongoing and will get new updates, with new features and content.
 Feedback and contributions is greatly appreciated and the official ARA Discord channel is a good place to chat with this mod author. 
 
-License: to be defined by the author.
+Mod Author: Spartak/Arxz0
+Licenses: 
+Code (mods/*/src, tools, installers): MIT License.
+Mod content (nation data, texts, portraits, emblems, textures, narration): CC BY-NC-SA 4.0.
+Third-party assets keep their own licenses (see Credits).
+Not covered: ARA: History Untold game files and content (property of their owners);
+
