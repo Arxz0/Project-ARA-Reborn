@@ -1,0 +1,28 @@
+schema ConnectionPoints;
+
+export ConnectionPointsData export_ConnectionPointsData = 
+{
+    .Connections =
+    {
+        [RulesTypes.ConnectionType.LandWithRoad] = 
+        {
+            "imp_VillageHall",
+			"imp_TownCenter",
+			"imp_CityHall",
+            "imp_TrainStation",   // Mod Ferrovias
+            "imp_GreatHearth",
+             "imp_GreatHearth_A2",
+              "imp_GreatHearth_A3",
+        },
+		[RulesTypes.ConnectionType.Sea] = 
+        {
+            "imp_Docks",
+            "imp_Drydock",
+            "imp_NavalBase",
+        },
+		[RulesTypes.ConnectionType.Air] = 
+        {
+			"imp_Airport",
+        },
+    },
+};

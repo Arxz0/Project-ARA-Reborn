@@ -1,0 +1,117 @@
+schema Improvements;
+
+// Train Station (Mod Ferrovias): ponto de conexao de estrada/ferrovia em regioes sem cidade.
+// Liberado por tch_SteamEngine (era Enlightenment). Custos na faixa das melhorias da mesma era
+// (Factory 500/Steel 10+Concrete 10, Foundry 375/Wood 100+Concrete 30, CityHall 375, Forge 250).
+// Modelo 3D provisorio: o da Factory (o clone sem chamines e bege entra depois).
+export ImprovementTemplate imp_TrainStation =
+{
+    .PrevLevelID = "",
+    .NextLevelID = "",
+    .Name = "Train Station",
+    .Description = "A railway station. Serves as a road and railroad connection point, so railroads can start, end or pass through regions without a city.",
+    .EncartaStrategy = "",
+    .EncartaHistory = "",
+    .Asset = "Improvement_PostOffice",   // visual sem uso do jogo, apontado para o asset GEN_MAC_TrainStation (estacao.py)
+    .AtlasID = "Factory",
+    .FOWOverride = "",
+    .SearchTags =
+    {
+        "TXT_DOM_INDUSTRY",
+        "TXT_ROADS",
+    },
+    .Domains = (RulesTypes.Domain.Industry),
+    .uiProductionCost = 350u,
+    .uiNationMaxCount = 0u,
+    .uiProvinceMaxCount = 0u,
+    .GrantedFlags = (GrantedFlag.RoadConnectionPoint),
+    .AddPopulationOnComplete = 0u,
+    .BiomeRequirement = (RulesTypes.BiomeFlags.PolarDesert | RulesTypes.BiomeFlags.ColdDesert | RulesTypes.BiomeFlags.TemperateGrassland | RulesTypes.BiomeFlags.XericShrubland | RulesTypes.BiomeFlags.AridDesert | RulesTypes.BiomeFlags.Tundra | RulesTypes.BiomeFlags.Taiga | RulesTypes.BiomeFlags.TemperateForest | RulesTypes.BiomeFlags.Mediterranean | RulesTypes.BiomeFlags.Savanna | RulesTypes.BiomeFlags.TemperateRainforest | RulesTypes.BiomeFlags.TropicalForest | RulesTypes.BiomeFlags.TropicalRainforest),
+    .uiBaseProductionOutput = 1u,
+    .uiAttack = 0u,
+    .uiDefense = 4u,
+    .uiMaxHealth = 300u,
+    .uiActStart = 1u,
+    .uiActEnd = 4u,
+    .uiMasterpieceCreationSlots = {},
+    .ProductionType = ProductionType.Item,
+    .HarvestorType = RulesTypes.HarvestorType.Placeholder,
+    .BlockSize = BlockSize.e2x2,
+    .RegionHarvestType = 0,
+    .BuildImprovementItemCost =
+    {
+        .itm_Wood = 60u,
+        .itm_Stone = 40u,
+        .itm_Steel = 10u,
+    },
+    .UpgradeToImprovementItemCost =
+    {
+        .itm_Wood = 60u,
+        .itm_Stone = 40u,
+        .itm_Steel = 10u,
+    },
+    .AddItemsOnComplete =
+    {
+        .itm_Prestige = 1u,
+    },
+    .Recipes =
+    {
+    },
+    .MasterpieceSets =
+    {
+    },
+    .AddImprovementsOnComplete =
+    {
+    },
+    .GrantRewardBundlesOnComplete =
+    {
+    },
+    .SpawnQuestsOnComplete =
+    {
+    },
+    .AddBuffsOnComplete =
+    {
+    },
+    .FunctionsOnComplete = 0,
+    .WorkerSlots =
+    {
+        {
+            .Maintenance =
+            {
+                .itm_Money = 4u,
+                .itm_Wood = 1u,
+            },
+            .Buffs =
+            {
+            },
+            .AddItemsOnWorked =
+            {
+            },
+            .uiOccupations =
+            {
+                0u,
+                0u,
+                4u,
+                0u,
+                0u,
+                0u,
+                0u,
+                0u,
+                0u,
+                0u,
+                0u,
+                0u,
+                0u,
+                0u,
+            },
+            .UpdateFunctionsTypes = ImpUpdateFunction.NoSpecialFunction,
+        },
+    },
+    .ItemOptions =
+    {
+    },
+    .uiMaxOwnedArmies = 0u,
+    .Tags =
+    {
+    },
+};

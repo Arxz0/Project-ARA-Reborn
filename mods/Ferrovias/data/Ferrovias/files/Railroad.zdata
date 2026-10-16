@@ -1,0 +1,25 @@
+schema RoadTypes;
+
+// Ferrovia. Type precisa ser Dirt/Cobblestone/Asphalt (enum fixo no exe): usa Asphalt.
+// ItemCost e cobrado POR REGIAO pelo proprio jogo. A DLL do mod (bin/avformat-60.dll) libera o modelo com tch_SteamEngine.
+export RoadTemplate rdt_Railroad =
+{
+    .Type = RulesTypes.RoadType.Asphalt,
+    .uiAtlasID="AsphaltRoad",
+    .sName="Railroad",
+    .sDescription="Railroad. Built only by the player; replaces the road in each region it crosses.",
+    .CombatStats=
+    {
+        .uiHP=500,
+        .uiAttack=0,
+        .uiDefense=10
+    },
+    .uiProductionCost=30,
+    .ItemCost=
+    {
+        .itm_Wood  = 3,
+        .itm_Stone = 3,
+        .itm_Iron  = 2,
+        .itm_Steel = 2,
+    },
+};

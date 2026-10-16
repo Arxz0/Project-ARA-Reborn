@@ -1,0 +1,79 @@
+schema Technologies;
+
+int baseTechCost = 50;
+int AncientEraCost = 75;
+int BronzeAgeCost = 150;
+int IronAgeCost =  300;
+int AntiquitiesCost =  500;
+int EarlyMiddleAgesCost = 800;
+int HighMedievalCost = 1200; 
+int RenaissanceCost = 1600;
+int EnlightenmentCost = 2000;
+int MachineAgeCost = 2500;
+int AtomicAgeCost = 3200;
+int InformationAgeCost = 5000;
+int FutureAgeCost = 6500;
+
+// Mod Ferrovias: igual ao original, mais imp_TrainStation em UnlockImprovementsIDs.
+export TechnologyTemplate tch_SteamEngine =
+{
+    .Name = "TXT_TCH_THE_STEAM_ENGINE", 
+    .Description = "TXT_TCH_DESC_THE_STEAM_ENGINE",
+    
+    .AtlasID = "StageCoaches", 
+    .EncartaEntry = "tch_SteamEngine", 
+    .EncartaStrategy = "TXT_ENC_TCH_THE_STEAM_ENGINE_STRATEGY_0", 
+    .EncartaHistory = "TXT_ENC_TCH_THE_STEAM_ENGINE_HISTORY_0", 
+    .Domains = (RulesTypes.Domain.Industry), 
+    .Era = RulesTypes.TechEras.Enlightenment, 
+    .iRoughDate = 1781i, 
+    .uiResearchCost = EnlightenmentCost, 
+    .SearchTags = 
+    {
+        "TXT_TECHNOLOGY", 
+        "TXT_ITM_RESEARCH", 
+        "TXT_DOMAIN", 
+        "TXT_RARITY", 
+        "TXT_RTY_COMMON", 
+        "TXT_TECH_ERA_ENLIGHTENMENT", 
+        "TXT_DOM_INDUSTRY", 
+        "TXT_TCH_IRON_BRIDGES", 
+        "TXT_TCH_DESC_IRON_BRIDGES", 
+    }, 
+    .Flags = 0, 
+    .UnlockRecipesIDs = 
+    {
+        "rcp_Ironclad", 
+        "rcp_CannedFood", 
+         "rcp_LampPosts",
+    }, 
+    .UnlockImprovementsIDs = 
+    {
+        "imp_TrainStation",
+    }, 
+    .UnlockGovernmentsIDs = 
+    {
+    }, 
+    .UnlockNaturalResourcesIDs = 
+    {
+         {
+            .Key = "All", 
+            .Value = "itm_Coal", 
+        }, 
+    }, 
+    .UnlockedFormationsIDs = 
+    {
+    }, 
+    .UnlockCitySpecialProjects = 
+    {
+    }, 
+    .AddItemsOnUnlock = 
+    {
+        .itm_Prestige = 20u,
+        .itm_RoadPass = 1u,
+    }, 
+    .GrantBuffs = 
+    {
+       
+    }, 
+};

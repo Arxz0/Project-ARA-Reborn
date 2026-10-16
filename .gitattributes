@@ -1,0 +1,6 @@
+* text=auto
+*.DDS binary
+*.dds binary
+*.dll binary
+*.ps1 text eol=crlf
+*.bat text eol=crlf

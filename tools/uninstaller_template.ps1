@@ -1,0 +1,47 @@
+# Project ARA: Reborn - desinstalador de um mod (gerado por tools\make_installers.py a partir deste modelo).
+# Uso: clique duas vezes em DESINSTALAR.bat, ou:  powershell -ExecutionPolicy Bypass -File uninstall.ps1 [-GamePath "...\Ara History Untold"]
+param([string]$GamePath = "")
+$ErrorActionPreference = 'Stop'
+$ModName   = '@@NAME@@'
+$ProxyDll  = '@@PROXY@@'
+$Marker    = '@@MARKER@@'
+$DataDir   = '@@DATA@@'
+$Here      = Split-Path -Parent $MyInvocation.MyCommand.Path
+
+function Find-Game {
+    if ($GamePath -and (Test-Path (Join-Path $GamePath 'bin\AraHistoryUntold.exe'))) { return (Resolve-Path $GamePath).Path }
+    $libs = @()
+    foreach ($k in @(@('HKCU:\Software\Valve\Steam', 'SteamPath'), @('HKLM:\SOFTWARE\WOW6432Node\Valve\Steam', 'InstallPath'))) {
+        try { $v = (Get-ItemProperty -Path $k[0] -Name $k[1] -ErrorAction Stop).($k[1]); if ($v) { $libs += $v } } catch {}
+    }
+    foreach ($s in @($libs)) {
+        $vdf = [IO.Path]::Combine($s, 'steamapps', 'libraryfolders.vdf')
+        if (Test-Path -LiteralPath $vdf -ErrorAction SilentlyContinue) { foreach ($m in [regex]::Matches((Get-Content $vdf -Raw), '"path"\s+"([^"]+)"')) { $libs += $m.Groups[1].Value.Replace('\\', '\') } }
+    }
+    foreach ($l in $libs) {
+        $g = [IO.Path]::Combine($l, 'steamapps', 'common', 'Ara History Untold')   # Combine: biblioteca num disco que nao existe mais nao derruba a busca
+        try { if (Test-Path -LiteralPath ([IO.Path]::Combine($g, 'bin', 'AraHistoryUntold.exe'))) { return $g } } catch {}
+    }
+    throw 'Nao achei o ARA: History Untold. Rode de novo com -GamePath "C:\caminho\Ara History Untold".'
+}
+function Has-Marker([string]$file, [string]$text) {
+    # proxy do mod = DLL cujas exportacoes encaminham para <nome>_orig.dll (vale para qualquer versao do mod)
+    return [Text.Encoding]::ASCII.GetString([IO.File]::ReadAllBytes($file)).Contains($text)
+}
+
+$game = Find-Game
+$bin = Join-Path $game 'bin'
+if (Get-Process AraHistoryUntold -ErrorAction SilentlyContinue) { throw 'Feche o jogo antes de desinstalar.' }
+@@EXTRA@@
+$target = Join-Path $bin $ProxyDll
+$orig = Join-Path $bin ($ProxyDll -replace '\.dll$', '_orig.dll')
+if (Test-Path $orig) {
+    if ((Test-Path $target) -and (Has-Marker $target $Marker)) { Remove-Item $target -Force }
+    if (-not (Test-Path $target)) { Rename-Item $orig ([IO.Path]::GetFileName($target)) } else { Remove-Item $orig -Force }
+    Write-Host "Restaurado: bin\$ProxyDll original"
+} else { Write-Host "bin\$ProxyDll ja e a original." }
+if ($DataDir) {
+    $dir = Join-Path ([Environment]::GetFolderPath('MyDocuments')) "My Games\Ara History Untold\Mods\$DataDir"
+    if (Test-Path $dir) { Remove-Item $dir -Recurse -Force; Write-Host "Removido: Mods\$DataDir" }
+}
+Write-Host "$ModName desinstalado." -ForegroundColor Green

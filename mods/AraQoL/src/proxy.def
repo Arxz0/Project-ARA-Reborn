@@ -1,0 +1,27 @@
+LIBRARY "swresample-4.dll"
+EXPORTS
+    swr_alloc=swresample-4_orig.swr_alloc @1
+    swr_alloc_set_opts=swresample-4_orig.swr_alloc_set_opts @2
+    swr_alloc_set_opts2=swresample-4_orig.swr_alloc_set_opts2 @3
+    swr_build_matrix=swresample-4_orig.swr_build_matrix @4
+    swr_build_matrix2=swresample-4_orig.swr_build_matrix2 @5
+    swr_close=swresample-4_orig.swr_close @6
+    swr_config_frame=swresample-4_orig.swr_config_frame @7
+    swr_convert=swresample-4_orig.swr_convert @8
+    swr_convert_frame=swresample-4_orig.swr_convert_frame @9
+    swr_drop_output=swresample-4_orig.swr_drop_output @10
+    swr_ffversion=swresample-4_orig.swr_ffversion @11
+    swr_free=swresample-4_orig.swr_free @12
+    swr_get_class=swresample-4_orig.swr_get_class @13
+    swr_get_delay=swresample-4_orig.swr_get_delay @14
+    swr_get_out_samples=swresample-4_orig.swr_get_out_samples @15
+    swr_init=swresample-4_orig.swr_init @16
+    swr_inject_silence=swresample-4_orig.swr_inject_silence @17
+    swr_is_initialized=swresample-4_orig.swr_is_initialized @18
+    swr_next_pts=swresample-4_orig.swr_next_pts @19
+    swr_set_channel_mapping=swresample-4_orig.swr_set_channel_mapping @20
+    swr_set_compensation=swresample-4_orig.swr_set_compensation @21
+    swr_set_matrix=swresample-4_orig.swr_set_matrix @22
+    swresample_configuration=swresample-4_orig.swresample_configuration @23
+    swresample_license=swresample-4_orig.swresample_license @24
+    swresample_version=swresample-4_orig.swresample_version @25
