@@ -24,7 +24,7 @@ Every mod ships as its own zip with a one-click installer and uninstaller. Use o
 | [**Brazil — Getúlio Vargas**](mods/Brazil/README.md) | 1.0 | New nation: Brazil, led by Getúlio Vargas |
 | [**Soviet Union — Joseph Stalin**](mods/SovietUnion/README.md) | 1.0 | New nation: the Soviet Union, led by Joseph Stalin, with two appearances |
 
-Downloads: see **[Releases](../../releases)**. One zip per mod.
+DOWNLOAD: **[Releases](../../releases)**. Scroll down the page to Assets, chose the mods you want, download, extract the zip anywhere and run Install.bat. 
 
 ## New nations
 
