@@ -12,7 +12,7 @@
 
 Project ARA: Reborn brings quality-of-life fixes, a stability fix on freezes and stuttering, player-built railroads, brand-new playable nations and leaders and many more content and features for ARA: History Untold. 
 
-Every mod ships as its own zip with a one-click installer and uninstaller. Use one, several or all of them together, in any order, make your own new untold History!
+Every mod ships as its own zip with a one-click installer and uninstaller. Use one, several or all of them together, in any order. Make your own new History Untold!
 
 ## The mods
 
@@ -100,10 +100,12 @@ Brazil and the Soviet Union share the [**leader base**](mods/LeaderBase/README.m
 
 ## Disclaimer
 
-Project ARA: Reborn is a Fan project designed and inspired by the community, the project is not affiliated with Oxide Games or Microsoft. Use at your own discretion and keep backups of your saves. The project is ongoing and will get new updates, with new features and content.
-Feedback and contributions is greatly appreciated and the official ARA Discord channel is a good place to chat with this mod author. 
+Project ARA: Reborn is a community-driven project and is not affiliated with Oxide Games or Microsoft. Use at your own discretion and keep backups of your saves regularly. 
+The project is in it's first steps and will get new updates, with new features and content.
+Feedback and contributions are greatly appreciated, the official ARA Discord channel is a good place to chat with this mod author. 
 
-Mod Author: Spartak/Arxz0
+Mod Author: Spartak(Arxz0)
+
 Licenses: 
 Code (mods/*/src, tools, installers): MIT License.
 Mod content (nation data, texts, portraits, emblems, textures, narration): CC BY-NC-SA 4.0.
