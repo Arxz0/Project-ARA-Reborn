@@ -16,7 +16,7 @@ Install everything with one **Setup** (pick the mods you want), or download each
 
 ## The mods
 
-**DOWNLOADS:** Go to **[Releases](../../releases)**. Then scroll down the page to **Assets**, choose the mods you want, download, extract the zip anywhere and run Install.bat. 
+**DOWNLOAD:** Go to **[Releases](../../releases)**. Then scroll down the page to **Assets**, then download **ProjectARA-Reborn-Setup-1.0.0.exe**. Or, to install manually, choose what .zip mod you want, download, extract anywhere, and run Install.bat
 
 | Mod Info Page | Version | What it does |
 |---|---|---|
