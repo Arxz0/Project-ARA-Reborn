@@ -4,3 +4,5 @@ __pycache__/
 *.o
 *.log
 mods/*/src/*.dll
+installer/bin/
+installer/obj/

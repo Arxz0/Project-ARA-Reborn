@@ -1,0 +1,318 @@
+<Window x:Class="RebornSetup.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Project ARA: Reborn Setup" Width="1100" Height="700"
+        WindowStyle="None" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"
+        Background="{StaticResource Bg}" Icon="Assets/icon.ico"
+        UseLayoutRounding="True" SnapsToDevicePixels="True" TextOptions.TextFormattingMode="Ideal">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="40" ResizeBorderThickness="0" GlassFrameThickness="0,0,0,1" CornerRadius="0" UseAeroCaptionButtons="False"/>
+    </WindowChrome.WindowChrome>
+
+    <Window.Resources>
+        <!-- one content card -->
+        <DataTemplate x:Key="ModCard">
+            <Border x:Name="card" Background="{StaticResource Card}" CornerRadius="12" Padding="16,14" Margin="0,0,0,10"
+                    BorderThickness="1" BorderBrush="{Binding CardBorder}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="76"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- thumbnail: portrait or vector icon -->
+                    <Border Width="64" Height="64" CornerRadius="10" VerticalAlignment="Top" BorderBrush="#40D4A657" BorderThickness="1">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#2A2418" Offset="0"/>
+                                <GradientStop Color="#151A22" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid>
+                            <Path Data="{Binding Icon}" Stroke="{StaticResource GoldGrad}" StrokeThickness="1.7" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"
+                                  Stretch="Uniform" Margin="15" Visibility="{Binding IconVisibility}"/>
+                            <Border CornerRadius="9" Visibility="{Binding ImageVisibility}">
+                                <Border.Background><ImageBrush ImageSource="{Binding Image}" Stretch="UniformToFill"/></Border.Background>
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="2,0,16,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Title}" FontFamily="{StaticResource Display}" FontSize="18" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding VersionText}" Foreground="{StaticResource Muted}" FontSize="13" Margin="8,0,0,1" VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                        <TextBlock Text="{Binding Description}" Foreground="{StaticResource Muted}" FontSize="13" TextWrapping="Wrap" Margin="0,4,0,8" LineHeight="19"/>
+                        <ItemsControl ItemsSource="{Binding Tags}">
+                            <ItemsControl.ItemsPanel><ItemsPanelTemplate><WrapPanel/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource Chip}">
+                                        <TextBlock Text="{Binding}" FontSize="11" Foreground="#C8B48C"/>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <CheckBox Style="{StaticResource Check}" Margin="0,10,0,0" Visibility="{Binding OptionVisibility}"
+                                  IsChecked="{Binding OptionSelected, Mode=TwoWay}" IsEnabled="{Binding OptionEnabled}">
+                            <TextBlock Text="{Binding OptionText}" FontSize="13" Foreground="{StaticResource Text}"/>
+                        </CheckBox>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <CheckBox Style="{StaticResource Switch}" IsChecked="{Binding Selected, Mode=TwoWay}" HorizontalAlignment="Right"/>
+                        <TextBlock Text="{Binding StatusText}" Foreground="{Binding StatusBrush}" FontSize="12" Margin="0,8,0,0" HorizontalAlignment="Right"/>
+                        <TextBlock Text="{Binding SizeText}" Foreground="#6F7884" FontSize="11" Margin="0,2,0,0" HorizontalAlignment="Right"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <DataTemplate.Triggers>
+                <Trigger SourceName="card" Property="IsMouseOver" Value="True">
+                    <Setter TargetName="card" Property="Background" Value="{StaticResource CardHover}"/>
+                </Trigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+
+        <Style x:Key="StepDot" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Margin" Value="0,0,18,0"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid x:Name="Root" ClipToBounds="True">
+        <Image x:Name="HeroBg" Source="Assets/hero.png" Stretch="UniformToFill"/>
+
+        <!-- ================= WELCOME ================= -->
+        <Grid x:Name="WelcomePage">
+            <!-- leaders -->
+            <Canvas x:Name="Leaders" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="560" Height="640" IsHitTestVisible="False">
+                <Canvas.OpacityMask>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#FF000000" Offset="0.62"/>
+                        <GradientStop Color="#00000000" Offset="0.93"/>
+                    </LinearGradientBrush>
+                </Canvas.OpacityMask>
+                <Image x:Name="LeaderBack" Source="Assets/stalin1945.png" Height="470" Canvas.Left="40" Canvas.Top="165" Opacity="0.92">
+                    <Image.OpacityMask>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#00000000" Offset="0"/>
+                            <GradientStop Color="#FF000000" Offset="0.35"/>
+                        </LinearGradientBrush>
+                    </Image.OpacityMask>
+                    <Image.RenderTransform><TranslateTransform/></Image.RenderTransform>
+                    <Image.Effect><DropShadowEffect BlurRadius="40" ShadowDepth="0" Opacity="0.7" Color="Black"/></Image.Effect>
+                </Image>
+                <Image x:Name="LeaderFront" Source="Assets/vargas.png" Height="500" Canvas.Left="190" Canvas.Top="140">
+                    <Image.RenderTransform><TranslateTransform/></Image.RenderTransform>
+                    <Image.Effect><DropShadowEffect BlurRadius="50" ShadowDepth="0" Opacity="0.8" Color="Black"/></Image.Effect>
+                </Image>
+            </Canvas>
+            <!-- darken the left side so the text reads well -->
+            <Rectangle IsHitTestVisible="False">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#E00D1016" Offset="0"/>
+                        <GradientStop Color="#990D1016" Offset="0.45"/>
+                        <GradientStop Color="#000D1016" Offset="0.7"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <StackPanel x:Name="WelcomeText" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="72,10,0,0" Width="520">
+                <StackPanel.RenderTransform><TranslateTransform/></StackPanel.RenderTransform>
+                <TextBlock x:Name="WSubtitle" Foreground="{StaticResource Gold}" FontFamily="{StaticResource Display}" FontSize="14" FontWeight="SemiBold"/>
+                <TextBlock Text="PROJECT ARA" FontFamily="{StaticResource Display}" FontWeight="Light" FontSize="58" Margin="-3,10,0,-14" Foreground="#E8E1D2"/>
+                <TextBlock Text="REBORN" FontFamily="{StaticResource Display}" FontWeight="Bold" FontSize="104" Margin="-6,0,0,0" Foreground="{StaticResource GoldGrad}">
+                    <TextBlock.Effect><DropShadowEffect BlurRadius="30" ShadowDepth="0" Color="#C9973F" Opacity="0.35"/></TextBlock.Effect>
+                </TextBlock>
+                <Rectangle Width="90" Height="3" Fill="{StaticResource GoldGrad}" HorizontalAlignment="Left" Margin="2,6,0,22" RadiusX="1.5" RadiusY="1.5"/>
+                <TextBlock x:Name="WTagline" Foreground="#B9C0C9" FontSize="16" TextWrapping="Wrap" LineHeight="25"/>
+                <StackPanel Orientation="Horizontal" Margin="0,34,0,0">
+                    <Button x:Name="BtnStart" Style="{StaticResource Primary}" Height="52" MinWidth="200" FontSize="18" Click="BtnStart_Click"/>
+                    <Button x:Name="BtnUninstallAll" Style="{StaticResource Secondary}" Height="52" Margin="14,0,0,0" Click="BtnUninstallAll_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="2,18,0,0" x:Name="WStatusRow">
+                    <Ellipse Width="8" Height="8" Fill="{StaticResource Ok}" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="WStatus" Foreground="{StaticResource Muted}" FontSize="13" Margin="8,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="74,0,0,26" Orientation="Horizontal">
+                <TextBlock x:Name="WVersion" Foreground="#6F7884" FontSize="12"/>
+                <TextBlock Text="  •  " Foreground="#4A525E" FontSize="12"/>
+                <TextBlock x:Name="WDisclaimer" Foreground="#6F7884" FontSize="12"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- ================= WIZARD ================= -->
+        <Grid x:Name="WizardPage" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="84"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.RowSpan="3" Fill="#D90D1016"/>
+
+            <!-- header -->
+            <Grid Grid.Row="0">
+                <Image Source="Assets/header.png" Stretch="UniformToFill"/>
+                <Rectangle>
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#000D1016" Offset="0.4"/>
+                            <GradientStop Color="#FF0D1016" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Grid Margin="56,44,56,18">
+                    <StackPanel VerticalAlignment="Bottom">
+                        <TextBlock x:Name="PageTitle" FontFamily="{StaticResource Display}" FontSize="30" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="PageSub" Foreground="{StaticResource Muted}" FontSize="14" Margin="0,4,0,0"/>
+                    </StackPanel>
+                    <StackPanel x:Name="Steps" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,0,0"/>
+                </Grid>
+                <Rectangle Height="1" VerticalAlignment="Bottom" Fill="{StaticResource Line}" Margin="56,0"/>
+            </Grid>
+
+            <!-- pages -->
+            <Grid Grid.Row="1" Margin="56,20,56,8">
+                <!-- license -->
+                <Grid x:Name="PgLicense">
+                    <Grid.RowDefinitions><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                    <Border Background="{StaticResource Card}" CornerRadius="12" BorderBrush="{StaticResource Line}" BorderThickness="1">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="26,20,14,20">
+                            <TextBlock x:Name="LicenseText" TextWrapping="Wrap" FontSize="13.5" LineHeight="21" Foreground="#C9CFD6" Margin="0,0,14,0"/>
+                        </ScrollViewer>
+                    </Border>
+                    <CheckBox x:Name="ChkAccept" Grid.Row="1" Style="{StaticResource Check}" Margin="2,16,0,0" Checked="Refresh" Unchecked="Refresh">
+                        <TextBlock x:Name="ChkAcceptText" FontSize="14"/>
+                    </CheckBox>
+                </Grid>
+
+                <!-- content -->
+                <ScrollViewer x:Name="PgContent" VerticalScrollBarVisibility="Auto" Visibility="Collapsed" Padding="0,0,10,0">
+                    <ItemsControl x:Name="ModList" ItemTemplate="{StaticResource ModCard}"/>
+                </ScrollViewer>
+
+                <!-- location -->
+                <StackPanel x:Name="PgLocation" Visibility="Collapsed">
+                    <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                        <TextBox x:Name="GamePathBox" Style="{StaticResource TextField}" TextChanged="GamePathBox_TextChanged"/>
+                        <Button x:Name="BtnBrowse" Grid.Column="1" Style="{StaticResource Secondary}" Margin="10,0,0,0" Click="BtnBrowse_Click"/>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" Margin="2,14,0,0">
+                        <Path x:Name="GameIcon" Width="16" Height="16" Stretch="Uniform" StrokeThickness="2.2" StrokeStartLineCap="Round" StrokeEndLineCap="Round" VerticalAlignment="Top" Margin="0,2,0,0"/>
+                        <TextBlock x:Name="GameStatus" FontSize="13.5" Margin="10,0,0,0" TextWrapping="Wrap" MaxWidth="900"/>
+                    </StackPanel>
+                    <TextBlock x:Name="SpaceStatus" FontSize="13" Foreground="{StaticResource Muted}" Margin="28,6,0,0" TextWrapping="Wrap"/>
+                    <Border x:Name="RunningBox" Background="#22E3B341" BorderBrush="#66E3B341" BorderThickness="1" CornerRadius="8" Padding="14,10" Margin="0,16,0,0" Visibility="Collapsed">
+                        <TextBlock x:Name="RunningText" Foreground="{StaticResource Warn}" FontSize="13.5" TextWrapping="Wrap"/>
+                    </Border>
+                    <TextBlock x:Name="SummaryTitle" FontFamily="{StaticResource Display}" FontSize="16" FontWeight="SemiBold" Margin="0,30,0,10"/>
+                    <Border Background="{StaticResource Card}" CornerRadius="12" Padding="18,14" BorderBrush="{StaticResource Line}" BorderThickness="1">
+                        <StackPanel x:Name="SummaryList"/>
+                    </Border>
+                </StackPanel>
+
+                <!-- progress -->
+                <Grid x:Name="PgProgress" Visibility="Collapsed">
+                    <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
+                    <StackPanel>
+                        <Grid>
+                            <TextBlock x:Name="ProgTitle" FontFamily="{StaticResource Display}" FontSize="19" FontWeight="SemiBold"/>
+                            <TextBlock x:Name="ProgPct" HorizontalAlignment="Right" FontFamily="{StaticResource Display}" FontSize="19" Foreground="{StaticResource Gold}"/>
+                        </Grid>
+                        <TextBlock x:Name="ProgStep" Foreground="{StaticResource Muted}" FontSize="13" Margin="0,4,0,12"/>
+                        <ProgressBar x:Name="Prog" Style="{StaticResource Bar}" Maximum="1000"/>
+                        <TextBlock x:Name="ProgLine" Foreground="#6F7884" FontSize="12" Margin="0,10,0,0" TextTrimming="CharacterEllipsis"/>
+                    </StackPanel>
+                    <Grid Grid.Row="1" Margin="0,22,0,0">
+                        <!-- feature slideshow -->
+                        <Border x:Name="Slide" CornerRadius="14" BorderBrush="{StaticResource Line}" BorderThickness="1" ClipToBounds="True">
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                    <GradientStop Color="#1E1A14" Offset="0"/>
+                                    <GradientStop Color="#141922" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Grid>
+                                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                                <StackPanel VerticalAlignment="Center" Margin="34,0,20,0">
+                                    <TextBlock x:Name="SlideKicker" Foreground="{StaticResource Gold}" FontFamily="{StaticResource Display}" FontSize="12" FontWeight="SemiBold" Text="PROJECT ARA: REBORN"/>
+                                    <TextBlock x:Name="SlideTitle" FontFamily="{StaticResource Display}" FontSize="28" FontWeight="SemiBold" Margin="0,6,0,8"/>
+                                    <TextBlock x:Name="SlideText" Foreground="#B9C0C9" FontSize="14.5" TextWrapping="Wrap" LineHeight="22" MaxWidth="460" HorizontalAlignment="Left"/>
+                                </StackPanel>
+                                <Grid Grid.Column="1" x:Name="SlideArt" Width="360" Margin="0,10,10,0"/>
+                            </Grid>
+                        </Border>
+                        <!-- details log -->
+                        <Border x:Name="LogBox" Background="#F20B0E13" CornerRadius="14" BorderBrush="{StaticResource Line}" BorderThickness="1" Visibility="Collapsed">
+                            <TextBox x:Name="LogText" Background="Transparent" BorderThickness="0" Foreground="#AEB6C0" FontFamily="Cascadia Mono, Consolas" FontSize="12"
+                                     IsReadOnly="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Padding="16,12"/>
+                        </Border>
+                    </Grid>
+                </Grid>
+
+                <!-- finish -->
+                <Grid x:Name="PgFinish" Visibility="Collapsed">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="380"/></Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Grid Width="54" Height="54">
+                                <Ellipse x:Name="DoneCircle" Fill="#224CC38A" Stroke="{StaticResource Ok}" StrokeThickness="2"/>
+                                <Path x:Name="DoneMark" Data="M15,28 L24,36 L40,19" Stroke="{StaticResource Ok}" StrokeThickness="3.2" StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round"/>
+                            </Grid>
+                            <StackPanel Margin="18,0,0,0" VerticalAlignment="Center">
+                                <TextBlock x:Name="DoneTitle" FontFamily="{StaticResource Display}" FontSize="26" FontWeight="SemiBold"/>
+                                <TextBlock x:Name="DoneSub" Foreground="{StaticResource Muted}" FontSize="14" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <Border Background="{StaticResource Card}" CornerRadius="12" Padding="18,12" Margin="0,24,0,0" BorderBrush="{StaticResource Line}" BorderThickness="1">
+                            <StackPanel x:Name="ResultList"/>
+                        </Border>
+                        <StackPanel x:Name="Tips" Margin="0,18,0,0"/>
+                    </StackPanel>
+                    <Image Grid.Column="1" x:Name="DoneArt" Source="Assets/vargas.png" Height="330" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,-20,-10" Opacity="0.95">
+                        <Image.OpacityMask>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#FF000000" Offset="0.6"/>
+                                <GradientStop Color="#00000000" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Image.OpacityMask>
+                    </Image>
+                </Grid>
+            </Grid>
+
+            <!-- footer -->
+            <Grid Grid.Row="2" Margin="56,0,56,0">
+                <Rectangle Height="1" VerticalAlignment="Top" Fill="{StaticResource Line}"/>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock x:Name="FooterInfo" Foreground="{StaticResource Muted}" FontSize="13" VerticalAlignment="Center"/>
+                    <Button x:Name="BtnLog" Style="{StaticResource Link}" Margin="0,0,0,0" Click="BtnLog_Click" Visibility="Collapsed" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Button x:Name="BtnBack" Style="{StaticResource Secondary}" Click="BtnBack_Click"/>
+                    <Button x:Name="BtnNext" Style="{StaticResource Primary}" Margin="12,0,0,0" Click="BtnNext_Click"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <!-- ================= TITLE BAR ================= -->
+        <Grid VerticalAlignment="Top" Height="40">
+            <StackPanel Orientation="Horizontal" Margin="16,0,0,0" VerticalAlignment="Center">
+                <Image Source="Assets/logo.png" Width="20" Height="20"/>
+                <TextBlock Text="Project ARA: Reborn" Foreground="#AEB6C0" FontSize="12.5" Margin="10,0,0,0" VerticalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="BtnLang" Style="{StaticResource Chrome}" Width="56" Click="BtnLang_Click">
+                    <TextBlock x:Name="LangText" FontSize="12" FontWeight="SemiBold" Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+                </Button>
+                <Button Style="{StaticResource Chrome}" Click="BtnMin_Click">
+                    <Path Data="M0,0 L10,0" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" StrokeThickness="1"/>
+                </Button>
+                <Button Style="{StaticResource ChromeClose}" Click="BtnClose_Click">
+                    <Path Data="M0,0 L10,10 M10,0 L0,10" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" StrokeThickness="1"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

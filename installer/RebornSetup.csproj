@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Project ARA: Reborn single-file installer. .NET Framework 4.8 ships with Windows 10/11, so the exe needs no runtime.
+       The mod packages (dist\Reborn-*.zip from tools\make_release.py) are embedded as resources. -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>ProjectARA-Reborn-Setup</AssemblyName>
+    <RootNamespace>RebornSetup</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Assets\icon.ico</ApplicationIcon>
+    <Version>1.0.0</Version>
+    <Product>Project ARA: Reborn</Product>
+    <Company>Spartak (Arxz0)</Company>
+    <Description>Project ARA: Reborn Setup</Description>
+    <Copyright>Spartak (Arxz0)</Copyright>
+    <AutomaticallyUseReferenceAssemblyPackages>false</AutomaticallyUseReferenceAssemblyPackages>
+    <DebugType>none</DebugType>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Windows.Forms" />
+    <Resource Include="Assets\*.png" />
+    <Resource Include="Assets\icon.ico" />
+    <EmbeddedResource Include="..\dist\Reborn-*.zip" LogicalName="payload\%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

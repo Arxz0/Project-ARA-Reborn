@@ -1,7 +1,7 @@
 # Builds the release packages of Project ARA: Reborn (one independent zip per mod) into dist\.
 # Compiles the DLLs with MinGW-w64 (E:\RE-TOOLS\mingw64 or gcc on PATH), generates install.ps1/uninstall.ps1 from the
 # templates, adds INSTALL.bat/UNINSTALL.bat (double-click) and the mod README.   Usage: python tools\make_release.py
-import os, shutil, subprocess, zipfile, hashlib
+import os, re, shutil, subprocess, zipfile, hashlib
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIST = os.path.join(ROOT, 'dist')
 GCC = r'E:\RE-TOOLS\mingw64\bin\gcc.exe' if os.path.exists(r'E:\RE-TOOLS\mingw64\bin\gcc.exe') else 'gcc'
@@ -93,7 +93,19 @@ def main():
                 for f in files: zf.write(os.path.join(b, f), os.path.relpath(os.path.join(b, f), DIST))
         sums[pkg + '.zip'] = hashlib.sha256(open(z, 'rb').read()).hexdigest()
         print('%-36s %9d bytes' % (pkg + '.zip', os.path.getsize(z)))
+    exe = build_installer()
+    sums[os.path.basename(exe)] = hashlib.sha256(open(exe, 'rb').read()).hexdigest()
     open(os.path.join(DIST, 'SHA256SUMS.txt'), 'w', newline='\n').write(''.join('%s  %s\n' % (h, f) for f, h in sums.items()))
+
+def build_installer():
+    """Single-file installer (installer\\, C# WPF on .NET Framework 4.8) with every zip of dist\\ embedded."""
+    proj = os.path.join(ROOT, 'installer')
+    subprocess.run(['dotnet', 'build', proj, '-c', 'Release', '--no-incremental', '-nologo', '-v', 'q'], check=True)
+    ver = re.search(r'<Version>([^<]+)</Version>', open(os.path.join(proj, 'RebornSetup.csproj'), encoding='utf-8').read()).group(1)
+    exe = os.path.join(DIST, 'ProjectARA-Reborn-Setup-%s.exe' % ver)
+    shutil.copy2(os.path.join(proj, 'bin', 'Release', 'net48', 'ProjectARA-Reborn-Setup.exe'), exe)
+    print('%-36s %9d bytes' % (os.path.basename(exe), os.path.getsize(exe)))
+    return exe
 
 if __name__ == '__main__':
     main()

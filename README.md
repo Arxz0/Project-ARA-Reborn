@@ -12,7 +12,7 @@
 
 Project ARA: Reborn brings quality-of-life fixes, a stability fix on freezes and stuttering, player-built railroads, brand-new playable nations and leaders and many more content and features for ARA: History Untold. 
 
-Every mod ships as its own zip with a one-click installer and uninstaller. Use one, several or all of them together, in any order. Make your own new History Untold!
+Install everything with one **Setup** (pick the mods you want), or download each mod as its own zip with a one-click installer and uninstaller. Use one, several or all of them together, in any order. Make your own new History Untold!
 
 ## The mods
 
@@ -59,6 +59,19 @@ All mods are presented in English. The nation mods (**Brazil** and **Soviet Unio
 
 ## Installation
 
+### Easy way: the Setup (recommended)
+
+1. Download **`ProjectARA-Reborn-Setup-1.0.0.exe`** from **[Releases](../../releases)**.
+2. Close the game and run it. Windows asks for administrator rights, because the game folder is usually under Program Files.
+3. Pick the mods you want and click **Install**. The Setup finds the game through Steam, shows the progress and tells you when it is ready to play.
+
+Run the same Setup again, or open **Project ARA: Reborn** in Windows **Settings → Apps → Installed apps**, to add or remove mods, or uninstall everything.
+The Setup is in English and Brazilian Portuguese (it follows the Windows language; switch it in the title bar).
+
+> The Setup is not code-signed, so Windows SmartScreen may show "Windows protected your PC". Click **More info → Run anyway**. SHA-256 hashes are in `SHA256SUMS.txt`.
+
+### Manual way: one zip per mod
+
 1. Download the zip of the mod from **[Releases](../../releases)**.
 2. Close the game and extract the zip anywhere.
 3. Double-click **`INSTALL.bat`**. The installer finds the game through Steam. If it can't, run:
@@ -90,7 +103,8 @@ Brazil and the Soviet Union share the [**leader base**](mods/LeaderBase/README.m
 ## Building from source
 
 - Sources: `mods/<mod>/src`. Shared hook: `common/ara_hook.h`. Compiler: MinGW-w64 (GCC 16, WinLibs).
-- `python tools/make_release.py` builds every DLL and writes the zips to `dist/`.
+- `python tools/make_release.py` builds every DLL, writes the zips to `dist/` and builds the Setup.
+- Setup: `installer/` (C# WPF, .NET Framework 4.8, built with the .NET SDK). It embeds the zips and runs each mod's own `install.ps1` / `uninstall.ps1`. Art: `installer/make_art.py`.
 - Proxy `.def` files: `tools/gen_def.py`.
 - Leader base patches: `tools/make_rpatch.py` (generator) and `tools/rpatch.ps1` (applier).
 - `tools/steam_manifest.py` reads Steam's depot manifest to check files against the original SHA-1s.
