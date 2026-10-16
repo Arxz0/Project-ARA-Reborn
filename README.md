@@ -10,7 +10,7 @@
 
 </div>
 
-Project ARA: Reborn brings quality-of-life fixes, a stability fix for end-of-turn freezes, player-built railroads and brand-new playable nations and leaders to ARA: History Untold. 
+Project ARA: Reborn brings quality-of-life fixes, a stability fix on freezes and stuttering, player-built railroads, brand-new playable nations and leaders and many more content and features to ARA: History Untold. 
 Every mod ships as its own zip with a one-click installer and uninstaller. Use one, several or all of them together, in any order, make your own History Untold!
 
 ## The mods
