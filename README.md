@@ -21,7 +21,7 @@ Every mod ships as its own zip with a one-click installer and uninstaller. Use o
 | [**ARA CPU Fix**](mods/CpuFix/README.md) | 1.0 | Stops the whole-PC freeze during end-of-turn processing |
 | [**Railroads**](mods/Railroads/README.md) | 1.9 | Player-built railroads with real track visuals and a new Train Station improvement |
 | [**Brazil — Getúlio Vargas**](mods/Brazil/README.md) | 1.0 | New nation: Brazil, led by Getúlio Vargas |
-| [**Soviet Union — Joseph Stalin**](mods/SovietUnion/README.md) | 1.0 | New nation: the Soviet Union, led by Joseph Stalin, with two 3D looks |
+| [**Soviet Union — Joseph Stalin**](mods/SovietUnion/README.md) | 1.0 | New nation: the Soviet Union, led by Joseph Stalin, with two appearances |
 
 Downloads: see **[Releases](../../releases)**. One zip per mod.
 
@@ -46,11 +46,10 @@ Unique unit: <b>T-34</b> medium tank. Two 3D looks: <b>1924</b> and <b>1945 mars
 </tr>
 </table>
 
-Each nation comes with its own leader, AI personality, 3D leader model in the leader screen, portraits, emblems, flag, starting position and full in-game texts.
+Each nation comes with its own leader, AI personality, 3D animated leader model, portraits, emblems, flag, True starting position on Earth Map and full in-game texts.
 
 ### Custom audio
-Both leaders have **custom introduction narration** (English and Brazilian Portuguese), played when the game's narrator introduces the leader.
-The narration was generated with the **Coqui XTTS-v2** text-to-speech model using one of its stock studio voices. No real person's voice was cloned.
+Both leaders have **custom introduction narration** (English and Brazilian Portuguese)!
 
 ### Localization
 All mods are presented in English. The nation mods (**Brazil** and **Soviet Union**) also include a full **Brazilian Portuguese (PT-BR)** localization. The language follows the game's language setting automatically.
@@ -66,7 +65,7 @@ All mods are presented in English. The nation mods (**Brazil** and **Soviet Unio
 To remove a mod, run **`UNINSTALL.bat`** from its zip. It restores the original game files.
 
 Good to know:
-- Steam's **"Verify integrity of game files"** and game updates restore the original DLLs, which turns the mods off. Run `INSTALL.bat` again afterwards.
+- Steam's **"Verify integrity of game files"** and future game updates will restore the original files, which turns the mods off. Run `INSTALL.bat` again afterwards.
 - The DLLs check the game build. On a different build, the build-specific parts stay disabled and say so in their log.
 - Logs and `.ini` settings are written to the game's `bin` folder.
 
@@ -100,5 +99,7 @@ Brazil and the Soviet Union share the [**leader base**](mods/LeaderBase/README.m
 
 ## Disclaimer
 
-Fan project, not affiliated with Oxide Games or Microsoft. Use at your own risk and keep backups of your saves.
+Project ARA: Reborn is a Fan project designed and inspired by the community, the project is not affiliated with Oxide Games or Microsoft. Use at your own discretion and keep backups of your saves. The project is ongoing and will get new updates, with new features and content.
+Feedback and contributions is greatly appreciated and the official ARA Discord channel is a good place to chat with this mod author. 
+
 License: to be defined by the author.
