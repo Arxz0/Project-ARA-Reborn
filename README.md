@@ -16,9 +16,9 @@ Every mod ships as its own zip with a one-click installer and uninstaller. Use o
 
 ## The mods
 
-**DOWNLOAD:** **[Releases](../../releases)**. Scroll down the page to Assets, chose the mods you want, download, extract the zip anywhere and run Install.bat. 
+**DOWNLOADS:** Go to **[Releases](../../releases)**. Then scroll down the page to **Assets**, choose the mods you want, download, extract the zip anywhere and run Install.bat. 
 
-| Mod | Version | What it does |
+| Mod Info Page | Version | What it does |
 |---|---|---|
 | [**AraQoL**](mods/AraQoL/README.md) | 2.0 | Higher camera ceiling, map banners that follow their toggle, easier unit clicking, "Upgrade All" buttons |
 | [**ARA CPU Fix**](mods/CpuFix/README.md) | 1.0 | Stops the whole-PC freeze on many ocasions during the game, a common problem described by the community|
