@@ -31,7 +31,7 @@ Downloads: see **[Releases](../../releases)**. One zip per mod.
 <table>
 <tr>
 <td align="center" width="50%">
-<img src="mods/Brazil/data/Brasil/images/Getulio_Left_256x350.png" height="230" alt="Getúlio Vargas"><br>
+<img src="docs/images/vargas.png" height="230" alt="Getúlio Vargas"><br>
 <b>Brazil — Getúlio Vargas</b><br>
 <img src="mods/Brazil/data/Brasil/images/EstadoNovo_256.png" height="48" alt="Estado Novo"><br>
 <i>Estado Novo</i>: +50% build production towards Industry improvements and +5 to all citizen stats in all cities.<br>

@@ -1,6 +1,6 @@
 # Brazil — Getúlio Vargas 1.0
 
-<img src="data/Brasil/images/Getulio_Left_256x350.png" height="200" align="right" alt="Getúlio Vargas">
+<img src="../../docs/images/vargas.png" height="200" align="right" alt="Getúlio Vargas">
 
 A new playable nation for ARA: History Untold 2.1.0.542: **Brazil** (`ntn_Brazil`), led by **Getúlio Vargas**. Part of **Project ARA: Reborn**; works on its own or together with the Soviet Union.
 
