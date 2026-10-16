@@ -10,16 +10,17 @@
 
 </div>
 
-Project ARA: Reborn brings quality-of-life fixes, a stability fix on freezes and stuttering, player-built railroads, brand-new playable nations and leaders and many more content and features to ARA: History Untold. 
-Every mod ships as its own zip with a one-click installer and uninstaller. Use one, several or all of them together, in any order, make your own History Untold!
+Project ARA: Reborn brings quality-of-life fixes, a stability fix on freezes and stuttering, player-built railroads, brand-new playable nations and leaders and many more content and features for ARA: History Untold. 
+
+Every mod ships as its own zip with a one-click installer and uninstaller. Use one, several or all of them together, in any order, make your own new untold History!
 
 ## The mods
 
 | Mod | Version | What it does |
 |---|---|---|
 | [**AraQoL**](mods/AraQoL/README.md) | 2.0 | Higher camera ceiling, map banners that follow their toggle, easier unit clicking, "Upgrade All" buttons |
-| [**ARA CPU Fix**](mods/CpuFix/README.md) | 1.0 | Stops the whole-PC freeze during end-of-turn processing |
-| [**Railroads**](mods/Railroads/README.md) | 1.9 | Player-built railroads with real track visuals and a new Train Station improvement |
+| [**ARA CPU Fix**](mods/CpuFix/README.md) | 1.0 | Stops the whole-PC freeze on many ocasions during the game, a common problem described by the community|
+| [**Railroads**](mods/Railroads/README.md) | 1.9 | Player-built railroads with real track visuals and a new Train Station improvement | 
 | [**Brazil — Getúlio Vargas**](mods/Brazil/README.md) | 1.0 | New nation: Brazil, led by Getúlio Vargas |
 | [**Soviet Union — Joseph Stalin**](mods/SovietUnion/README.md) | 1.0 | New nation: the Soviet Union, led by Joseph Stalin, with two appearances |
 
