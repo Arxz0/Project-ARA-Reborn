@@ -1,10 +1,10 @@
 # Builds the release packages of Project ARA: Reborn (one independent zip per mod) into dist\.
-# Compiles the DLLs with MinGW-w64 (E:\RE-TOOLS\mingw64 or gcc on PATH), generates install.ps1/uninstall.ps1 from the
+# Compiles the DLLs with MinGW-w64 (gcc on PATH, or the ARA_GCC environment variable), generates install.ps1/uninstall.ps1 from the
 # templates, adds INSTALL.bat/UNINSTALL.bat (double-click) and the mod README.   Usage: python tools\make_release.py
 import os, re, shutil, subprocess, zipfile, hashlib
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIST = os.path.join(ROOT, 'dist')
-GCC = r'E:\RE-TOOLS\mingw64\bin\gcc.exe' if os.path.exists(r'E:\RE-TOOLS\mingw64\bin\gcc.exe') else 'gcc'
+GCC = os.environ.get('ARA_GCC') or shutil.which('gcc') or 'gcc'     # set ARA_GCC to a MinGW-w64 gcc.exe if gcc is not on PATH
 def tpl(n): return open(os.path.join(ROOT, 'tools', n), encoding='utf-8').read()
 TPL_I, TPL_U = tpl('installer_template.ps1'), tpl('uninstaller_template.ps1')
 TPL_LI, TPL_LU = tpl('leader_install_template.ps1'), tpl('leader_uninstall_template.ps1')

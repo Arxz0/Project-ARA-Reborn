@@ -10,18 +10,18 @@
 
 </div>
 
-Project ARA: Reborn brings quality-of-life fixes, a stability fix on freezes and stuttering, player-built railroads, brand-new playable nations and leaders and many more content and features for ARA: History Untold. 
+Project ARA: Reborn brings quality-of-life fixes, a fix for whole-PC freezes, player-built railroads, brand-new playable nations and leaders and much more content and features for ARA: History Untold. 
 
 Install everything with one **Setup** (pick the mods you want), or download each mod as its own zip with a one-click installer and uninstaller. Use one, several or all of them together, in any order. Make your own new History Untold!
 
 ## The mods
 
-**DOWNLOAD:** Go to **[Releases](../../releases)**. Then scroll down the page to **Assets**, then download **ProjectARA-Reborn-Setup-1.0.0.exe**. Or, to install manually, choose what .zip mod you want, download, extract anywhere, and run Install.bat
+**DOWNLOAD:** Go to **[Releases](../../releases)**. Then scroll down the page to **Assets**, then download **ProjectARA-Reborn-Setup-1.0.0.exe**. Or, to install manually, choose what .zip mod you want, download, extract it anywhere and run INSTALL.bat
 
 | Mod Info Page | Version | What it does |
 |---|---|---|
 | [**AraQoL**](mods/AraQoL/README.md) | 2.0 | Higher camera ceiling, map banners that follow their toggle, easier unit clicking, "Upgrade All" buttons |
-| [**ARA CPU Fix**](mods/CpuFix/README.md) | 1.0 | Stops the whole-PC freeze on many ocasions during the game, a common problem described by the community|
+| [**ARA CPU Fix**](mods/CpuFix/README.md) | 1.0 | Stops the whole-PC freeze that can happen during the game, a common problem described by the community|
 | [**Railroads**](mods/Railroads/README.md) | 1.9 | Player-built railroads with real track visuals and a new Train Station improvement | 
 | [**Brazil — Getúlio Vargas**](mods/Brazil/README.md) | 1.0 | New nation: Brazil, led by Getúlio Vargas |
 | [**Soviet Union — Joseph Stalin**](mods/SovietUnion/README.md) | 1.0 | New nation: the Soviet Union, led by Joseph Stalin, with two appearances |
@@ -49,7 +49,7 @@ Unique unit: <b>T-34</b> medium tank. Two 3D looks: <b>1924</b> and <b>1945 mars
 </tr>
 </table>
 
-Each nation comes with its own leader, AI personality, 3D animated leader model, portraits, emblems, flag, True starting position on Earth Map and full in-game texts.
+Each nation comes with its own leader, AI personality, 3D animated leader model, portraits, emblems, flag, true starting position on the Earth map and full in-game texts.
 
 ### Custom audio
 Both leaders have **custom introduction narration** (English and Brazilian Portuguese)!
@@ -98,7 +98,7 @@ Each mod replaces a **different** DLL that the game loads. The original DLL is k
 
 Hooks into game functions are chainable (`common/ara_hook.h`), so two mods can hook the same function.
 
-Brazil and the Soviet Union share the [**leader base**](mods/LeaderBase/README.md). It is included in both zips, installed once, and removed when the last nation mod is uninstalled. The base adds the 3D leader parts by **binary patch** on top of the original Steam files, verified by SHA-1. The zips contain only the mods' own data, never game files.
+Brazil and the Soviet Union share the [**leader base**](mods/LeaderBase/README.md). It is included in both zips, installed once, and removed when the last nation mod is uninstalled. The base adds the 3D leader parts by **binary patch** on top of the original Steam files, verified by SHA-1. The zips never contain original game files: only the mods' own data and the parts derived from the game (see [License](#license)).
 
 ## Building from source
 
@@ -111,20 +111,22 @@ Brazil and the Soviet Union share the [**leader base**](mods/LeaderBase/README.m
 
 ## Credits
 
-- Soviet marshal cap (Stalin 1945): adapted from *"Russian Imperial WW1 Army Cap"* by **dawiderodawid** (Sketchfab), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- Soviet marshal cap (Stalin 1945): adapted from [*"Russian Imperial WW1 Army Cap"*](https://sketchfab.com/3d-models/russian-imperial-ww1-army-cap-d5d8d1c2636946a1adbaaeb2fe5dcd92) by [**dawiderodawid**](https://sketchfab.com/dawiderodawid) (Sketchfab), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Converted to the game's format, repositioned, rescaled and repainted.
 - Leader narration: generated with [Coqui XTTS-v2](https://huggingface.co/coqui/XTTS-v2), licensed under the [Coqui Public Model License](https://coqui.ai/cpml) (non-commercial use).
 
 ## Disclaimer
 
 Project ARA: Reborn is a community-driven project and is not affiliated with Oxide Games or Microsoft. Use at your own discretion and keep backups of your saves regularly. 
-The project is in it's first steps and will get new updates, with new features and content.
+The project is in its first steps and will get new updates, with new features and content.
 Feedback and contributions are greatly appreciated, the official ARA Discord channel is a good place to chat with this mod author. 
 
-Mod Author: Spartak(Arxz0)
+Mod author: Spartak (Arxz0)
 
-Licenses: 
-Code (mods/*/src, tools, installers): MIT License.
-Mod content (nation data, texts, portraits, emblems, textures, narration): CC BY-NC-SA 4.0.
-Third-party assets keep their own licenses (see Credits).
-Not covered: ARA: History Untold game files and content (property of their owners);
+## License
 
+- **Code** (DLL sources, installers, Setup and tools): [MIT License](LICENSE).
+- **Mod content** (nation data, texts, portraits, emblems, textures, narration): [CC BY-NC-SA 4.0](LICENSE-CONTENT.md).
+- **Third-party assets** keep their own licenses (see [Credits](#credits)).
+- **Not covered:** ARA: History Untold game files and content, which belong to their owners.
+
+ARA: History Untold © Microsoft. Project ARA: Reborn was created under Microsoft's "[Game Content Usage Rules](https://www.xbox.com/en-US/developers/rules)" using assets from ARA: History Untold, and it is not endorsed by or affiliated with Microsoft.

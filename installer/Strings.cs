@@ -227,9 +227,10 @@ Project ARA: Reborn is a free, community-made collection of mods for ARA: Histor
 • Code (DLL sources, installers and tools): MIT License.
 • Mod content (nation data, texts, portraits, emblems, textures and narration): Creative Commons Attribution-NonCommercial-ShareAlike 4.0 (CC BY-NC-SA 4.0).
 • Third-party assets keep their own licenses:
-  – Soviet marshal cap (Stalin 1945): adapted from ""Russian Imperial WW1 Army Cap"" by dawiderodawid (Sketchfab), CC BY 4.0.
+  – Soviet marshal cap (Stalin 1945): adapted from ""Russian Imperial WW1 Army Cap"" by dawiderodawid (Sketchfab), CC BY 4.0: https://sketchfab.com/3d-models/russian-imperial-ww1-army-cap-d5d8d1c2636946a1adbaaeb2fe5dcd92
   – Leader narration: generated with Coqui XTTS-v2, under the Coqui Public Model License (non-commercial use). No real person's voice was cloned.
 • Not covered: ARA: History Untold game files and content, which belong to their owners.
+• ARA: History Untold © Microsoft. Project ARA: Reborn was created under Microsoft's ""Game Content Usage Rules"" (https://www.xbox.com/en-US/developers/rules) using assets from ARA: History Untold, and it is not endorsed by or affiliated with Microsoft.
 
 4. NO WARRANTY
 The software is provided ""as is"", without warranty of any kind. Use it at your own discretion and keep backups of your saves. The author is not liable for any damage or data loss.
@@ -256,9 +257,10 @@ O Project ARA: Reborn é uma coleção gratuita de mods feita pela comunidade pa
 • Código (fontes das DLLs, instaladores e ferramentas): Licença MIT.
 • Conteúdo dos mods (dados das nações, textos, retratos, emblemas, texturas e narração): Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 (CC BY-NC-SA 4.0).
 • Conteúdo de terceiros mantém a própria licença:
-  – Quepe de marechal (Stalin 1945): adaptado de ""Russian Imperial WW1 Army Cap"", de dawiderodawid (Sketchfab), CC BY 4.0.
+  – Quepe de marechal (Stalin 1945): adaptado de ""Russian Imperial WW1 Army Cap"", de dawiderodawid (Sketchfab), CC BY 4.0: https://sketchfab.com/3d-models/russian-imperial-ww1-army-cap-d5d8d1c2636946a1adbaaeb2fe5dcd92
   – Narração dos líderes: gerada com o Coqui XTTS-v2, sob a Coqui Public Model License (uso não comercial). Nenhuma voz de pessoa real foi clonada.
 • Não coberto: arquivos e conteúdo do ARA: History Untold, que pertencem aos seus donos.
+• ARA: History Untold © Microsoft. O Project ARA: Reborn foi criado sob as ""Game Content Usage Rules"" da Microsoft (https://www.xbox.com/en-US/developers/rules) usando conteúdo do ARA: History Untold, e não tem aprovação nem vínculo com a Microsoft.
 
 4. SEM GARANTIA
 O software é fornecido ""como está"", sem garantia de qualquer tipo. Use por sua conta e faça backup dos seus saves. O autor não se responsabiliza por danos ou perda de dados.

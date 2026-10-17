@@ -1,7 +1,8 @@
 Soviet Union mod - third-party credits
 
 Marshal cap (Stalin 1945 look):
-  3D mesh adapted from "Russian Imperial WW1 Army Cap" by dawiderodawid (Sketchfab),
+  3D mesh adapted from "Russian Imperial WW1 Army Cap" by dawiderodawid (https://sketchfab.com/dawiderodawid),
+  https://sketchfab.com/3d-models/russian-imperial-ww1-army-cap-d5d8d1c2636946a1adbaaeb2fe5dcd92,
   licensed under Creative Commons Attribution (CC BY 4.0) - https://creativecommons.org/licenses/by/4.0/
   Changes: converted to the game's format, repositioned/rescaled and repainted (white, red band, star).
 

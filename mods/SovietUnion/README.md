@@ -28,4 +28,4 @@ A new playable nation for ARA: History Untold 2.1.0.542: the **Soviet Union** (`
 To remove the mod, run `UNINSTALL.bat`. If the Brazil mod is still installed, the leader base stays. Otherwise the original game files are restored.
 
 ## Credits
-Marshal cap adapted from *"Russian Imperial WW1 Army Cap"* by **dawiderodawid** (Sketchfab), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Details are in `CREDITS.txt`.
+Marshal cap adapted from [*"Russian Imperial WW1 Army Cap"*](https://sketchfab.com/3d-models/russian-imperial-ww1-army-cap-d5d8d1c2636946a1adbaaeb2fe5dcd92) by **dawiderodawid** (Sketchfab), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Details are in `CREDITS.txt`.

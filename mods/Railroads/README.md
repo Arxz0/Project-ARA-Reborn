@@ -15,7 +15,7 @@ Player-built railroads for ARA: History Untold 2.1.0.542. Part of **Project ARA:
 
 ## Important
 - Enable the **Ferrovias** mod (the mod's folder name) when starting a **new game**. Costs, the improvement and the technology change are stored in each save.
-- The mod replaces the `ConnectionPoints` and `Technologies` (Steam Engine) lists. Don't combine it with another mod that replaces the same lists, for example Workshop item 5293348.
+- The mod replaces the `ConnectionPoints` and `Technologies` (Steam Engine) lists. Don't combine it with another mod that replaces the same lists, for example *Naxt's Grand ReFlavor Mod* (mod.io).
 - **Not done yet:**
   - dedicated railroad bridges (rivers still show road bridges);
   - railroad color and icon on the road map overlay;
