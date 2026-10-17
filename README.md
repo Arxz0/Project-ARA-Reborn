@@ -85,6 +85,23 @@ Good to know:
 - The DLLs check the game build. On a different build, the build-specific parts stay disabled and say so in their log.
 - Logs and `.ini` settings are written to the game's `bin` folder.
 
+## Compatibility
+
+- **All Project ARA: Reborn mods work together**, in any combination and installation order.
+- **Game version:** made for ARA: History Untold **2.1.0.542** (Steam). The DLLs check the game build; on another build their build-specific parts stay off and say so in their log.
+- **Other DLL mods:** each Reborn DLL mod replaces one game DLL (see [How the mods stay independent](#how-the-mods-stay-independent)). Another mod that replaces the same DLL can't be used at the same time.
+- **Other content mods:** when two enabled mods define the same game entry, the game uses only one of them, and the features of the other mod that depend on that entry silently stop working. The Reborn content mods replace these entries:
+
+| Mod | Game entries it replaces |
+|---|---|
+| Railroads | the connection points list (`ConnectionPoints`), technology `tch_SteamEngine` |
+| Brazil | technologies `tch_Industrialization`, `tch_InterchangeableParts`, `tch_MassProducedTextiles`; improvement `imp_Stable`; Earth map starting positions (`UniqueStartInfo`) |
+| Soviet Union | technology `tch_InternalCombustionEngine`; improvement `imp_VehicleFactory`; Earth map starting positions (`UniqueStartInfo`) |
+
+Brazil and the Soviet Union ship the same starting positions file, with both nations in it, so they work together. AraQoL and ARA CPU Fix change no game data and work with any content mod.
+
+**Known conflict: _Naxt's Grand ReFlavor Mod_ (mod.io).** It also replaces the connection points list, `tch_SteamEngine`, `tch_Industrialization`, `tch_MassProducedTextiles`, `tch_InternalCombustionEngine`, `imp_Stable` and `imp_VehicleFactory`. Don't enable it together with Railroads, Brazil or the Soviet Union.
+
 ## How the mods stay independent
 
 Each mod replaces a **different** DLL that the game loads. The original DLL is kept as `<name>_orig.dll` and every export is forwarded to it.

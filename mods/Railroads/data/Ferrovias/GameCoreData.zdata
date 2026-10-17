@@ -6,8 +6,8 @@ export Library Root =
     {
         .RoadTemplates = { .Entries = { .rdt_Railroad = { "files/Railroad.zdata", "rdt_Railroad" }, }, },
 
-        // Train Station: melhoria nova, ponto de conexao (lista do jogo + imp_TrainStation) e liberada pela Steam Engine.
-        // ATENCAO: o mod do Naxt (5293348) tambem substitui ConnectionPoints e Technologies; nao ativar os dois juntos.
+        // Train Station: new improvement, a connection point (the game's list + imp_TrainStation), unlocked by Steam Engine.
+        // Replaces the ConnectionPoints list and tch_SteamEngine: mods that replace the same entries conflict (see README, Compatibility).
         .Improvements = { .FromFiles = { "files/TrainStation.zdata" }, },
         .ConnectionPoints = { .Entries = { .Connections = { "files/ConnectionPoints.zdata", "export_ConnectionPointsData" }, }, },
         .Technologies = { .FromFiles = { "files/Tech_SteamEngine.zdata" }, },

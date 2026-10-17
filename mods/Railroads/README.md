@@ -15,12 +15,21 @@ Player-built railroads for ARA: History Untold 2.1.0.542. Part of **Project ARA:
 
 ## Important
 - Enable the **Ferrovias** mod (the mod's folder name) when starting a **new game**. Costs, the improvement and the technology change are stored in each save.
-- The mod replaces the `ConnectionPoints` and `Technologies` (Steam Engine) lists. Don't combine it with another mod that replaces the same lists, for example *Naxt's Grand ReFlavor Mod* (mod.io).
 - **Not done yet:**
   - dedicated railroad bridges (rivers still show road bridges);
   - railroad color and icon on the road map overlay;
   - moving trains.
 - The station alignment has not been tested in game yet.
+
+## Compatibility
+- Works with every other Project ARA: Reborn mod.
+- **DLL:** the mod replaces `bin\avformat-60.dll`. Another mod that replaces the same DLL can't be used at the same time.
+- **Game data:** the mod replaces two game entries:
+  - the connection points list (`ConnectionPoints`), to make the Train Station a road/railroad connection point;
+  - the **Steam Engine** technology (`tch_SteamEngine`), to unlock railroads and the Train Station.
+
+  When another enabled mod replaces the same entries, the game uses only one version: depending on which one wins, the Train Station stops connecting lines or railroads and the Train Station are never unlocked.
+- **Known conflict:** *Naxt's Grand ReFlavor Mod* (mod.io) replaces both entries. Don't enable it together with Railroads.
 
 ## Settings (`bin\Ferrovias.ini`)
 | Key | Default | Meaning |
