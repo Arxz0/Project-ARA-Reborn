@@ -18,6 +18,17 @@ A new playable nation for ARA: History Untold 2.1.0.542: the **Soviet Union** (`
 - **Custom introduction narration** in English and Brazilian Portuguese. It was generated with Coqui XTTS-v2 using a stock studio voice; no real person's voice was cloned.
 - **Localization:** English and **Brazilian Portuguese (PT-BR)**, following the game language.
 
+## Compatibility
+- Works with every other Project ARA: Reborn mod, including the Brazil mod: both use the same leader base and ship the same starting positions file.
+- **DLL:** the leader base replaces `bin\swscale-7.dll`. Another mod that replaces the same DLL can't be used at the same time.
+- **Game data:** the mod replaces these game entries:
+  - technology `tch_InternalCombustionEngine`, which unlocks the T-34;
+  - improvement `imp_VehicleFactory`, where the T-34 is built;
+  - the Earth map starting positions (`UniqueStartInfo`), which place the Soviet Union in Moscow.
+
+  When another enabled mod replaces the same entries, the game uses only one version, and parts of the mod can stop working: for example the T-34 is never unlocked, or the Soviet Union gets no fixed starting position.
+- **Known conflict:** *Naxt's Grand ReFlavor Mod* (mod.io) replaces `tch_InternalCombustionEngine` and `imp_VehicleFactory`. Don't enable it together with this mod.
+
 ## Install
 1. Close the game.
 2. Run `INSTALL.bat`.
