@@ -20,7 +20,7 @@ namespace RebornSetup
         Page page = Page.Welcome;
         readonly List<ModItem> items;
         bool maintenance;            // something is already installed: no license page, the welcome page offers Modify / Uninstall
-        bool busy, uninstallAll;
+        bool busy, uninstallAll, demo;
         string game;
         readonly DispatcherTimer slideTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(7) };
         readonly DispatcherTimer creepTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(150) };
@@ -44,6 +44,10 @@ namespace RebornSetup
             game = Engine.IsGameDir(last) ? last : Engine.FindGame();
             GamePathBox.Text = game ?? "";
             Detect();
+            demo = argv.Any(a => a.Equals("--demo", StringComparison.OrdinalIgnoreCase) || a.Equals("--shots", StringComparison.OrdinalIgnoreCase));   // screenshots: every mod shows as new, nothing is installed
+            if (demo) foreach (var it in items) { it.Installed = false; it.InstalledVersion = null; }
+            var li = Array.FindIndex(argv, a => a.Equals("--lang", StringComparison.OrdinalIgnoreCase));
+            if (li > 0 && li + 1 < argv.Length) L.Pt = argv[li + 1].StartsWith("pt", StringComparison.OrdinalIgnoreCase);
             maintenance = items.Any(i => i.Installed);
             foreach (var it in items)
             {
@@ -63,6 +67,7 @@ namespace RebornSetup
 
         void Detect()
         {
+            if (demo) return;
             foreach (var it in items)
             {
                 it.Installed = Engine.IsInstalled(it.Def, game);
@@ -306,6 +311,7 @@ namespace RebornSetup
 
         async Task RunAll()
         {
+            if (demo) return;                       // screenshot mode never touches a game
             if (Engine.GameRunning()) { ValidateLocation(); Refresh(null, null); return; }
             Engine.LastGamePath = game;
             // installs first (a second nation reuses the leader base), removals last
@@ -545,14 +551,17 @@ namespace RebornSetup
             await Snap("3_content");
             if (maintenance) foreach (var it in items) it.Selected = false;
             BtnNext_Click(null, null); await Snap("4_location");
-            var run = RunAll();
-            await Snap("5_progress", 900);
-            await run;
-            await Snap("6_finish");
-            ShowPage(Page.Progress); ProgTitle.Text = L.F("installing", items[0].Title); ProgStep.Text = L.F("step_of", 1, 2); SetProgress(0.42); ShowSlide(0);
-            await Snap("5b_progress");
-            ShowSlide(1); await Snap("5c_slide2"); ShowSlide(2); await Snap("5d_slide3"); ShowSlide(3); await Snap("5e_slide4");
-            busy = false; Close();
+            // screenshots never install or remove anything (a real run here once uninstalled the mods from a real game)
+            {
+                ShowPage(Page.Progress); ProgTitle.Text = L.F("installing", items[Math.Min(3, items.Count - 1)].Title); ProgStep.Text = L.F("step_of", Math.Min(4, items.Count), items.Count);
+                ProgLine.Text = @"[3/7] assets\PackagedData\Characters.OxTexturePackage... patched"; SetProgress(0.58); ShowSlide(0);
+                await Snap("5_progress");
+                finishedOk = true; foreach (var it in items) it.Installed = true;
+                ShowFinish(items.Select(i => (i, true, new Engine.Result { Ok = true })).ToList());
+                await Snap("6_finish");
+                ShowPage(Page.Progress); ShowSlide(1); await Snap("5c_slide2"); ShowSlide(2); await Snap("5d_slide3"); ShowSlide(3); await Snap("5e_slide4");
+                Close();
+            }
         }
 
         // ---------------- title bar ----------------

@@ -1,0 +1,75 @@
+[center][size=6][b]PROJECT ARA: REBORN[/b][/size]
+[size=4]A collection of independent mods for [i]ARA: History Untold[/i][/size]
+
+[img]https://raw.githubusercontent.com/Arxz0/Project-ARA-Reborn/main/docs/nexus/images/1_welcome.png[/img][/center]
+
+Project ARA: Reborn brings brand-new playable nations and leaders, player-built railroads, quality-of-life upgrades and a fix for the whole-PC freeze during end-of-turn processing.
+Install everything with one [b]Setup[/b] and pick only the mods you want: every mod is independent and works alone or together with the others.
+
+[line]
+[size=5][b]The mods[/b][/size]
+
+[list]
+[*][b]AraQoL 2.0[/b]: higher camera ceiling (Strategic View from the start), map banners that obey their toggle, easier unit clicking and two [b]"Upgrade All"[/b] buttons.
+[*][b]ARA CPU Fix 1.0[/b]: stops the whole-PC freeze that can happen during end-of-turn processing. It reserves a few logical processors for Windows and keeps the game at normal priority.
+[*][b]Railroads 1.9[/b]: build railroads with real track visuals from the road management screen (unlocked by Steam Engine), plus the new [b]Train Station[/b] improvement and an optional 3D station model.
+[*][b]Brazil — Getúlio Vargas 1.0[/b]: new nation. Leader feature [i]Estado Novo[/i] (+50% build production towards Industry, +5 to all citizen stats), unique unit [b]Pracinhas[/b], 3D leader model.
+[*][b]Soviet Union — Joseph Stalin 1.0[/b]: new nation. Leader feature [i]Great Patriotic War[/i] (+25% land strength at home, +50% military craft rate, −50% war weariness), unique unit [b]T-34[/b], two 3D looks: 1924 and 1945 marshal.
+[/list]
+
+Both nations come with their own AI personality, portraits, emblems, flag, a true starting position on the Earth map, [b]custom introduction narration[/b] (English and Brazilian Portuguese) and full [b]Brazilian Portuguese (PT-BR)[/b] localization, which follows the game language.
+
+[line]
+[size=5][b]Installation[/b][/size]
+
+[b]Easy way (recommended):[/b]
+[list=1]
+[*]Download the main file and extract [b]ProjectARA-Reborn-Setup-1.0.0.exe[/b].
+[*]Close the game and run the Setup. Windows asks for administrator rights, because the game folder is usually under Program Files.
+[*]Pick the mods you want and click [b]Install[/b]. The Setup finds the game through Steam.
+[/list]
+Run the Setup again, or open [b]Project ARA: Reborn[/b] in Windows [i]Settings → Apps[/i], to add or remove mods or to uninstall everything. The Setup is in English and Brazilian Portuguese.
+
+[b]Manual way:[/b] download the zip of each mod from the optional files, extract it anywhere and run [b]INSTALL.bat[/b]. [b]UNINSTALL.bat[/b] removes it and restores the original game files.
+
+[b]Important:[/b]
+[list]
+[*][b]Railroads, Brazil and Soviet Union[/b] add game content: enable them in the Mods list when you start a [b]new game[/b].
+[*]Steam's [i]Verify integrity of game files[/i] and game updates turn the mods off. Run the Setup again afterwards.
+[*]The Setup is not code-signed. If Windows SmartScreen appears, click [i]More info → Run anyway[/i]. It does not connect to the internet.
+[*]The optional 3D Train Station model needs Python 3.10 or newer already installed. Nothing is downloaded; without Python the station uses the factory model.
+[/list]
+
+[line]
+[size=5][b]Compatibility[/b][/size]
+
+[list]
+[*]All Project ARA: Reborn mods work together, in any combination.
+[*]Made for ARA: History Untold [b]2.1.0.542[/b] (Steam). The DLLs check the game build; on another build their build-specific parts stay off.
+[*]Each DLL mod replaces one game DLL ([i]swresample-4[/i], [i]avutil-58[/i], [i]avformat-60[/i], [i]swscale-7[/i]). Another mod that replaces the same DLL can't be used at the same time.
+[*]When two enabled mods replace the same game entry, the game uses only one of them. Railroads replaces the connection points list and [i]tch_SteamEngine[/i]; Brazil replaces [i]tch_Industrialization[/i], [i]tch_InterchangeableParts[/i], [i]tch_MassProducedTextiles[/i], [i]imp_Stable[/i] and the Earth map starting positions; Soviet Union replaces [i]tch_InternalCombustionEngine[/i], [i]imp_VehicleFactory[/i] and the Earth map starting positions.
+[*][b]Known conflict:[/b] [i]Naxt's Grand ReFlavor Mod[/i] replaces several of these entries. Don't enable it together with Railroads, Brazil or Soviet Union. AraQoL and ARA CPU Fix work with it.
+[/list]
+
+[line]
+[size=5][b]Source code[/b][/size]
+
+All source code, the installers and full documentation are on GitHub: [url=https://github.com/Arxz0/Project-ARA-Reborn]github.com/Arxz0/Project-ARA-Reborn[/url]
+
+[line]
+[size=5][b]Credits and AI disclosure[/b][/size]
+
+[list]
+[*]Soviet marshal cap (Stalin 1945): adapted from [url=https://sketchfab.com/3d-models/russian-imperial-ww1-army-cap-d5d8d1c2636946a1adbaaeb2fe5dcd92]"Russian Imperial WW1 Army Cap"[/url] by [url=https://sketchfab.com/dawiderodawid]dawiderodawid[/url], [url=https://creativecommons.org/licenses/by/4.0/]CC BY 4.0[/url]. Converted to the game's format, repositioned, rescaled and repainted.
+[*]Leader narration: generated with [url=https://huggingface.co/coqui/XTTS-v2]Coqui XTTS-v2[/url] using a stock studio voice (no real person's voice was cloned), under the Coqui Public Model License (non-commercial use).
+[*]Much of the code, texts and translations were written with the help of generative AI (Claude), under the author's direction and testing.
+[/list]
+
+[line]
+[size=5][b]License and disclaimer[/b][/size]
+
+Code: MIT License. Mod content: CC BY-NC-SA 4.0. Third-party assets keep their own licenses. ARA: History Untold game files and content are not covered.
+
+ARA: History Untold © Microsoft. Project ARA: Reborn was created under Microsoft's "[url=https://www.xbox.com/en-US/developers/rules]Game Content Usage Rules[/url]" using assets from ARA: History Untold, and it is not endorsed by or affiliated with Microsoft. Community project, not affiliated with Oxide Games. Use at your own discretion and keep backups of your saves.
+
+Mod author: Spartak (Arxz0)

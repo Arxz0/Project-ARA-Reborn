@@ -15,8 +15,6 @@ if ($Station3D) {
     $py = (Get-Command python -ErrorAction SilentlyContinue)
     if (-not $py) { Write-Warning 'Python 3 not found: the Train Station 3D model was not installed (the mod works with the factory model).' }
     else {
-        & python -c "import numpy" 2>$null
-        if ($LASTEXITCODE -ne 0) { Write-Host 'Installing numpy (pip)...'; & python -m pip install --user numpy }
         & python (Join-Path $Here 'station\station.py') install $game
         if ($LASTEXITCODE -ne 0) { Write-Warning 'The Train Station 3D model failed; the rest of the mod is installed.' }
         else { Copy-Item (Join-Path $Here 'station') (Join-Path ([Environment]::GetFolderPath('MyDocuments')) 'My Games\Ara History Untold\Mods\Ferrovias') -Recurse -Force }
@@ -95,6 +93,10 @@ def main():
         print('%-36s %9d bytes' % (pkg + '.zip', os.path.getsize(z)))
     exe = build_installer()
     sums[os.path.basename(exe)] = hashlib.sha256(open(exe, 'rb').read()).hexdigest()
+    sz = exe[:-4] + '.zip'                      # the Setup in a zip (Nexus Mods and other sites that prefer archives)
+    with zipfile.ZipFile(sz, 'w', zipfile.ZIP_DEFLATED) as zf: zf.write(exe, os.path.basename(exe))
+    sums[os.path.basename(sz)] = hashlib.sha256(open(sz, 'rb').read()).hexdigest()
+    print('%-36s %9d bytes' % (os.path.basename(sz), os.path.getsize(sz)))
     open(os.path.join(DIST, 'SHA256SUMS.txt'), 'w', newline='\n').write(''.join('%s  %s\n' % (h, f) for f, h in sums.items()))
 
 def build_installer():

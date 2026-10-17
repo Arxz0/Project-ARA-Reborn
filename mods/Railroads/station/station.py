@@ -12,9 +12,8 @@
 #     O mod usa .Asset = "Improvement_PostOffice" em imp_TrainStation.
 # Sempre parte dos ORIGINAIS guardados em BACKUP (copiados na 1a execucao; refeitos se a Steam atualizar os pacotes).
 # Usage: python station.py [install|restore] [game folder]   (without the folder it is found through Steam)
-# Project ARA: Reborn - Railroads mod. Requires Python 3.10+ and numpy.
+# Project ARA: Reborn - Railroads mod. Requires Python 3.10+ (standard library only).
 import struct, sys, os, shutil, hashlib, json, ctypes, re
-import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from pkg_ai import Pkg, mm3
@@ -160,6 +159,8 @@ def patch_assetinfo(src):
     return p.build()
 
 # ---------- ModelPackage ----------
+def f32(x): return struct.unpack('<f', struct.pack('<f', x))[0]     # rounds like float32 arithmetic
+
 def mesh_no_chimneys(B):
     """v3 (blueprint do usuario, 15/10): apaga o bloco principal + anexo (tudo com centro a leste de SPLIT_X: salao, galpoes,
     chamines, plataforma do guindaste) e move o predio do lado oeste DX metros para a direita, para ele ficar na borda
@@ -171,39 +172,51 @@ def mesh_no_chimneys(B):
     ni, k57, io, ib = struct.unpack_from('<4I', B, secs[3][0])
     w = 4 if ib >= ni * 4 else 2                     # PackagedData: u32; PackagedDataHD (sem o LOD0): u16
     assert ib == ((ni * w + 15) & ~15) or ib == ni * w, 'unexpected index size'
-    ind = np.frombuffer(bytes(B[io:io + ni * w]), np.uint32 if w == 4 else np.uint16).copy()
-    st = struct.unpack_from('<4I', B, secs[5][0])
-    pos = np.frombuffer(bytes(B[st[2]:st[2] + st[0] * 12]), np.float32).reshape(-1, 3).copy()
-    key = np.round(pos * 100).astype(np.int64); _, inv = np.unique(key, axis=0, return_inverse=True); inv = inv.ravel()
-    total = 0; report = []; move = np.zeros(len(pos), bool)
+    fmt = '<%d%s' % (ni, 'I' if w == 4 else 'H')
+    ind = list(struct.unpack_from(fmt, B, io))
+    st = struct.unpack_from('<4I', B, secs[5][0]); nv = st[0]
+    flat = struct.unpack_from('<%df' % (nv * 3), B, st[2])
+    pos = [list(flat[i * 3:i * 3 + 3]) for i in range(nv)]
+    # same position (to 1 cm) = same point: groups the vertices that are split by normals/UVs
+    keys = {}; inv = [keys.setdefault((round(f32(x * 100)), round(f32(y * 100)), round(f32(z * 100))), len(keys)) for x, y, z in pos]
+    total = 0; report = []; move = [False] * nv
     for s in subs:
-        a, n = s[3], s[4]; t = ind[a:a + 3 * n].reshape(-1, 3).astype(np.int64)
-        tt = inv[t]; par = np.arange(inv.max() + 1)
+        a, n = s[3], s[4]; t = [ind[a + 3 * j:a + 3 * j + 3] for j in range(n)]
+        par = list(range(len(keys)))
         def find(x):
             r = x
             while par[r] != r: r = par[r]
             while par[x] != r: par[x], x = r, par[x]
             return r
-        for p0, p1, p2 in tt:
-            r0 = find(p0); par[find(p1)] = r0; par[find(p2)] = r0
-        lab = np.array([find(x) for x in tt[:, 0]])
-        kill = np.zeros(len(t), bool)
+        for v0, v1, v2 in t:                     # connected pieces of the mesh (union-find over points)
+            r0 = find(inv[v0]); par[find(inv[v1])] = r0; par[find(inv[v2])] = r0
+        pieces = {}
+        for j, tri in enumerate(t): pieces.setdefault(find(inv[tri[0]]), []).append(j)
+        kill = [False] * n
         crates = 0
-        for c in np.unique(lab):
-            m = lab == c; v = np.unique(t[m]); mn, mx = pos[v].min(0), pos[v].max(0)
-            if (mn[0] + mx[0]) / 2 >= SPLIT_X: kill |= m
-            elif any(mn[0] >= x0 and mx[0] <= x1 and mn[1] >= y0 and mx[1] <= y1 for x0, x1, y0, y1 in BAYS) and mx[2] < 7 and mx[2] - mn[2] > 0.6:
-                kill |= m; crates += int(m.sum())   # caixas dos 2 portoes centrais
+        for js in pieces.values():
+            v = {x for j in js for x in t[j]}
+            mn = [min(pos[i][d] for i in v) for d in range(3)]; mx = [max(pos[i][d] for i in v) for d in range(3)]
+            if f32(mn[0] + mx[0]) / 2 >= SPLIT_X: hit = True
+            elif any(mn[0] >= x0 and mx[0] <= x1 and mn[1] >= y0 and mx[1] <= y1 for x0, x1, y0, y1 in BAYS) and mx[2] < 7 and f32(mx[2] - mn[2]) > 0.6:
+                hit = True; crates += len(js)          # caixas dos 2 portoes centrais
+            else: hit = False
+            if hit:
+                for j in js: kill[j] = True
         if crates: report.append('caixas %d' % crates)
-        move[np.unique(t[~kill])] = True
-        tri = ind[a:a + 3 * n].reshape(-1, 3)
-        tri[kill] = tri[kill][:, :1]            # triangulo degenerado: os 3 indices iguais
-        ind[a:a + 3 * n] = tri.ravel(); total += int(kill.sum()); report.append(int(kill.sum()))
-    B[io:io + ni * w] = ind.tobytes()
-    pos[move, 0] += DX
-    B[st[2]:st[2] + st[0] * 12] = pos.astype(np.float32).tobytes()
+        for j, tri in enumerate(t):
+            if kill[j]: ind[a + 3 * j:a + 3 * j + 3] = [tri[0]] * 3      # triangulo degenerado: os 3 indices iguais
+            else:
+                for x in tri: move[x] = True
+        k = sum(kill); total += k; report.append(k)
+    struct.pack_into(fmt, B, io, *ind)
+    for i in range(nv):
+        if move[i]: pos[i][0] = f32(pos[i][0] + DX)
+    struct.pack_into('<%df' % (nv * 3), B, st[2], *[c for p in pos for c in p])
+    keep = [pos[i] for i in range(nv) if move[i]]
+    kmin = [min(p[d] for p in keep) for d in range(3)]; kmax = [max(p[d] for p in keep) for d in range(3)]
     # caixa envolvente (S2): min xyz, 0, max xyz
-    keep = pos[move]; struct.pack_into('<3fI3f', B, secs[2][0], *keep.min(0), 0, *keep.max(0))
+    struct.pack_into('<3fI3f', B, secs[2][0], *kmin, 0, *kmax)
     s1 = secs[1][0]; nn = struct.unpack_from('<I', B, s1 + 8)[0] >> 16
     o_nodes, o_m1, o_m2 = struct.unpack_from('<I', B, s1 + 0xc)[0], struct.unpack_from('<I', B, s1 + 0x18)[0], struct.unpack_from('<I', B, s1 + 0x1c)[0]
     assert o_m2 - o_m1 == nn * 0x40, 'model nodes: unexpected layout'

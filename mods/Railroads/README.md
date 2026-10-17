@@ -9,7 +9,7 @@ Player-built railroads for ARA: History Untold 2.1.0.542. Part of **Project ARA:
 - **Real track visuals.** Railroad links are drawn with the railroad track material that ships with the game but is otherwise unused. Inner region streets along the line become track too, so there is no stray asphalt in the middle of a railroad.
 - **Train Station:** a new improvement, unlocked by Steam Engine, that acts as a road/railroad connection point in regions without a city.
 - **Train Station 3D model (optional):** a dedicated warehouse-style station with tracks painted on its foundation.
-  - Installed by `INSTALL.bat` through `station\station.py`. Needs **Python 3**; the installer adds `numpy` with pip if it is missing.
+  - Installed by `INSTALL.bat` through `station\station.py`. Needs **Python 3.10 or newer** (standard library only; nothing is downloaded).
   - The original game packages are backed up in `Mods\Ferrovias\station_backup` and restored by the uninstaller.
 - **Station aligned to the line (experimental).** The DLL turns and shifts only the station's visual so its track side sits on a straight stretch of the line.
 
